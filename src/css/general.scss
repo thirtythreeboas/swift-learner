@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@700&family=Scada&display=swap');
+
+* {
+  font-family: 'Scada', sans-serif;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+body {
+  background-color: #fff2dd;
+}
+
+.main-container {
+  min-width: 360px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.header {
+  display: block;
+  width: 100%;
+  background-color: #1E1B28;
+  color: #fff;
+  font-family: 'Changa', sans-serif;
+  font-size: 2em;
+}
