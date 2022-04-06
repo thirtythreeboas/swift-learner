@@ -1,34 +1,55 @@
-import { makeAutoObservable, observable  } from "mobx";
+import { makeObservable, observable, action, autorun } from "mobx";
 
-interface Word {
-  rus: string;
-  eng: string;
+export interface Word {
+  rus: string[];
+  eng: string[];
   isCorrect: boolean;
-  point?: number;
-  hint?: string;
+  point: number;
+  hint: string;
+}
+
+export interface Words {
+  "Apple Juice": Word[],
+  "Real Talk"?: Word[],
+  "Winter is Coming"?: Word[],
+  "Better than Others"?: Word[],
+  "Upgrade"?: Word[],
+  "Guru"?: Word[]
 }
 
 const url: string = 'https://thirtythreeboas.github.io/data/dictionary.json';
 
 class Logic {
-  words: Word[] = [];
+  @observable words = {} as Words;
+  @observable chosenBlocks: string[] = [];
 
   constructor() {
-    makeAutoObservable(this)
+    makeObservable(this)
+    autorun(() => console.log(this.chosenBlocks))
   }
 
+  @action.bound
   getData() {
-    return fetch(url)
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(res.statusText)
-        }
-        return res.json()
-      })
-      .then(data => this.words = data)
+    fetch(url)
+    .then(res => res.json())
+    .then(action(json => this.words = json))
+  }
+
+  @action.bound
+  chooseBlock(e: { target: HTMLElement }) {
+    if (this.chosenBlocks.indexOf(e.target.id) === -1) {
+      this.chosenBlocks.push(e.target.id);
+      document.getElementById(e.target.id)!.className += " hover";
+      return;
+    }
+    if (this.chosenBlocks.indexOf(e.target.id) !== -1) {
+      document.getElementById(e.target.id)!.className = "word-block";
+      this.chosenBlocks = this.chosenBlocks.filter((elem: string) => elem !== e.target.id);
+      return;
+    }
   }
 }
 
-const instance = new Logic();
+const logic = new Logic();
 
-export default instance;
+export default logic;

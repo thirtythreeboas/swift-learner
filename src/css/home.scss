@@ -13,6 +13,8 @@
 .home-page {
   width: 100%;
   @include flex-dir(flex-start);
+  border-bottom: 1px solid #b0a4a4;
+  margin-bottom: 3rem;
   h3 {
     width: 100%;
     text-align: center;
@@ -50,6 +52,15 @@
   margin-bottom: 0.7em;
   &:hover {
     background-color: #000;
+    color: #fff;
+  }
+}
+
+.hover {
+  background-color: #c77777;
+  color: #fff;
+  &:hover {
+    background-color: #c77777;
     color: #fff;
   }
 }
