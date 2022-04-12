@@ -1,0 +1,31 @@
+.info-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+}
+
+.info-row {
+  display: flex;
+  width: 100%;
+  margin: 0.2em 0;
+  padding: 0 0.7em;
+  // min-width: 360px;
+  // max-width: 960px;
+  // background-color: #fff;
+}
+
+.left-info, .right-info {
+  display: flex;
+  width: 50%;
+  justify-content: flex-start;
+  // border: 1px solid #D4CFB9;
+  // padding: 0.3em 1em;
+}
+.right-info {
+  margin: 0;
+}

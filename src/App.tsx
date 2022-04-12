@@ -1,18 +1,27 @@
 import React from 'react';
 import './App.css';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
-import Test from './components/Test';
+import Test from './components/test/Test';
+import ShowWords from './components/ShowWords';
 import './css/general.scss';
 import { inject, observer } from "mobx-react";
+import { useNavigate } from "react-router-dom";
 
 const App: React.FC<any> = inject('logic')(observer((props) => {
 
     const { logic } = props;
 
+    let navigate = useNavigate();
+
+    const redirectToMainPage = () => {
+      logic.reset()
+      navigate("/")
+    }
+
     return (
       <div className="App">
-        <Link to="/" className="header">SWIFT-LEARNER</Link>
+        <h1 className="header" onClick={() => redirectToMainPage()}>SWIFT-LEARNER</h1>
         <div className="main-container">
           <Routes>
             <Route path='/' element={
@@ -24,6 +33,11 @@ const App: React.FC<any> = inject('logic')(observer((props) => {
             />}/>
             <Route path='/test' element={
               <Test
+                words={logic.words}
+                chosenBlocks={logic.chosenBlocks}
+            />}/>
+            <Route path='/words' element={
+              <ShowWords
                 words={logic.words}
                 chosenBlocks={logic.chosenBlocks}
             />}/>

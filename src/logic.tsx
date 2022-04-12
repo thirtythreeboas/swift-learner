@@ -36,6 +36,11 @@ class Logic {
   }
 
   @action.bound
+  reset() {
+    this.chosenBlocks = [];
+  }
+
+  @action.bound
   chooseBlock(e: { target: HTMLElement }) {
     if (this.chosenBlocks.indexOf(e.target.id) === -1) {
       this.chosenBlocks.push(e.target.id);

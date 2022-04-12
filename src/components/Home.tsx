@@ -18,10 +18,16 @@ const Home: React.FC<any> = inject('logic')(observer((props) => {
     navigate("/test")
   }
 
+  const showWords = () => {
+    if (chosenBlocks.length === 0) return;
+    navigate("/words")
+  }
+
   return (
     <div className="container">
       <div className='home-page'>
         <h3>Выберите блок</h3>
+        <button className="show-words" onClick={() => showWords()}>Показать слова</button>
         <button onClick={() => startTest()}>Начать тест</button>
         <button>Пройти тест со всеми блоками</button>
       </div>
