@@ -1,5 +1,3 @@
-import { makeObservable, observable, action, autorun } from "mobx";
-
 export interface Word {
   rus: string[];
   eng: string[];
@@ -19,28 +17,20 @@ export interface Words {
 
 const url: string = 'https://thirtythreeboas.github.io/data/dictionary.json';
 
-class Logic {
-  @observable words = {} as Words;
-  @observable chosenBlocks: string[] = [];
+class Store {
+  words = {} as Words;
+  chosenBlocks: string[] = [];
 
-  constructor() {
-    makeObservable(this)
-    autorun(() => console.log(this.chosenBlocks))
-  }
-
-  @action.bound
   getData() {
     fetch(url)
     .then(res => res.json())
-    .then(action(json => this.words = json))
+    .then(json => this.words = json)
   }
 
-  @action.bound
   reset() {
     this.chosenBlocks = [];
   }
 
-  @action.bound
   chooseBlock(e: { target: HTMLElement }) {
     if (this.chosenBlocks.indexOf(e.target.id) === -1) {
       this.chosenBlocks.push(e.target.id);
@@ -55,6 +45,6 @@ class Logic {
   }
 }
 
-const logic = new Logic();
+const store = new Store();
 
-export default logic;
+export default store;

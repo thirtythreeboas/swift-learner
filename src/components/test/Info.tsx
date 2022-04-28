@@ -1,11 +1,7 @@
 import React from 'react';
 import '../../css/test.scss';
-import { inject, observer } from "mobx-react";
 
-const Info: React.FC<any> = inject('logic')(observer((props) => {
-
-  // const { words, chosenBlocks } = props;
-
+const Info = () => {
   return (
     <div className="info-block">
       <h3>формат:</h3>
@@ -29,6 +25,6 @@ const Info: React.FC<any> = inject('logic')(observer((props) => {
       </div>
     </div>
   )
-}));
+};
 
 export default Info;

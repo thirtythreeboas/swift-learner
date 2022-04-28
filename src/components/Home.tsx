@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import '../css/home.scss';
-import { inject, observer } from "mobx-react";
 
-const Home: React.FC<any> = inject('logic')(observer((props) => {
+const Home = () => {
 
   const { words, getData, chooseBlock, chosenBlocks } = props;
 
@@ -47,6 +46,6 @@ const Home: React.FC<any> = inject('logic')(observer((props) => {
       </div>
     </div>
   )
-}));
+};
 
 export default Home;

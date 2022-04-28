@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import logic from './Logic';
+import store from '../store';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'mobx-react';
 
 ReactDOM.render(
   <BrowserRouter>
-    <Provider logic={logic}>
+    <Provider store={store}>
       <App />
     </Provider>
   </BrowserRouter>,

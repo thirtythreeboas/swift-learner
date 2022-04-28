@@ -1,11 +1,8 @@
 import React from 'react';
-import '../css/words.scss';
-import { inject, observer } from "mobx-react";
-import { Word } from '../Logic';
+import '../css/showWords.scss';
+import { Word } from '../../store';
 
-const ShowWords: React.FC<any> = inject('logic')(observer((props) => {
-
-  const { words, chosenBlocks } = props;
+const ShowWords = () => {
 
   return (
     <div className="words-component">
@@ -28,6 +25,6 @@ const ShowWords: React.FC<any> = inject('logic')(observer((props) => {
       </div>
     </div>
   )
-}));
+};
 
 export default ShowWords;
