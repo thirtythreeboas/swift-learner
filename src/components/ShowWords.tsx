@@ -1,12 +1,12 @@
 import React from 'react';
 import '../css/showWords.scss';
-import { Word } from '../../store';
+// import { Word } from '../store/word';
 
 const ShowWords = () => {
 
   return (
     <div className="words-component">
-      <h3>{
+      {/* <h3>{
         chosenBlocks.map((e: string, i: number) => (
           `${e}${i === chosenBlocks.length - 1 ? "" : ", "}`
         ))
@@ -22,7 +22,7 @@ const ShowWords = () => {
             ))
           ))
         }
-      </div>
+      </div> */}
     </div>
   )
 };

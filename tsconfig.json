@@ -23,6 +23,6 @@
   },
   "include": [
     "src", 
-    "store/Store.tsx"
+    "src/store/Store.tsx"
   ]
 }

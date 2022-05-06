@@ -1,24 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { MouseEventHandler } from "react";
 import { useNavigate } from "react-router-dom";
 import '../css/home.scss';
+// import { selectWords } from "../store";
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { chooseWordsBlock } from '../store/word';
 
 const Home = () => {
 
-  const { words, getData, chooseBlock, chosenBlocks } = props;
-
-  useEffect(() => {
-    getData()
-  }, [])
-
+  const blocksOfWords = useAppSelector(state => state.wordStorage);
+  const dispatch = useAppDispatch();
   let navigate = useNavigate();
 
   const startTest = () => {
-    if (chosenBlocks.length === 0) return;
+    if (blocksOfWords.chosenBlocks.length === 0) return;
     navigate("/test")
   }
 
   const showWords = () => {
-    if (chosenBlocks.length === 0) return;
+    if (blocksOfWords.chosenBlocks.length === 0) return;
     navigate("/words")
   }
 
@@ -32,12 +31,13 @@ const Home = () => {
       </div>
       <div className='block-selection'>
         {
-          Object.keys(words).map((item: string, i: number) => (
+          Object.keys(blocksOfWords.data).map((item: string, i: number) => (
             <div
               key={i}
               id={item}
               className="word-block"
-              onClick={e => chooseBlock(e)}
+              // onClick={(e: React.MouseEvent<Element, MouseEvent>) => dispatch(chooseWordsBlock(e))}
+              onClick={(e: HTMLDivElement) => dispatch(chooseWordsBlock(e))}
             >
               {item}
             </div>
