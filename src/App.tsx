@@ -3,8 +3,8 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import Home from './components/Home';
-// import Test from './components/test/Test';
-// import ShowWords from './components/ShowWords';
+import Test from './components/test/Test';
+import ShowWords from './components/ShowWords';
 import { selectWords } from './store';
 import './css/general.scss';
 import { useNavigate } from "react-router-dom";
@@ -42,6 +42,8 @@ const App = () => {
       <div className="main-container">
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/test' element={<Test />} />
+          <Route path='/words' element={<ShowWords />}/>
         </Routes>
       </div>
     </div>

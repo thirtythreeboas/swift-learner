@@ -10,7 +10,7 @@ export interface Word {
   hint: string;
 }
 
-export interface Words {
+export interface Words {  } {
   "Apple Juice": Word[],
   "Real Talk": Word[],
   "Winter is Coming": Word[],
@@ -51,15 +51,15 @@ export const wordSlice = createSlice({
     resetChosenBlocks: (state) => {
       state.chosenBlocks = [];
     },
-    chooseWordsBlock: (state, action: React.MouseEvent<Element>) =>
-      if (state.chosenBlocks.indexOf(action.target.id) === -1) {
-        state.chosenBlocks.push(action.target.id);
-        document.getElementById(action.target.id)!.className += " hover";
+    chooseWordsBlock: (state, action: PayloadAction<string>) => {
+      if (state.chosenBlocks.indexOf(action.payload) === -1) {
+        state.chosenBlocks.push(action.payload);
+        document.getElementById(action.payload)!.className += " hover";
         return;
       }
-      if (state.chosenBlocks.indexOf(action.target.id) !== -1) {
-        document.getElementById(action.target.id)!.className = "word-block";
-        state.chosenBlocks = state.chosenBlocks.filter((elem: string) => elem !== action.target.id);
+      if (state.chosenBlocks.indexOf(action.payload) !== -1) {
+        document.getElementById(action.payload)!.className = "word-block";
+        state.chosenBlocks = state.chosenBlocks.filter((elem: string) => elem !== action.payload);
         return;
       }
     }

@@ -1,20 +1,23 @@
 import React from 'react';
 import '../css/showWords.scss';
-// import { Word } from '../store/word';
+import { useAppSelector } from '../store/hooks';
+import { Word } from '../store/word'; 
 
 const ShowWords = () => {
 
+  const words = useAppSelector(state => state.wordStorage);
+
   return (
     <div className="words-component">
-      {/* <h3>{
-        chosenBlocks.map((e: string, i: number) => (
-          `${e}${i === chosenBlocks.length - 1 ? "" : ", "}`
+      <h3>{
+        words.chosenBlocks.map((e: string, i: number) => (
+          `${e}${i === words.chosenBlocks.length - 1 ? "" : ", "}`
         ))
       }</h3>
       <div className="word-container">
         {
-          chosenBlocks.map((e: string, i: number) => (
-            words[e].map((elem: Word, i: number) => (
+          words.chosenBlocks.map((e: string, i: number) => (
+            words.data[e].map((elem: Word, i: number) => (
               <dl className="row" key={i}>
                 <dt className="left-cell"><span>{elem.eng[0]}</span></dt>
                 <dd className="right-cell"><span>{elem.rus[0]}</span></dd>
@@ -22,7 +25,7 @@ const ShowWords = () => {
             ))
           ))
         }
-      </div> */}
+      </div>
     </div>
   )
 };

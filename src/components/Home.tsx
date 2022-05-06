@@ -36,8 +36,8 @@ const Home = () => {
               key={i}
               id={item}
               className="word-block"
-              // onClick={(e: React.MouseEvent<Element, MouseEvent>) => dispatch(chooseWordsBlock(e))}
-              onClick={(e: HTMLDivElement) => dispatch(chooseWordsBlock(e))}
+              // gotta find out the way to do the same differently
+              onClick={(e) => dispatch(chooseWordsBlock(e.currentTarget.id))}
             >
               {item}
             </div>
