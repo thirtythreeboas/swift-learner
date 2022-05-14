@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import './css/general.scss';
+import { Routes, Route, Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import Home from './components/Home';
 import Test from './components/test/Test';
 import ShowWords from './components/ShowWords';
-import { selectWords } from './store';
-import './css/general.scss';
-import { useNavigate } from "react-router-dom";
 import LoadingPage from './components/loading/LoadingPage';
+import { selectWords } from './store';
+import { useNavigate } from "react-router-dom";
 import { getWords } from './store/word';
-import { resetChosenBlocks, chooseWordsBlock } from './store/word';
+import { resetChosenBlocks } from './store/word';
 
 const App = () => {
 
@@ -19,26 +19,27 @@ const App = () => {
   const url: string = 'https://thirtythreeboas.github.io/data/dictionary.json';
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      dispatch(getWords());
-    }, 2000)
-    return () => clearTimeout(timer);
+    dispatch(getWords());
   }, [])
 
-  let navigate = useNavigate();
 
-  const redirectToMainPage = () => {
-    dispatch(resetChosenBlocks());
-    navigate("/");
-  }
+  const navigate = useNavigate();
+  console.log();
+  
 
-  if (words === undefined) return <LoadingPage />
+  // const redirectToMainPage = () => {
+  //   dispatch(resetChosenBlocks());
+  //   navigate("/");
+  // }
+
+  if (Object.keys(words.data).length === 0) return <LoadingPage />
   
   return (
     <div className="App">
-      <h1 className="header" 
-      onClick={() => redirectToMainPage()}
-      >SWIFT-LEARNER</h1>
+      {/* <h1 className="header" 
+      // onClick={() => redirectToMainPage()}
+      >SWIFT-LEARNER</h1> */}
+      <Link to="/" className="header">SWIFT-LEARNER</Link>
       <div className="main-container">
         <Routes>
           <Route path='/' element={<Home />} />

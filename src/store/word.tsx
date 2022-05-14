@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import React from 'react';
 // import type { RootState } from './index';
 
 export interface Word {
@@ -10,20 +9,20 @@ export interface Word {
   hint: string;
 }
 
-export interface Words {  } {
-  "Apple Juice": Word[],
-  "Real Talk": Word[],
-  "Winter is Coming": Word[],
-  "Better than Others": Word[],
-  "Upgrade"?: Word[],
-  "Guru"?: Word[]
+export interface Words {
+  "Apple Juice": Word[];
+  "Real Talk": Word[];
+  "Winter is Coming": Word[];
+  "Better than Others": Word[];
+  "Upgrade"?: Word[];
+  "Guru"?: Word[];
 }
 
-interface State {
-  data: Words,
-  chosenBlocks: string[],
-  isLoading: boolean
-}
+// interface State {
+//   data: Words,
+//   chosenBlocks: string[],
+//   isLoading: boolean
+// }
 
 const url: string = 'https://thirtythreeboas.github.io/data/dictionary.json';
 
@@ -35,9 +34,13 @@ export const getWords = createAsyncThunk(
     return resToJson;
 });
   
-const initialState = {} as State;
-
-// const words = {} as Words;
+// const initialState = {} as State;
+const initialState: { [key: string] : any } = {
+  data: {} as Words,
+  chosenBlocks: [],
+  mode: false,
+  isLoading: false
+}
 
 export const wordSlice = createSlice({
   name: 'words',
@@ -70,6 +73,7 @@ export const wordSlice = createSlice({
     });
     builder.addCase(getWords.fulfilled, (state, action: any) => {
       state.data = action.payload;
+      // state.chosenBlocks = [];
       state.isLoading = false;
     });
     builder.addCase(getWords.rejected, (state) => {

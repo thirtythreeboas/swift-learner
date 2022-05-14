@@ -1,23 +1,23 @@
-import React, { MouseEventHandler } from "react";
 import { useNavigate } from "react-router-dom";
 import '../css/home.scss';
-// import { selectWords } from "../store";
 import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { selectWords } from "../store";
 import { chooseWordsBlock } from '../store/word';
 
 const Home = () => {
 
-  const blocksOfWords = useAppSelector(state => state.wordStorage);
+  const words = useAppSelector(selectWords);
+  const selected = words.chosenBlocks;
   const dispatch = useAppDispatch();
   let navigate = useNavigate();
 
   const startTest = () => {
-    if (blocksOfWords.chosenBlocks.length === 0) return;
+    if (selected.length === 0) return;
     navigate("/test")
   }
 
   const showWords = () => {
-    if (blocksOfWords.chosenBlocks.length === 0) return;
+    if (selected.length === 0) return;
     navigate("/words")
   }
 
@@ -31,7 +31,7 @@ const Home = () => {
       </div>
       <div className='block-selection'>
         {
-          Object.keys(blocksOfWords.data).map((item: string, i: number) => (
+          Object.keys(words.data).map((item: string, i: number) => (
             <div
               key={i}
               id={item}

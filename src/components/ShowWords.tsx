@@ -1,22 +1,24 @@
 import React from 'react';
 import '../css/showWords.scss';
+import { selectWords } from '../store';
 import { useAppSelector } from '../store/hooks';
-import { Word } from '../store/word'; 
+import { Word } from '../store/word';
 
 const ShowWords = () => {
 
-  const words = useAppSelector(state => state.wordStorage);
+  const words = useAppSelector(selectWords);
+  const selected = words.chosenBlocks;
 
   return (
     <div className="words-component">
       <h3>{
-        words.chosenBlocks.map((e: string, i: number) => (
-          `${e}${i === words.chosenBlocks.length - 1 ? "" : ", "}`
+        selected.map((e: string, i: number) => (
+          `${e}${i === selected.length - 1 ? "" : ", "}`
         ))
       }</h3>
       <div className="word-container">
         {
-          words.chosenBlocks.map((e: string, i: number) => (
+          selected.map((e: string, i: number) => (
             words.data[e].map((elem: Word, i: number) => (
               <dl className="row" key={i}>
                 <dt className="left-cell"><span>{elem.eng[0]}</span></dt>

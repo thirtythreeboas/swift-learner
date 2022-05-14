@@ -23,9 +23,12 @@
 .left-cell, .right-cell {
   display: flex;
   width: 50%;
-  justify-content: flex-start;
+  // justify-content: flex-start;
   border: 1px solid #D4CFB9;
   padding: 0.3em 1em;
+  span {
+    text-align: initial;
+  }
 }
 .right-cell {
   margin: 0;
