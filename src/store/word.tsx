@@ -18,12 +18,6 @@ export interface Words {
   "Guru"?: Word[];
 }
 
-// interface State {
-//   data: Words,
-//   chosenBlocks: string[],
-//   isLoading: boolean
-// }
-
 const url: string = 'https://thirtythreeboas.github.io/data/dictionary.json';
 
 export const getWords = createAsyncThunk(
@@ -33,8 +27,7 @@ export const getWords = createAsyncThunk(
     const resToJson = await response.json();
     return resToJson;
 });
-  
-// const initialState = {} as State;
+
 const initialState: { [key: string] : any } = {
   data: {} as Words,
   chosenBlocks: [],
@@ -45,11 +38,6 @@ const initialState: { [key: string] : any } = {
 export const wordSlice = createSlice({
   name: 'words',
   initialState,
-  // initialState: {
-  //   words: words,
-  //   chosenBlocks: [],
-  //   isLoading: false
-  // },
   reducers: {
     resetChosenBlocks: (state) => {
       state.chosenBlocks = [];
@@ -73,7 +61,6 @@ export const wordSlice = createSlice({
     });
     builder.addCase(getWords.fulfilled, (state, action: any) => {
       state.data = action.payload;
-      // state.chosenBlocks = [];
       state.isLoading = false;
     });
     builder.addCase(getWords.rejected, (state) => {
