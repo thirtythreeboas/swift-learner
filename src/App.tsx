@@ -16,7 +16,6 @@ const App = () => {
   const location = useLocation();
   const words = useAppSelector(selectWords);
   const dispatch = useAppDispatch();
-  const url: string = 'https://thirtythreeboas.github.io/data/dictionary.json';
   
 
   useEffect(() => {
@@ -27,7 +26,7 @@ const App = () => {
     if (location.pathname === '/') {
       dispatch(resetChosenBlocks());
     }
-  })
+  }, [])
   
   if (Object.keys(words.data).length === 0) return <LoadingPage />
   
@@ -38,7 +37,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/test' element={<Test />} />
-          <Route path='/words' element={<ShowWords />}/>
+          <Route path='/words' element={<ShowWords />} />
         </Routes>
       </div>
     </div>
