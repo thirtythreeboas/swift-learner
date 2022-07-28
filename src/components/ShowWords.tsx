@@ -1,13 +1,20 @@
-import React from 'react';
+import { useEffect } from 'react';
 import '../css/showWords.scss';
 import { selectWords } from '../store';
-import { useAppSelector } from '../store/hooks';
-import { Word } from '../store/word';
+import { useAppSelector, useAppDispatch } from '../store/hooks';
+import { Word, resetChosenBlocks } from '../store/word';
 
 const ShowWords = () => {
 
   const words = useAppSelector(selectWords);
+  const dispatch = useAppDispatch();
   const selected = words.chosenBlocks;
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetChosenBlocks())
+    }
+  }, [])
 
   return (
     <div className="words-component">
