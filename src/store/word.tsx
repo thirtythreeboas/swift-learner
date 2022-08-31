@@ -18,7 +18,7 @@ export interface Words {
   "Guru"?: Word[];
 }
 
-const url: string = 'https://thirtythreeboas.github.io/data/dictionary.json';
+const url: string = 'https://thirtythreeboas.github.io/wordsapi.github.io/data/dictionary.json';
 
 export const getWords = createAsyncThunk(
   'words/getWords',
