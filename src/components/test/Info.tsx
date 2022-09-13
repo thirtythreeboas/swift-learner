@@ -61,7 +61,7 @@ const Info = () => {
   }
 
   return (
-    <div className="info-block">
+    <div className="info-container">
       <h3>Параметры:</h3>
       <div className="details">
         <dl className="info-row" id="info-row-switch-lang">

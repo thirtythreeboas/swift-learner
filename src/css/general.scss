@@ -13,9 +13,10 @@ body {
   background-color: #fff;
 }
 
-.main-container {
-  min-width: 360px;
-  max-width: 960px;
+.app-container {
+  // min-width: 360px;
+  // max-width: 960px;
+  width: max(360px, 70%);
   margin: 0 auto;
 }
 

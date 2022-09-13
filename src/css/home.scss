@@ -7,7 +7,6 @@
 .container {
   @include flex-dir();
   padding: 0.6em;
-  // margin-top: 60px;
 }
 
 .home-page {
@@ -24,7 +23,6 @@
     width: auto;
     border: none;
     border-radius: 0.12em;
-    // background-color: #fff2dd;
     background-color: #fff;
     font-size: 1em;
     margin-bottom: 0.6em;
@@ -53,10 +51,8 @@
   border-radius: 0.12em;
   margin-bottom: 0.7em;
   &:hover {
-    // background-color: #000;
     background-color: #2b1c5c;
     color: #fff;
-    // box-shadow: -3px 0px 40px 0px #0000001a;
   }
 }
 

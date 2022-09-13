@@ -24,7 +24,7 @@ const App = () => {
   return (
     <div className="App">
       <Link to="/" className="header">SWIFT-LEARNER</Link>
-      <div className="main-container">
+      <div className="app-container">
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/test' element={<TestContainer />} />
