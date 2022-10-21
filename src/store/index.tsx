@@ -6,7 +6,7 @@ const store = configureStore({
   reducer: {
     wordStore: wordSlice.reducer,
     testStore: testSlice.reducer
-  },
+  }
 });
 
 export type RootState = ReturnType<typeof store.getState>;

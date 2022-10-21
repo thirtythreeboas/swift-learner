@@ -79,13 +79,59 @@
   }
 }
 
-
 #word-count-input {
   max-width: 5rem;
 }
 
+#word-count-input::-webkit-outer-spin-button,
+#word-count-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+#word-count-input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.test-mode-settings {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: none;
+  margin: 0;
+  padding: 0;
+  div {
+    display: flex;
+    align-items: center;
+  }
+  input {
+    margin: 0;
+    margin-right: 5px;
+  }
+}
+
+.test-management-buttons {
+  display: flex;
+  justify-content: flex-start;
+}
+
 .start-test {
-  
+  border: none;
+  width: max(250px, 40%);
+  cursor: pointer;
+  margin: 0.7em;
+  padding: 0.5em;
+  background-color: #91ef7d;
+  border-radius: 3px;
+}
+
+.start-test-description {
+  background-color: #ddeb63;
+  pointer-events: none;
+  user-select: none;
+}
+
+.stop-test {
+  background-color: #eb6365;
 }
 
 // Test component styles
@@ -108,7 +154,9 @@
 }
 
 #word-to-translate {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-width: 200px;
   height: 30px;
   border: 1px solid #9b8686;
@@ -116,13 +164,12 @@
 }
 
 .word-to-enter {
-  display: block;
+  text-align: center;
   min-width: 200px;
   height: 30px;
   border: 1px solid #9b8686;
   border-radius: 4px;
   padding: 0;
-  padding-left: 10px;
 }
 
 .input-word-button {

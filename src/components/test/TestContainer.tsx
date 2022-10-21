@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import '../../css/test.scss';
 import { selectWords, selectTest } from '../../store';
 import { resetChosenBlocks } from '../../store/word';
@@ -15,11 +15,11 @@ const TestContainer = () => {
     return () => {
       dispatch(resetChosenBlocks())
     }
-  }, [])
+  }, []);
   
   return (
     <div className="test">
-      <Info />
+      <Info/>
       <Test />
     </div>
   )

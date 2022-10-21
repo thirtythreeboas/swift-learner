@@ -17,7 +17,7 @@ const App = () => {
   
   useEffect(() => {
     dispatch(getWords());
-  }, [])
+    }, [])
   
   if (Object.keys(words.data).length === 0) return <LoadingPage />
   
