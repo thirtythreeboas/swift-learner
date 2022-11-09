@@ -1,8 +1,6 @@
 # swift-learner
-learn words fast
-
 Swift-Learner App.
-Helps to learn words fast and efficiently.
+App that helps to learn words fast and efficiently.
 
 There are two folders: **Client** and **Server**.
 
