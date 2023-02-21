@@ -1,0 +1,35 @@
+.wordsComponent {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.wordContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+  gap: 0.3em;
+}
+
+.row {
+  display: flex;
+  min-width: 360px;
+  max-width: 960px;
+  width: 100%;
+  margin: 0;
+  background-color: #fff;
+  gap: 0.3em;
+}
+
+.leftCell, .rightCell {
+  display: flex;
+  width: 50%;
+  border: 1px solid #D4CFB9;
+  padding: 0.3em 1em;
+  span {
+    text-align: initial;
+  }
+}
+.rightCell {
+  margin: 0;
+}

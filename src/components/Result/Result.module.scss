@@ -1,0 +1,44 @@
+.testResults {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 50px;
+  align-items: baseline;
+}
+
+.testStatistics {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  span {
+    margin-bottom: 1.3em;
+    font-size: 20px;
+  }
+}
+
+.resultData {
+  width: 100%;
+  header {
+    .headerResult {
+      display: flex;
+      border-bottom: 0;
+      .cell {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.resultsRow {
+  display: flex;
+  margin: 0;
+  width: 100%;
+}
+
+.cell {
+  text-align: center;
+  width: 50%;
+  margin: 5px;
+  padding: 0.3em;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
