@@ -9,7 +9,6 @@ export const Results = () => {
 
   const style = e => {
     const answer = e.answer.includes(e.input);
-    // return {backgroundColor: answer ? '#74d974' : '#c13d3d'}
     return {backgroundColor: answer ? '#afebaf' : '#e37474'}
   }
 
@@ -33,23 +32,20 @@ export const Results = () => {
           <span>Правильные ответы: {numberOfRightAnswers().length + '/' + results.data.length}</span>
         </div>
         <div className={styles.resultData}>
-          <header>
-            <dl className={styles.headerResult}>
-              <dt className={styles.cell}><span>Слово</span></dt>
-              <dd className={styles.cell}><span>Перевод</span></dd>
-              <dd className={styles.cell}><span>Правильный ответ</span></dd>
-            </dl>
-          </header>
+          <dl className={styles.headerResult}>
+            <dt className={styles.cell}><span>Слово</span></dt>
+            <dd className={styles.cell}><span>Перевод</span></dd>
+            <dd className={styles.cell}><span>Правильный ответ</span></dd>
+          </dl>
           {
             results.data.map((e, i) =>
               <dl 
                 className={styles.resultsRow}
-                key={e.target + i} 
-                // style={style(e)}
+                key={e.target + i}
               >
                 <dt className={styles.cell} style={style(e)}><span>{e.target}</span></dt>
                 <dd className={styles.cell} style={style(e)}><span>{e.input}</span></dd> 
-                <dd className={styles.cell} style={{background: '#f5f76e'}}><span>{e.answer[0]}</span></dd>
+                <dd className={styles.cell} style={{background: '#d7d97b'}}><span>{e.answer[0]}</span></dd>
               </dl>
             )
           }

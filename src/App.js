@@ -19,7 +19,7 @@ function App() {
   if (Object.keys(words.data).length === 0) return <Loading />
   
   return (
-    <div>
+    <div className={styles.app}>
       <Link to="/" className={styles.header}>SWIFT-LEARNER</Link>
       <div className={styles.appContainer}>
         <Routes>
