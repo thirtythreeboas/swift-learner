@@ -1,15 +1,14 @@
 import React, {useEffect} from 'react'
 import styles from './Test.module.scss'
-import {useSelector, useDispatch} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
 import {resetChosenBlocks} from '../../store/word'
-import {TestSettings} from '../../components/TestSettings/TestSettings'
-import {TestLogic} from '../../components/TestLogic/TestLogic'
-import { Loading } from '../../components/UI/Loading/Loading'
+import {Details} from '../../components/Details'
+import {TestLogic} from '../../components/TestLogic'
+import {Loading} from '../../components/UI/Loading'
 import {useNavigate} from "react-router-dom"
 
 export const Test = () => {
   const words = useSelector(state => state.words);
-  const test = useSelector(state => state.test);
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
@@ -26,7 +25,7 @@ export const Test = () => {
 
   return (
     <div className={styles.test}>
-      <TestSettings />
+      <Details />
       <TestLogic />
     </div>
   )

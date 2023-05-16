@@ -12,7 +12,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRepeat } from '@fortawesome/free-solid-svg-icons'
 
-export const TestSettings = () => {
+export const Details = () => {
 
   const test = useSelector(state => state.test)
   const word = useSelector(state => state.words)
@@ -38,7 +38,6 @@ export const TestSettings = () => {
     // sets translation mode
     // looks bad looks baad
     const returnMode = () => {
-      console.log('works')
       const switchBlock = document.getElementById(styles.lang)
       const children = switchBlock.getElementsByTagName('span');
       children[0].innerHTML = test.testFormat ? 'Русский' : 'English';

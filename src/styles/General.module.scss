@@ -2,6 +2,7 @@
 
 * {
   font-family: 'Scada', sans-serif;
+  box-sizing: border-box;
 }
 
 a {
@@ -11,6 +12,12 @@ a {
 
 body {
   background-color: #fff;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .appContainer {

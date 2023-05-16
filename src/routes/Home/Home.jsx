@@ -21,7 +21,6 @@ export const Home = () => {
   }
 
   useEffect(() => {
-    console.log(words.chosenBlocks)
   }, [words.chosenBlocks])
 
   return (
