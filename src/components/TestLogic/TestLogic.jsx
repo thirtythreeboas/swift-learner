@@ -7,7 +7,6 @@ import {WordTrainer}  from '../WordTrainer'
 export const TestLogic = () => {
   const test = useSelector(state => state.test)
 
-
   return (
     !test.startTest ?
     <WelcomeImg />
