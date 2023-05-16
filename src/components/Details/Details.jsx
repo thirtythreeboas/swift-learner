@@ -39,9 +39,9 @@ export const Details = () => {
     // looks bad looks baad
     const returnMode = () => {
       const switchBlock = document.getElementById(styles.lang)
-      const children = switchBlock.getElementsByTagName('span');
-      children[0].innerHTML = test.testFormat ? 'Русский' : 'English';
-      children[1].innerHTML = test.testFormat ? 'English' : 'Русский';
+      const children = switchBlock.getElementsByTagName('span')
+      children[0].innerHTML = test.testFormat ? 'Русский' : 'English'
+      children[1].innerHTML = test.testFormat ? 'English' : 'Русский'
       dispatch(setFormat());
     };
     

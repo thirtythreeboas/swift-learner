@@ -29,7 +29,6 @@ export const Home = () => {
         <h3>Выберите блок</h3>
         <button className={styles.showWords} onClick={() => showWords()}>Показать слова</button>
         <button onClick={() => startTest()}>Начать тест</button>
-        <button>Пройти тест со всеми блоками</button>
       </div>
       <div className={styles.blockSelection}>
         {
