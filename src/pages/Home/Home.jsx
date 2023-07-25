@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+// import React, {useEffect} from 'react'
 import {useNavigate} from "react-router-dom"
 import {chooseWordsBlock} from '../../store/word'
 import {useSelector, useDispatch} from 'react-redux'
@@ -20,22 +20,22 @@ export const Home = () => {
     navigate("/words")
   }
 
-  useEffect(() => {
-  }, [words.chosenBlocks])
+  // useEffect(() => {
+  // }, [words.chosenBlocks])
 
   return (
     <div className={styles.container}>
       <div className={styles.homePage}>
         <h3>Выберите блок</h3>
-        <button className={styles.showWords} onClick={() => showWords()}>Посмотреть слова</button>
-        <button onClick={() => startTest()}>Начать тест</button>
+        <button className={styles.showWords}>Посмотреть слова</button>
+        <button>Начать тест</button>
       </div>
       <div className={styles.blockSelection}>
         {
           Object.keys(words.data).map((item, i) => (
             <div
-              key={i}
-              id={item}
+              key={item + i}
+              // id={item}
               className={`${styles.wordBlock} ${selected.includes(item) ? styles.hover : ''}`}
               // gotta find out the way to do the same differently
               onClick={(e) => dispatch(chooseWordsBlock(e.currentTarget.id))}
