@@ -1,18 +1,19 @@
-import React from 'react'
 import styles from './Result.module.scss'
-import {useSelector} from 'react-redux'
+import {useAppSelector} from '@/app/hooks'
+import {TestInput} from '@/types/state'
 
 export const Results = () => {
     
-  const test = useSelector(state => state.test)
+  const test = useAppSelector(state => state.test)
   const results = test.results;
 
-  const style = e => {
+  const style = (e: TestInput) => {
     const answer = e.answer.includes(e.input);
+    console.log(answer)
     return {backgroundColor: answer ? '#afebaf' : '#e37474'}
   }
 
-  const getTime = seconds => {
+  const getTime = (seconds: number) => {
     let mins = Math.floor(seconds / 60);
     let secs = seconds % 60;
     const time = (mins <= 9 ? `0${mins}` : mins) + ':' + (secs <= 9 ? `0${secs}` : secs);
@@ -38,8 +39,8 @@ export const Results = () => {
             <dd className={styles.cell}><span>Правильный ответ</span></dd>
           </dl>
           {
-            results.data.map((e, i) =>
-              <dl 
+            results.data.map((e, i) => 
+              <dl
                 className={styles.resultsRow}
                 key={e.target + i}
               >

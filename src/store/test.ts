@@ -1,4 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { Test, Results } from '@/types/state';
 
 const initialState = {
   results: {
@@ -16,7 +18,7 @@ const initialState = {
   index: 0,
   closeTestWindow: true,
   setTimer: null
-}
+} as Test
 
 export const testSlice = createSlice({
   name: 'test',
@@ -58,13 +60,13 @@ export const testSlice = createSlice({
         index: 0
       }
     },
-    getWordCount: (state, action) => {
+    getWordCount: (state, action: PayloadAction<number>) => {
       return {
         ...state,
         wordAmount: action.payload
       };
     },
-    wordOrderSetter: (state, action) => {
+    wordOrderSetter: (state, action: PayloadAction<string>) => {
       let number = parseInt(action.payload, 10);
       return {
         ...state,
@@ -83,7 +85,7 @@ export const testSlice = createSlice({
         index: state.index + 1
       }
     },
-    getTestResults: (state, action) => {
+    getTestResults: (state, action: PayloadAction<Results>) => {
       return {
         ...state,
         results: action.payload,

@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './WelcomeImg.module.scss'
 
 export const WelcomeImg = () => {

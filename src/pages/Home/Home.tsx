@@ -1,13 +1,13 @@
-// import React, {useEffect} from 'react'
-import {useNavigate} from "react-router-dom"
-import {chooseWordsBlock} from '../../store/word'
-import {useSelector, useDispatch} from 'react-redux'
+import {useEffect} from 'react'
 import styles from './Home.module.scss'
+import {useNavigate} from "react-router-dom"
+import {chooseWordsBlock} from '@/store/word'
+import {useAppSelector, useAppDispatch} from "@/app/hooks"
 
 export const Home = () => {
-  const words = useSelector(state => state.words);
+  const words = useAppSelector(state => state.words);
   const selected = words.chosenBlocks;
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   let navigate = useNavigate();
 
   const startTest = () => {
@@ -20,23 +20,28 @@ export const Home = () => {
     navigate("/words")
   }
 
-  // useEffect(() => {
-  // }, [words.chosenBlocks])
+  const setHover = (wordBlock: string) => {
+    return selected.includes(wordBlock);
+  }
+
+  useEffect(() => {
+    console.log(words.chosenBlocks)
+  }, [words.chosenBlocks])
 
   return (
     <div className={styles.container}>
       <div className={styles.homePage}>
         <h3>Выберите блок</h3>
-        <button className={styles.showWords}>Посмотреть слова</button>
-        <button>Начать тест</button>
+        <button className={styles.showWords} onClick={showWords}>Посмотреть слова</button>
+        <button onClick={startTest}>Начать тест</button>
       </div>
       <div className={styles.blockSelection}>
         {
           Object.keys(words.data).map((item, i) => (
             <div
               key={item + i}
-              // id={item}
-              className={`${styles.wordBlock} ${selected.includes(item) ? styles.hover : ''}`}
+              id={item}
+              className={`${styles.wordBlock} ${setHover(item) ? styles.hover : ''}`}
               // gotta find out the way to do the same differently
               onClick={(e) => dispatch(chooseWordsBlock(e.currentTarget.id))}
             >
