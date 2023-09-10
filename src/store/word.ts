@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-
+import { StateTypes } from '../types/state.ts';
+import type { PayloadAction } from '@reduxjs/toolkit';
 const url = 'https://thirtythreeboas.github.io/wordsapi.github.io/data/dictionary.json';
 
-export const getWords = createAsyncThunk(
-  'words/getWords',
+export const getWords = createAsyncThunk('words/getWords',
   async () => {
     const response = await fetch(url);
     const data = await response.json();
@@ -15,7 +15,7 @@ const initialState = {
   chosenBlocks: [],
   mode: false,
   isLoading: false
-}
+} as StateTypes;
 
 export const wordSlice = createSlice({
   name: 'words',
@@ -24,14 +24,13 @@ export const wordSlice = createSlice({
     resetChosenBlocks: (state) => {
       state.chosenBlocks = [];
     },
-    chooseWordsBlock: (state, action) => {
+    chooseWordsBlock: (state, action: PayloadAction<string>) => {
+      console.log(action);
       if (state.chosenBlocks.indexOf(action.payload) === -1) {
         state.chosenBlocks.push(action.payload)
-        // document.getElementById(action.payload).className += " hover";
         return;
       }
       if (state.chosenBlocks.indexOf(action.payload) !== -1) {
-        // document.getElementById(action.payload).className = "wordBlock"
         state.chosenBlocks = state.chosenBlocks.filter(elem => elem !== action.payload)
         return;
       }

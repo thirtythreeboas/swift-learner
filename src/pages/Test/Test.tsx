@@ -1,15 +1,15 @@
-import React, {useEffect} from 'react'
+import {useEffect} from 'react'
 import styles from './Test.module.scss'
-import {useSelector,useDispatch} from 'react-redux'
-import {resetChosenBlocks} from '../../store/word'
-import {Details} from '../../components/Details'
-import {TestLogic} from '../../components/TestLogic'
-import {Loading} from '../../components/UI/Loading'
+import {resetChosenBlocks} from '@/store/word'
+import {Details} from '@/components/Details'
+import {TestLogic} from '@/components/TestLogic'
+import {Loading} from '@/components/UI/Loading'
 import {useNavigate} from "react-router-dom"
+import {useAppSelector, useAppDispatch} from '@/app/hooks'
 
 export const Test = () => {
-  const words = useSelector(state => state.words);
-  const dispatch = useDispatch();
+  const words = useAppSelector(state => state.words);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate()
 
   useEffect(() => {
