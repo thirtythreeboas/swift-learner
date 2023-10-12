@@ -4,7 +4,7 @@ import { Results } from '@/components/Result';
 import { WelcomeImg } from '@/components/WelcomeImg';
 import { WordTrainer } from '@/components/WordTrainer';
 
-export function TestLogic() {
+export const TestLogic = () => {
   const test = useAppSelector((state) => state.test);
 
   return !test.startTest ? (
@@ -14,4 +14,4 @@ export function TestLogic() {
       {test.closeTestWindow ? <WordTrainer /> : <Results />}
     </div>
   );
-}
+};

@@ -1,14 +1,13 @@
-import {useEffect, useState, useRef} from 'react';
-import styles from './WordTrainer.module.scss';
-import {useAppSelector, useAppDispatch} from '@/app/hooks';
+import {useEffect, useState, useRef} from 'react'
+import styles from './WordTrainer.module.scss'
+import {useAppSelector, useAppDispatch} from '@/app/hooks'
 import {setIndex, getTestResults, manageTestRestart} from '@/store/test'
 import {TestResult} from '@/types/state'
 
 export const WordTrainer = () => {
-
   const words = useAppSelector(state => state.words)
   const test = useAppSelector(state => state.test)
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const vocabulary = words.data[`${words.chosenBlocks[0]}`]
   const focusInputfield = useRef<HTMLInputElement | null>(null)
   
@@ -52,7 +51,7 @@ export const WordTrainer = () => {
       setTranslation(vocabulary[test.index][`${!test.testFormat ? 'eng' : 'rus'}`])
       setNext(word);
     }
-  };
+  }
 
   const nextWord = () => {
     let input: TestResult = {

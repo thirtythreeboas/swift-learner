@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRepeat } from '@fortawesome/free-solid-svg-icons';
 import styles from './TestSettings.module.scss';
@@ -13,7 +13,7 @@ import {
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { Timer } from '@/types/state';
 
-export default function Details() {
+export const Details = () => {
   const test = useAppSelector((state) => state.test);
   const word = useAppSelector((state) => state.words);
   const dispatch = useAppDispatch();
@@ -22,9 +22,10 @@ export default function Details() {
     dispatch(stopTest());
   }, [dispatch]);
 
-  const setTimer = useRef<NodeJS.Timeout | null>(null);
-  const arrLength = word.data[word.chosenBlocks[0]].length;
-
+  const setTimer = useRef<NodeJS.Timeout | null>(null)
+  const arrLength = word.data[word.chosenBlocks[0]].length
+  const [isLangSwitched, setIsLangSwitched] = useState<boolean>(true);
+  
   // sets timer for a test
   const testDuration = () => {
     setTimer.current = setInterval(() => {
@@ -33,12 +34,8 @@ export default function Details() {
   };
 
   // sets translation mode
-  // looks bad looks baad
-  const returnMode = () => {
-    const switchBlock = document.getElementById(styles.lang)! as HTMLElement;
-    const children = switchBlock.getElementsByTagName('span');
-    children[0].innerHTML = test.testFormat ? 'Русский' : 'English';
-    children[1].innerHTML = test.testFormat ? 'English' : 'Русский';
+  const toggleLanguage = () => {
+    setIsLangSwitched(!isLangSwitched);
     dispatch(setFormat());
   };
 
@@ -60,20 +57,14 @@ export default function Details() {
 
   const restricWordAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     const num = parseInt(e.target.value, 10);
-    if (num >= arrLength || num === 0 || Number.isNaN(num)) dispatch(getWordCount(arrLength));
+    if (num >= arrLength || num === 0 || Number.isNaN(num))
+    dispatch(getWordCount(arrLength));
     if (num <= arrLength) dispatch(getWordCount(num));
   };
 
   const startTest = () => {
     dispatch(testLauncher());
     testDuration();
-    // looks bad looks baad
-    if (test.wordAmount === 0) {
-      const num = document.getElementById('word-count-input') as HTMLInputElement;
-      const convertedValue = parseInt(num.value, 10);
-      const value = !Number.isNaN(convertedValue) ? convertedValue : arrLength;
-      dispatch(getWordCount(value));
-    }
   };
 
   const finishTest = () => {
@@ -92,16 +83,16 @@ export default function Details() {
             Формат:
           </dt>
           <dd className={styles.rightInfo} id={styles.lang}>
-            <span>English</span>
+            <span>{`${isLangSwitched ? 'English' : 'Русский'}`}</span>
             <button
               type='button'
               className={styles.switchLangButton}
-              onClick={() => returnMode()}
+              onClick={() => toggleLanguage()}
               disabled={test.startTest}
             >
               <FontAwesomeIcon icon={faRepeat} />
             </button>
-            <span>Русский</span>
+            <span>{`${isLangSwitched ? 'Русский' : 'English'}`}</span>
           </dd>
         </dl>
         <dl className={styles.infoRow}>

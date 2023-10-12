@@ -56,7 +56,6 @@ export const testSlice = createSlice({
           time: 0
         },
         startTest: false,
-        wordAmount: 0,
         index: 0
       }
     },
@@ -89,7 +88,6 @@ export const testSlice = createSlice({
       return {
         ...state,
         results: action.payload,
-        
       }
     },
     manageTestRestart: (state) => {

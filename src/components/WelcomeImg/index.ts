@@ -1,1 +1,1 @@
-export * from './WelcomeImg'
+export * from './WelcomeImg';
