@@ -1,1 +1,1 @@
-export * from './WordTrainer'
+export * from './WordTrainer';

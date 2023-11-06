@@ -1,1 +1,1 @@
-export { default as ShowWords } from './ShowWords'
+export * from './ShowWords';

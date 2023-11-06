@@ -1,1 +1,1 @@
-export * from './TestLogic'
+export * from './TestLogic';

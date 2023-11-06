@@ -1,1 +1,1 @@
-export * from './SwitchLangs'
+export * from './SwitchLangs';

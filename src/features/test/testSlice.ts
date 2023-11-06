@@ -1,11 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
-import { Test, Results } from '@/types/state';
+import {createSlice} from '@reduxjs/toolkit';
+import type {PayloadAction} from '@reduxjs/toolkit';
+import {Test, Results} from '@/types/state';
 
 const initialState = {
   results: {
     time: 0,
-    data: []
+    data: [],
   },
   startTest: false,
   testFormat: true,
@@ -13,12 +13,12 @@ const initialState = {
   wordOrder: 1,
   timer: {
     showTime: false,
-    time: 0
+    time: 0,
   },
   index: 0,
   closeTestWindow: true,
-  setTimer: null
-} as Test
+  setTimer: null,
+} as Test;
 
 export const testSlice = createSlice({
   name: 'test',
@@ -30,67 +30,65 @@ export const testSlice = createSlice({
         startTest: true,
         timer: {
           ...state.timer,
-          showTime: false
+          showTime: false,
         },
-        closeTestWindow: true
-      }
+        closeTestWindow: true,
+      };
     },
     setTime: (state) => {
       return {
         ...state,
         timer: {
           ...state.timer,
-          time: state.timer.time + 1
-        }
-      }
+          time: state.timer.time + 1,
+        },
+      };
     },
     stopTest: (state) => {
       return {
         ...state,
         results: {
           ...state.results,
-          data: []
+          data: [],
         },
         timer: {
           ...state.timer,
-          time: 0
+          time: 0,
         },
         startTest: false,
-        wordAmount: 0,
-        index: 0
-      }
+        index: 0,
+      };
     },
     getWordCount: (state, action: PayloadAction<number>) => {
       return {
         ...state,
-        wordAmount: action.payload
+        wordAmount: action.payload,
       };
     },
     wordOrderSetter: (state, action: PayloadAction<string>) => {
-      let number = parseInt(action.payload, 10);
+      const number = parseInt(action.payload, 10);
       return {
         ...state,
-        wordOrder: number
+        wordOrder: number,
       };
     },
     setFormat: (state) => {
       return {
         ...state,
-        testFormat: !state.testFormat
-      }
+        testFormat: !state.testFormat,
+      };
     },
     setIndex: (state) => {
       return {
         ...state,
-        index: state.index + 1
-      }
+        index: state.index + 1,
+      };
     },
     getTestResults: (state, action: PayloadAction<Results>) => {
       return {
         ...state,
         results: action.payload,
-        
-      }
+      };
     },
     manageTestRestart: (state) => {
       return {
@@ -98,11 +96,11 @@ export const testSlice = createSlice({
         closeTestWindow: false,
         timer: {
           ...state.timer,
-          showTime: true
-        }
-      }
-    }
-  }
+          showTime: true,
+        },
+      };
+    },
+  },
 });
 
 export default testSlice.reducer;
@@ -116,5 +114,5 @@ export const {
   setIndex,
   getTestResults,
   manageTestRestart,
-  setTime
- } = testSlice.actions;
+  setTime,
+} = testSlice.actions;
