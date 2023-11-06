@@ -8,18 +8,17 @@ module.exports = {
     'airbnb',
     'airbnb-typescript',
     'airbnb/hooks',
-    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-type-checked',
     'plugin:react/recommended',
-    "prettier",
+    'prettier',
     'plugin:prettier/recommended',
   ],
-  files: ["src/**/*.tsx", "src/**/*.ts"],
   overrides: [
     {
       env: {
         node: true,
       },
-      files: ['.eslintrc.{js,cjs}'],
+      files: ['.eslintrc.cjs'],
       parserOptions: {
         sourceType: 'script',
       },
@@ -34,17 +33,12 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: ['@typescript-eslint', 'react', 'prettier', 'reack-hooks'],
+  plugins: ['@typescript-eslint', 'react', 'prettier', 'react-hooks', 'import'],
   ignorePatterns: ['vite.config.ts'],
   rules: {
-    'prettier/prettier': [
-      'error',
-      {
-        endOfLine: 'auto',
-        singleQuote: true,
-        tabWidth: 2
-      },
-    ],
+    'prettier/prettier': 'error',
+    'arrow-body-style': 'off',
+    'prefer-arrow-callback': 'off',
     semi: ['error', 'always'],
     'linebreak-style': ['error', 'windows'],
     'import/extensions': [
@@ -71,6 +65,9 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    'import/no-unresolved': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'no-param-reassign': ['error', {props: false}],
   },
   settings: {
     'import/resolver': {
@@ -78,10 +75,14 @@ module.exports = {
         map: [['@', './src']],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
+      alwaysTryTypes: true,
+      project: './tsconfig.json',
+    },
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
     react: {
       version: 'detect',
-    }
+    },
   },
-}
-
+};

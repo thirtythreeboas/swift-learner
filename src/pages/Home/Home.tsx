@@ -1,7 +1,7 @@
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import {chooseWordsBlock} from '@/features/word/wordSlice';
+import {useAppSelector, useAppDispatch} from '@/app/hooks';
 import styles from './Home.module.scss';
-import { chooseWordsBlock } from '@/store/word';
-import { useAppSelector, useAppDispatch } from '@/app/hooks';
 
 export const Home = () => {
   const words = useAppSelector((state) => state.words);

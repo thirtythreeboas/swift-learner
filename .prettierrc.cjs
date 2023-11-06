@@ -4,8 +4,8 @@ const config = {
   semi: true,
   singleQuote: true,
   jsxSingleQuote: true,
-  parser: 'flow',
   endOfLine: 'auto',
+  bracketSpacing: false,
 };
 
 module.exports = config;

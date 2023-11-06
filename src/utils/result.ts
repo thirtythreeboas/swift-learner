@@ -1,4 +1,4 @@
-import { TestInput } from '@/types/state';
+import {TestInput} from '@/types/state';
 
 export const stopwatch = (seconds: number) => {
   const mins = Math.floor(seconds / 60);
@@ -11,5 +11,5 @@ export const stopwatch = (seconds: number) => {
 
 export const highlightAnswer = (e: TestInput) => {
   const answer = e.answer.includes(e.input);
-  return { backgroundColor: answer ? '#afebaf' : '#e37474' };
+  return {backgroundColor: answer ? '#afebaf' : '#e37474'};
 };

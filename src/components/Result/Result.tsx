@@ -1,10 +1,10 @@
+import {useAppSelector} from '@/app/hooks';
+import {stopwatch, highlightAnswer} from '@/utils/result';
 import styles from './Result.module.scss';
-import { useAppSelector } from '@/app/hooks';
-import { stopwatch, highlightAnswer } from '@/utils/result';
 
 export const Results = () => {
   const test = useAppSelector((state) => state.test);
-  const { results } = test;
+  const {results} = test;
 
   const numberOfRightAnswers = () => {
     const right = results.data.filter((e) => e.answer.includes(e.input));
@@ -40,7 +40,7 @@ export const Results = () => {
             <div className={styles.cell} style={highlightAnswer(e)}>
               <span>{e.input}</span>
             </div>
-            <div className={styles.cell} style={{ background: '#d7d97b' }}>
+            <div className={styles.cell} style={{background: '#d7d97b'}}>
               <span>{e.answer[0]}</span>
             </div>
           </div>

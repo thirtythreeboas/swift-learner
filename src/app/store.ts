@@ -1,6 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { testSlice } from '../store/test';
-import { wordSlice } from '../store/word';
+import {configureStore} from '@reduxjs/toolkit';
+import {testSlice} from '../features/test/testSlice';
+import {wordSlice} from '../features/word/wordSlice';
 
 export const store = configureStore({
   reducer: {

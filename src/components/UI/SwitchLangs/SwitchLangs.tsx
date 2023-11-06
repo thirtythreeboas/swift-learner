@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import {FC} from 'react';
 import styles from './SwitchLangs.module.scss';
 
 export const SwitchLangs = (changeLangs: FC) => {

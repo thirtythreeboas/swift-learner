@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import {useEffect} from 'react';
+// import {resetChosenBlocks} from '@/features/word/wordSlice';
+import {useAppSelector, useAppDispatch} from '@/app/hooks';
 import styles from './ShowWords.module.scss';
-import { resetChosenBlocks } from '@/store/word';
-import { useAppSelector, useAppDispatch } from '@/app/hooks';
 
 export const ShowWords = () => {
   const words = useAppSelector((state) => state.words);
@@ -9,7 +9,7 @@ export const ShowWords = () => {
   const selected: string[] = words.chosenBlocks;
 
   useEffect(() => {
-    dispatch(resetChosenBlocks());
+    // dispatch(resetChosenBlocks());
   }, [dispatch]);
 
   return (
