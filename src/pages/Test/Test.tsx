@@ -1,6 +1,5 @@
 import {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {resetChosenBlocks} from '@/features/word/wordSlice';
 import {Details} from '@/components/Details';
 import {TestLogic} from '@/components/TestLogic';
 import {Loading} from '@/components/UI/Loading';
@@ -16,9 +15,6 @@ export const Test = () => {
     if (words.chosenBlocks.length === 0) {
       navigate('/');
     }
-    return () => {
-      dispatch(resetChosenBlocks());
-    };
   }, [navigate, dispatch, words]);
 
   if (words.chosenBlocks.length === 0) return <Loading />;

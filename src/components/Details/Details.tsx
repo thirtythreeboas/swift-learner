@@ -60,7 +60,7 @@ export const Details = () => {
     return time;
   };
 
-  const restricWordAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const restricWordNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     const num = parseInt(e.target.value, 10);
     if (num >= arrLength || num === 0 || Number.isNaN(num))
       dispatch(getWordCount(arrLength));
@@ -125,7 +125,7 @@ export const Details = () => {
                 min='0'
                 max={word.data[word.chosenBlocks[0]].length}
                 id={styles['word-count-input']}
-                onChange={(e) => restricWordAmount(e)}
+                onChange={(e) => restricWordNumber(e)}
                 readOnly={test.startTest}
               />
             </span>

@@ -1,19 +1,20 @@
 import {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
-import {BrowserRouter} from 'react-router-dom';
+import {RouterProvider} from 'react-router-dom';
 import {Provider} from 'react-redux';
+import {StyledEngineProvider} from '@mui/material';
 import {store} from './app/store';
-import App from './App';
 import './index.css';
+import {router} from './routes';
 
 const container = createRoot(document.getElementById('root') as HTMLElement);
 
 container.render(
   <StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <StyledEngineProvider injectFirst>
+        <RouterProvider router={router} />
+      </StyledEngineProvider>
+    </Provider>
   </StrictMode>,
 );

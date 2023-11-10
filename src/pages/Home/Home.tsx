@@ -1,23 +1,19 @@
-import {useNavigate} from 'react-router-dom';
-import {chooseWordsBlock} from '@/features/word/wordSlice';
+import {useEffect} from 'react';
+import {Link} from 'react-router-dom';
+import {chooseWordsBlock, resetChosenBlocks} from '@/features/word/wordSlice';
 import {useAppSelector, useAppDispatch} from '@/app/hooks';
+import {Button} from '@mui/material';
+import {RouteNames} from '@/types/pages';
 import styles from './Home.module.scss';
 
 export const Home = () => {
   const words = useAppSelector((state) => state.words);
   const selected = words.chosenBlocks;
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
-  const startTest = () => {
-    if (selected.length === 0) return;
-    navigate('/test');
-  };
-
-  const showWords = () => {
-    if (selected.length === 0) return;
-    navigate('/words');
-  };
+  useEffect(() => {
+    dispatch(resetChosenBlocks());
+  }, []);
 
   const setHover = (wordBlock: string) => {
     return selected.includes(wordBlock);
@@ -27,29 +23,34 @@ export const Home = () => {
     <div className={styles.container}>
       <div className={styles.homePage}>
         <h3>Выберите блок</h3>
-        <button type='button' className={styles.showWords} onClick={showWords}>
+        <Link className={styles.linkBtn} to={RouteNames.WORDS}>
           Посмотреть слова
-        </button>
-        <button type='button' onClick={startTest}>
+        </Link>
+        <Link className={styles.linkBtn} to={RouteNames.TEST}>
           Начать тест
-        </button>
+        </Link>
       </div>
       <div className={styles.blockSelection}>
         {Object.keys(words.data).map((item) => (
-          <div
-            role='menuitem'
-            tabIndex={0}
-            key={item}
+          <Button
+            sx={{
+              color: '#000',
+              fontFamily: 'Scada, sans-serif',
+              '&:hover': {
+                backgroundColor: '#1976d2',
+                color: '#fff',
+              },
+            }}
             id={item}
+            key={item}
             className={`${styles.wordBlock} ${
               setHover(item) ? styles.hover : ''
             }`}
-            // gotta find out the way to do the same differently
             onClick={(e) => dispatch(chooseWordsBlock(e.currentTarget.id))}
             onKeyDown={(e) => dispatch(chooseWordsBlock(e.currentTarget.id))}
           >
             {item}
-          </div>
+          </Button>
         ))}
       </div>
     </div>

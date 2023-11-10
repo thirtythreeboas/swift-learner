@@ -1,14 +1,12 @@
-import {useEffect} from 'react';
-import {Routes, Route, Link} from 'react-router-dom';
-import {Home} from '@/pages/Home/Home';
-import {Test} from '@/pages/Test/Test';
-import {ShowWords} from '@/components/ShowWords';
-import {Loading} from '@/components/UI/Loading/Loading';
+import {FC, useEffect} from 'react';
+import {Outlet} from 'react-router-dom';
 import {useAppSelector, useAppDispatch} from '@/app/hooks';
-import {getWords} from './features/thunks';
+import LinearProgress from '@mui/material/LinearProgress';
+import {getWords} from '@/features/thunks';
+import {Navbar} from '@/components/Navbar';
 import styles from './styles/General.module.scss';
 
-const App = () => {
+export const App: FC = () => {
   const words = useAppSelector((state) => state.words);
   const dispatch = useAppDispatch();
 
@@ -16,22 +14,12 @@ const App = () => {
     dispatch(getWords());
   }, [dispatch]);
 
-  if (Object.keys(words.data).length === 0) return <Loading />;
-
   return (
     <div className={styles.app}>
-      <Link to='/' className={styles.header}>
-        SWIFT-LEARNER
-      </Link>
+      <Navbar />
       <div className={styles.appContainer}>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/test' element={<Test />} />
-          <Route path='/words' element={<ShowWords />} />
-        </Routes>
+        {Object.keys(words.data).length === 0 ? <LinearProgress /> : <Outlet />}
       </div>
     </div>
   );
 };
-
-export default App;

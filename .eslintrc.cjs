@@ -33,7 +33,14 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: ['@typescript-eslint', 'react', 'prettier', 'react-hooks', 'import'],
+  plugins: [
+    '@typescript-eslint',
+    'react',
+    'prettier',
+    'react-hooks',
+    'import',
+    '@emotion',
+  ],
   ignorePatterns: ['vite.config.ts'],
   rules: {
     'prettier/prettier': 'error',
@@ -68,6 +75,8 @@ module.exports = {
     'import/no-unresolved': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'no-param-reassign': ['error', {props: false}],
+    'no-console': 'off',
+    '@emotion/jsx-import': 'error',
   },
   settings: {
     'import/resolver': {
