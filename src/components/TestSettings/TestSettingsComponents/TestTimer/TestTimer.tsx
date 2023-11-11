@@ -2,8 +2,17 @@ import {FC, useRef} from 'react';
 import {useAppSelector} from '@/app/hooks';
 import {Timer} from '@/types/state';
 import Grid from '@mui/material/Grid';
+import {Breakpoints} from '@/types/breakpoints';
 
-export const TestTimer: FC = () => {
+type RowBreakpointsProps = {
+  breakpoints: Breakpoints;
+};
+
+export const TestTimer: FC<RowBreakpointsProps> = ({breakpoints}) => {
+  const {firstColumn, secondColumn} = breakpoints;
+  const {xs: xs1, md: md1, lg: lg1} = firstColumn;
+  const {xs: xs2, md: md2, lg: lg2} = secondColumn;
+
   const testSelector = useAppSelector((state) => state.test);
 
   const setTimer = useRef<NodeJS.Timeout | null>(null);
@@ -19,10 +28,10 @@ export const TestTimer: FC = () => {
 
   return (
     <>
-      <Grid item xs={2} md={2} lg={2}>
+      <Grid item xs={xs1} md={md1} lg={lg1}>
         Таймер:
       </Grid>
-      <Grid item xs={3} md={3} lg={3}>
+      <Grid item xs={xs2} md={md2} lg={lg2}>
         {getTime(testSelector.timer)}
       </Grid>
     </>

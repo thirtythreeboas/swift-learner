@@ -6,8 +6,17 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import {Languages} from '@/types/const';
+import {Breakpoints} from '@/types/breakpoints';
 
-export const Format: FC = () => {
+type RowBreakpointsProps = {
+  breakpoints: Breakpoints;
+};
+
+export const Format: FC<RowBreakpointsProps> = ({breakpoints}) => {
+  const {firstColumn, secondColumn} = breakpoints;
+  const {xs: xs1, md: md1, lg: lg1} = firstColumn;
+  const {xs: xs2, md: md2, lg: lg2} = secondColumn;
+
   const testSelector = useAppSelector((state) => state.test);
   const dispatch = useAppDispatch();
 
@@ -24,14 +33,14 @@ export const Format: FC = () => {
 
   return (
     <>
-      <Grid item xs={2} md={2} lg={2}>
+      <Grid item xs={xs1} md={md1} lg={lg1}>
         Формат
       </Grid>
       <Grid
         item
-        xs={3}
-        md={3}
-        lg={3}
+        xs={xs2}
+        md={md2}
+        lg={lg2}
         display='flex'
         justifyContent='flex-start'
         alignItems='center'

@@ -6,16 +6,25 @@ import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
+import {Breakpoints} from '@/types/breakpoints';
 
-export const WordOrder: FC = () => {
+type RowBreakpointsProps = {
+  breakpoints: Breakpoints;
+};
+
+export const WordOrder: FC<RowBreakpointsProps> = ({breakpoints}) => {
+  const {firstColumn, secondColumn} = breakpoints;
+  const {xs: xs1, md: md1, lg: lg1} = firstColumn;
+  const {xs: xs2, md: md2, lg: lg2} = secondColumn;
+
   const dispatch = useAppDispatch();
 
   return (
     <>
-      <Grid item xs={2} md={2} lg={2}>
+      <Grid item xs={xs1} md={md1} lg={lg1}>
         Порядок слов:
       </Grid>
-      <Grid item xs={3} md={3} lg={3}>
+      <Grid item xs={xs2} md={md2} lg={lg2}>
         <FormControl>
           <RadioGroup
             aria-labelledby='demo-radio-buttons-group-label'
