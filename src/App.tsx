@@ -4,6 +4,7 @@ import {useAppSelector, useAppDispatch} from '@/app/hooks';
 import LinearProgress from '@mui/material/LinearProgress';
 import {getWords} from '@/features/thunks';
 import {Navbar} from '@/components/Navbar';
+import Container from '@mui/material/Container';
 import styles from './styles/General.module.scss';
 
 export const App: FC = () => {
@@ -17,9 +18,17 @@ export const App: FC = () => {
   return (
     <div className={styles.app}>
       <Navbar />
-      <div className={styles.appContainer}>
+      <Container
+        sx={{
+          padding: '20px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '20px',
+        }}
+      >
         {Object.keys(words.data).length === 0 ? <LinearProgress /> : <Outlet />}
-      </div>
+      </Container>
     </div>
   );
 };

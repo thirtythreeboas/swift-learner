@@ -9,7 +9,7 @@ const initialState = {
   },
   startTest: false,
   testFormat: true,
-  wordAmount: 0,
+  wordAmount: 10,
   wordOrder: 1,
   timer: {
     showTime: false,
@@ -59,14 +59,16 @@ export const testSlice = createSlice({
         index: 0,
       };
     },
-    getWordCount: (state, action: PayloadAction<number>) => {
+    setWordNumber: (state, action: PayloadAction<number>) => {
       return {
         ...state,
         wordAmount: action.payload,
       };
     },
     wordOrderSetter: (state, action: PayloadAction<string>) => {
+      console.log(action.payload);
       const number = parseInt(action.payload, 10);
+      console.log(number);
       return {
         ...state,
         wordOrder: number,
@@ -108,7 +110,7 @@ export default testSlice.reducer;
 export const {
   testLauncher,
   stopTest,
-  getWordCount,
+  setWordNumber,
   wordOrderSetter,
   setFormat,
   setIndex,

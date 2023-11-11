@@ -4,3 +4,8 @@ export enum RouteNames {
   WORDS = '/words',
   TEST = '/test',
 }
+
+export enum Languages {
+  ENGLISH = 'English',
+  RUSSIAN = 'Русский',
+}

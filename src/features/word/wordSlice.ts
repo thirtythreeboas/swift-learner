@@ -5,7 +5,7 @@ import {getWords} from '../thunks';
 
 const initialState = {
   data: {},
-  chosenBlocks: [],
+  chosenBlocks: ['Apple Juice'],
   mode: false,
   isLoading: false,
 } as StateTypes;

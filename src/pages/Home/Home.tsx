@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {chooseWordsBlock, resetChosenBlocks} from '@/features/word/wordSlice';
 import {useAppSelector, useAppDispatch} from '@/app/hooks';
 import {Button} from '@mui/material';
-import {RouteNames} from '@/types/pages';
+import {RouteNames} from '@/types/const';
 import styles from './Home.module.scss';
 
 export const Home = () => {

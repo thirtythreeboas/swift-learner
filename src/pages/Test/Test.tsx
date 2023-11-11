@@ -1,10 +1,10 @@
 import {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {Details} from '@/components/Details';
 import {TestLogic} from '@/components/TestLogic';
 import {Loading} from '@/components/UI/Loading';
 import {useAppDispatch, useAppSelector} from '@/app/hooks';
-import styles from './Test.module.scss';
+import {TestSettings} from '@/components/TestSettings/TestSettings';
+// import styles from './Test.module.scss';
 
 export const Test = () => {
   const words = useAppSelector((state) => state.words);
@@ -20,9 +20,9 @@ export const Test = () => {
   if (words.chosenBlocks.length === 0) return <Loading />;
 
   return (
-    <div className={styles.test}>
-      <Details />
+    <>
+      <TestSettings />
       <TestLogic />
-    </div>
+    </>
   );
 };

@@ -5,7 +5,7 @@ import {ShowWords} from '@/components/ShowWords';
 import {App} from '@/App';
 import {ErrorPage} from '@/components/ErrorPage';
 import {Home} from '@/pages/Home';
-import {RouteNames} from '@/types/pages';
+import {RouteNames} from '@/types/const';
 
 const routes = [
   {
