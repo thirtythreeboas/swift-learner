@@ -1,5 +1,5 @@
 import {useAppSelector} from '@/app/hooks';
-import {stopwatch, highlightAnswer} from '@/utils/result';
+import {highlightAnswer} from '@/utils/result';
 import styles from './Result.module.scss';
 
 export const Results = () => {
@@ -14,7 +14,7 @@ export const Results = () => {
   return (
     <div className={styles.testResults}>
       <div className={styles.testStatistics}>
-        <span>Время: {stopwatch(results.time)}</span>
+        <span>Время: {results.time}</span>
         <span>
           Правильные ответы:{' '}
           {`${numberOfRightAnswers().length}/${results.data.length}`}

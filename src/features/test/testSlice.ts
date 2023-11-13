@@ -1,74 +1,57 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import {Test, Results} from '@/types/state';
+import {Test, TestResult} from '@/types/state';
 
 const initialState = {
   results: {
-    time: 0,
+    time: '',
     data: [],
   },
-  startTest: false,
+  isTestStarted: false,
   testFormat: true,
-  wordAmount: 10,
+  wordNumber: 2,
   wordOrder: 1,
-  timer: {
-    showTime: false,
-    time: 0,
-  },
-  index: 0,
-  closeTestWindow: true,
-  setTimer: null,
+  timeSpentOnTest: 0,
+  currentWordIndex: 0,
+  showResult: false,
 } as Test;
 
 export const testSlice = createSlice({
   name: 'test',
   initialState,
   reducers: {
-    testLauncher: (state) => {
+    startTest: (state) => {
       return {
         ...state,
-        startTest: true,
-        timer: {
-          ...state.timer,
-          showTime: false,
-        },
-        closeTestWindow: true,
+        isTestStarted: true,
       };
     },
-    setTime: (state) => {
+    setTime: (state, action: PayloadAction<number>) => {
       return {
         ...state,
-        timer: {
-          ...state.timer,
-          time: state.timer.time + 1,
-        },
+        timeSpentOnTest: action.payload,
       };
     },
-    stopTest: (state) => {
+    restartTest: (state) => {
       return {
         ...state,
         results: {
           ...state.results,
           data: [],
         },
-        timer: {
-          ...state.timer,
-          time: 0,
-        },
-        startTest: false,
-        index: 0,
+        timeSpentOnTest: 0,
+        isTestStarted: false,
+        currentWordIndex: 0,
       };
     },
     setWordNumber: (state, action: PayloadAction<number>) => {
       return {
         ...state,
-        wordAmount: action.payload,
+        wordNumber: action.payload,
       };
     },
-    wordOrderSetter: (state, action: PayloadAction<string>) => {
-      console.log(action.payload);
+    setWordOrder: (state, action: PayloadAction<string>) => {
       const number = parseInt(action.payload, 10);
-      console.log(number);
       return {
         ...state,
         wordOrder: number,
@@ -80,26 +63,22 @@ export const testSlice = createSlice({
         testFormat: !state.testFormat,
       };
     },
-    setIndex: (state) => {
+    setNextWord: (state) => {
       return {
         ...state,
-        index: state.index + 1,
+        currentWordIndex: state.currentWordIndex + 1,
       };
     },
-    getTestResults: (state, action: PayloadAction<Results>) => {
+    setResult: (state, action: PayloadAction<TestResult>) => {
       return {
         ...state,
         results: action.payload,
       };
     },
-    manageTestRestart: (state) => {
+    completeTest: (state) => {
       return {
         ...state,
-        closeTestWindow: false,
-        timer: {
-          ...state.timer,
-          showTime: true,
-        },
+        showResult: true,
       };
     },
   },
@@ -108,13 +87,13 @@ export const testSlice = createSlice({
 export default testSlice.reducer;
 
 export const {
-  testLauncher,
-  stopTest,
+  startTest,
+  restartTest,
   setWordNumber,
-  wordOrderSetter,
+  setWordOrder,
   setFormat,
-  setIndex,
-  getTestResults,
-  manageTestRestart,
+  setNextWord,
+  setResult,
+  completeTest,
   setTime,
 } = testSlice.actions;

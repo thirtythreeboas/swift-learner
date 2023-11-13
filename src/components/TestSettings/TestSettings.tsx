@@ -6,28 +6,16 @@ import {
   WordNumber,
   WordOrder,
   TestTimer,
+  TestRunner,
 } from '@/components/TestSettings/TestSettingsComponents';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import {Breakpoints} from '@/types/breakpoints';
+import {gridBreakpoints} from './breakpoints';
 
 export const TestSettings: FC = () => {
-  const breakpoints: Breakpoints = {
-    firstColumn: {
-      xs: 2,
-      md: 2,
-      lg: 2,
-    },
-    secondColumn: {
-      xs: 3,
-      md: 3,
-      lg: 3,
-    },
-  };
-
   return (
-    <Box sx={{'& .MuiGrid-root': {margin: '0'}}}>
+    <Box sx={{'& .MuiGrid-root': {margin: '0'}, width: '600px'}}>
       <Typography variant='h5' gutterBottom>
         Параметры
       </Typography>
@@ -40,13 +28,14 @@ export const TestSettings: FC = () => {
         gap='10px 0'
         columns={5}
       >
-        <Format breakpoints={breakpoints} />
-        <CurrentWordBlock breakpoints={breakpoints} />
-        <BlockSize breakpoints={breakpoints} />
-        <WordNumber breakpoints={breakpoints} />
-        <WordOrder breakpoints={breakpoints} />
-        <TestTimer breakpoints={breakpoints} />
+        <Format breakpoints={gridBreakpoints} />
+        <CurrentWordBlock breakpoints={gridBreakpoints} />
+        <BlockSize breakpoints={gridBreakpoints} />
+        <WordNumber breakpoints={gridBreakpoints} />
+        <WordOrder breakpoints={gridBreakpoints} />
+        <TestTimer breakpoints={gridBreakpoints} />
       </Grid>
+      <TestRunner />
     </Box>
   );
 };

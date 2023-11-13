@@ -42,9 +42,9 @@ export const WordNumber: FC<RowBreakpointsProps> = ({breakpoints}) => {
           variant='standard'
           size='small'
           InputProps={{
-            readOnly: testSelector.startTest,
+            readOnly: testSelector.isTestStarted,
           }}
-          defaultValue={testSelector.wordAmount}
+          defaultValue={testSelector.wordNumber}
           onChange={(e) => restricWordNumber(e)}
         />
       </Grid>

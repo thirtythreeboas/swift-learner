@@ -1,6 +1,6 @@
 import {FC} from 'react';
 import {useAppDispatch} from '@/app/hooks';
-import {wordOrderSetter} from '@/features/test/testSlice';
+import {setWordOrder} from '@/features/test/testSlice';
 import Grid from '@mui/material/Grid';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -43,7 +43,7 @@ export const WordOrder: FC<RowBreakpointsProps> = ({breakpoints}) => {
               value='1'
               control={
                 <Radio
-                  onChange={(e) => dispatch(wordOrderSetter(e.target.value))}
+                  onChange={(e) => dispatch(setWordOrder(e.target.value))}
                 />
               }
               label='Последовательно'
@@ -60,7 +60,7 @@ export const WordOrder: FC<RowBreakpointsProps> = ({breakpoints}) => {
               value='2'
               control={
                 <Radio
-                  onChange={(e) => dispatch(wordOrderSetter(e.target.value))}
+                  onChange={(e) => dispatch(setWordOrder(e.target.value))}
                 />
               }
               label='В случайном порядке'

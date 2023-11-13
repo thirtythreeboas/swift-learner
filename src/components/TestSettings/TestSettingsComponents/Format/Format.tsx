@@ -63,7 +63,7 @@ export const Format: FC<RowBreakpointsProps> = ({breakpoints}) => {
             },
           }}
           onClick={() => swapLangs()}
-          disabled={testSelector.startTest}
+          disabled={testSelector.isTestStarted}
         >
           <ArrowRightAltIcon />
         </Button>

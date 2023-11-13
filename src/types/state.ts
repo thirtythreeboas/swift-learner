@@ -20,28 +20,17 @@ export type TestInput = {
 };
 
 export type TestResult = {
-  time: number;
+  time: string;
   data: TestInput[];
-};
-
-export type Results = {
-  time: number;
-  data: TestInput[];
-};
-
-export type Timer = {
-  showTime: boolean;
-  time: number;
 };
 
 export type Test = {
-  results: Results;
-  startTest: boolean;
+  results: TestResult;
+  isTestStarted: boolean;
   testFormat: boolean;
-  wordAmount: number;
+  wordNumber: number;
   wordOrder: number;
-  timer: Timer;
-  index: number;
-  closeTestWindow: boolean;
-  setTimer: null;
+  timeSpentOnTest: number;
+  currentWordIndex: number;
+  showResult: boolean;
 };

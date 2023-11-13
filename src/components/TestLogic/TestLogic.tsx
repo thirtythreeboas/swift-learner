@@ -7,11 +7,11 @@ import styles from './TestLogic.module.scss';
 export const TestLogic = () => {
   const test = useAppSelector((state) => state.test);
 
-  return !test.startTest ? (
-    <WelcomeImg />
-  ) : (
+  return test.isTestStarted ? (
     <div className={styles.testContainer}>
-      {test.closeTestWindow ? <WordTrainer /> : <Results />}
+      {test.showResult ? <Results /> : <WordTrainer />}
     </div>
+  ) : (
+    <WelcomeImg />
   );
 };
