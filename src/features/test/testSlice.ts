@@ -9,7 +9,7 @@ const initialState = {
   },
   isTestStarted: false,
   testFormat: true,
-  wordNumber: 2,
+  wordNumber: 10,
   wordOrder: 1,
   timeSpentOnTest: 0,
   currentWordIndex: 0,

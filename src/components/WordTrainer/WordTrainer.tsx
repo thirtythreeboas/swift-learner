@@ -15,22 +15,16 @@ export const WordTrainer = () => {
   const [next, setNext] = useState<string>('');
   const [answer, setAnswer] = useState<string>('');
   const [translation, setTranslation] = useState<string[]>([]);
+  const [randomIndices, setRandomIndices] = useState<number[]>([]);
   const [results, setResults] = useState<TestResult>({
     time: '0',
     data: [],
   });
 
-  const [randomIndices, setRandomIndices] = useState<number[]>([]);
-
-  const displayBlockLength = (): boolean | string => {
-    return (
-      test.wordNumber > vocabulary.length ||
-      test.wordNumber === 0 ||
-      Number.isNaN(test.wordNumber) ||
-      (test.wordNumber < 0
-        ? `${test.currentWordIndex + 1}/${vocabulary.length}`
-        : `${test.currentWordIndex + 1}/${test.wordNumber}`)
-    );
+  const displayTestProgress = (): string => {
+    return test.wordNumber <= 0
+      ? `${test.currentWordIndex + 1}/${vocabulary.length}`
+      : `${test.currentWordIndex + 1}/${test.wordNumber}`;
   };
 
   const setWordOrder = () => {
@@ -45,7 +39,6 @@ export const WordTrainer = () => {
       setNext(word);
       setTranslation(vocabulary[index][`${!test.testFormat ? 'eng' : 'rus'}`]);
     } else {
-      // const lang: string = test.testFormat ? 'eng' : 'rus';
       const word =
         vocabulary[test.currentWordIndex][
           `${test.testFormat ? 'eng' : 'rus'}`
@@ -128,7 +121,7 @@ export const WordTrainer = () => {
       </div>
 
       <div className={styles.amountBadges}>
-        <span>{displayBlockLength()}</span>
+        <span>{displayTestProgress()}</span>
       </div>
     </>
   );

@@ -1,9 +1,10 @@
-import {FC} from 'react';
+import {FC, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '@/app/hooks';
 import {setWordNumber} from '@/features/test/testSlice';
+import {Breakpoints} from '@/types/breakpoints';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import {Breakpoints} from '@/types/breakpoints';
+import {hasNumericChars} from '@/utils/hasNumericChars';
 import styles from '../../TestSettings.module.scss';
 
 type RowBreakpointsProps = {
@@ -11,22 +12,33 @@ type RowBreakpointsProps = {
 };
 
 export const WordNumber: FC<RowBreakpointsProps> = ({breakpoints}) => {
+  const test = useAppSelector((state) => state.test);
+  const [numericValue, setNumericValue] = useState<string | number>(
+    test.wordNumber,
+  );
+
   const {firstColumn, secondColumn} = breakpoints;
   const {xs: xs1, md: md1, lg: lg1} = firstColumn;
   const {xs: xs2, md: md2, lg: lg2} = secondColumn;
 
   const testSelector = useAppSelector((state) => state.test);
-  const wordSelector = useAppSelector((state) => state.words);
+  const wordsSelector = useAppSelector((state) => state.words);
   const dispatch = useAppDispatch();
 
-  const arrLength = wordSelector.data[wordSelector.chosenBlocks[0]].length;
+  const blockLength: number =
+    wordsSelector.data[wordsSelector.chosenBlocks[0]].length;
+
   const restricWordNumber = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    const num = parseInt(e.target.value, 10);
-    if (num >= arrLength || num === 0 || Number.isNaN(num))
-      dispatch(setWordNumber(arrLength));
-    if (num <= arrLength) dispatch(setWordNumber(num));
+    const wordsNumber = e.target.value;
+    const num: number | boolean = hasNumericChars(wordsNumber, blockLength);
+    if (typeof num === 'number') {
+      setNumericValue(num);
+      dispatch(setWordNumber(num));
+    } else {
+      setNumericValue('');
+    }
   };
 
   return (
@@ -41,10 +53,10 @@ export const WordNumber: FC<RowBreakpointsProps> = ({breakpoints}) => {
           id={styles['word-count-input']}
           variant='standard'
           size='small'
+          value={numericValue}
           InputProps={{
             readOnly: testSelector.isTestStarted,
           }}
-          defaultValue={testSelector.wordNumber}
           onChange={(e) => restricWordNumber(e)}
         />
       </Grid>
