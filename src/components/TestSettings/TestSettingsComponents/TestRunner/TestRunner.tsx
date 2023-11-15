@@ -23,7 +23,10 @@ export const TestRunner: FC = () => {
   };
 
   const finishTest = () => {
-    if (testTimer.current) dispatch(restartTest());
+    if (testTimer.current) {
+      dispatch(restartTest());
+      setSpentTime(0);
+    }
   };
 
   useEffect(() => {

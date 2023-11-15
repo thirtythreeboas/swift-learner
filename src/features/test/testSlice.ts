@@ -37,11 +37,13 @@ export const testSlice = createSlice({
         ...state,
         results: {
           ...state.results,
+          time: '',
           data: [],
         },
-        timeSpentOnTest: 0,
         isTestStarted: false,
+        timeSpentOnTest: 0,
         currentWordIndex: 0,
+        showResult: false,
       };
     },
     setWordNumber: (state, action: PayloadAction<number>) => {

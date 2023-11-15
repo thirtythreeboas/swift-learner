@@ -7,7 +7,9 @@ export const Results = () => {
   const {results} = test;
 
   const numberOfRightAnswers = () => {
-    const right = results.data.filter((e) => e.answer.includes(e.input));
+    const right = results.data.filter((e) =>
+      e.correctAnswer.includes(e.userAnswer),
+    );
     return right;
   };
 
@@ -33,15 +35,15 @@ export const Results = () => {
           </div>
         </div>
         {results.data.map((e) => (
-          <div className={styles.resultsRow} key={e.target}>
+          <div className={styles.resultsRow} key={e.word}>
             <div className={styles.cell} style={highlightAnswer(e)}>
-              <span>{e.target}</span>
+              <span>{e.word}</span>
             </div>
             <div className={styles.cell} style={highlightAnswer(e)}>
-              <span>{e.input}</span>
+              <span>{e.userAnswer}</span>
             </div>
             <div className={styles.cell} style={{background: '#d7d97b'}}>
-              <span>{e.answer[0]}</span>
+              <span>{e.correctAnswer[0]}</span>
             </div>
           </div>
         ))}

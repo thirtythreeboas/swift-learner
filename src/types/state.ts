@@ -14,9 +14,9 @@ export type StateTypes = {
 };
 
 export type TestInput = {
-  target: string;
-  input: string;
-  answer: string[];
+  word: string;
+  userAnswer: string;
+  correctAnswer: string[];
 };
 
 export type TestResult = {

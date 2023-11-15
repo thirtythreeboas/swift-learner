@@ -12,9 +12,9 @@ export const WordTrainer = () => {
   const vocabulary = words.data[`${words.chosenBlocks[0]}`];
   const focusInputfield = useRef<HTMLInputElement | null>(null);
 
-  const [next, setNext] = useState<string>('');
-  const [answer, setAnswer] = useState<string>('');
-  const [translation, setTranslation] = useState<string[]>([]);
+  const [word, setWord] = useState<string>('');
+  const [userAnswer, setUserAnswer] = useState<string>('');
+  const [correctAnswer, setCorrectAnswer] = useState<string[]>([]);
   const [randomIndices, setRandomIndices] = useState<number[]>([]);
   const [results, setResults] = useState<TestResult>({
     time: '0',
@@ -33,28 +33,31 @@ export const WordTrainer = () => {
       while (randomIndices.includes(index)) {
         index = Math.floor(Math.random() * vocabulary.length);
       }
-      const arr = [...randomIndices, index];
-      setRandomIndices(arr);
-      const word = vocabulary[index][`${test.testFormat ? 'eng' : 'rus'}`][0];
-      setNext(word);
-      setTranslation(vocabulary[index][`${!test.testFormat ? 'eng' : 'rus'}`]);
+      setRandomIndices((prevState) => [...prevState, index]);
+      const wordToTranslate =
+        vocabulary[index][`${test.testFormat ? 'eng' : 'rus'}`][0];
+      setWord(wordToTranslate);
+      setCorrectAnswer(
+        vocabulary[index][`${!test.testFormat ? 'eng' : 'rus'}`],
+      );
     } else {
-      const word =
+      const wordToTranslate =
         vocabulary[test.currentWordIndex][
           `${test.testFormat ? 'eng' : 'rus'}`
         ][0];
-      setTranslation(
+      setCorrectAnswer(
         vocabulary[test.currentWordIndex][
           `${!test.testFormat ? 'eng' : 'rus'}`
         ],
       );
-      setNext(word);
+      setWord(wordToTranslate);
     }
   };
 
   useEffect(() => {
     setWordOrder();
     if (test.isTestStarted) focusInputfield.current?.focus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [test.isTestStarted, test.currentWordIndex]);
 
   const nextWord = () => {
@@ -63,32 +66,32 @@ export const WordTrainer = () => {
       data: [
         ...results.data,
         {
-          target: next,
-          input: answer,
-          answer: translation,
+          word,
+          userAnswer,
+          correctAnswer,
         },
       ],
     };
     if (test.currentWordIndex + 1 === test.wordNumber) {
-      setResults({
-        ...results,
-        data: [],
-      });
+      setResults({...results, data: []});
       dispatch(completeTest());
       dispatch(setResult(input));
     } else {
       dispatch(setNextWord());
       setResults(input);
-      const clearInput = document.getElementById(
-        'get-word-input',
-      ) as HTMLInputElement | null;
-      if (clearInput) {
-        clearInput.value = '';
+      if (focusInputfield.current) {
+        focusInputfield.current.value = '';
         focusInputfield.current?.focus();
       }
     }
-    setAnswer('');
+    setUserAnswer('');
   };
+
+  // handleWordChange
+  // const nextWord = () => {
+  //   console.log('handleWordChange');
+
+  // };
 
   const pressToNextWord = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') nextWord();
@@ -98,14 +101,14 @@ export const WordTrainer = () => {
     <>
       <div className={styles.inputContainer}>
         <div className={styles.inputBlock}>
-          <span id={styles['word-to-translate']}>{next}</span>
+          <span id={styles['word-to-translate']}>{word}</span>
           <input
             type='text'
             id='get-word-input'
             ref={focusInputfield}
             className={styles['word-to-enter']}
             onKeyDown={(e) => pressToNextWord(e)}
-            onChange={(e) => setAnswer(e.target.value)}
+            onChange={(e) => setUserAnswer(e.target.value)}
           />
         </div>
         <input
