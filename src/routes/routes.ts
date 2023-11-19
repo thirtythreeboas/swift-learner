@@ -1,7 +1,7 @@
 import {createBrowserRouter} from 'react-router-dom';
 import React from 'react';
 import {Test} from '@/pages/Test/Test';
-import {ShowWords} from '@/components/ShowWords';
+import {WordList} from '@/pages/WordList';
 import {App} from '@/App';
 import {ErrorPage} from '@/components/ErrorPage';
 import {Home} from '@/pages/Home';
@@ -20,7 +20,7 @@ const routes = [
       },
       {
         path: RouteNames.WORDS,
-        element: React.createElement(ShowWords),
+        element: React.createElement(WordList),
       },
     ],
   },

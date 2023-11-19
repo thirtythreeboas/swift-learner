@@ -9,7 +9,7 @@ export const WordTrainer = () => {
   const words = useAppSelector((state) => state.words);
   const test = useAppSelector((state) => state.test);
   const dispatch = useAppDispatch();
-  const vocabulary = words.data[`${words.chosenBlocks[0]}`];
+  const vocabulary = words.blockList[`${words.chosenBlocks[0]}`];
   const focusInputfield = useRef<HTMLInputElement | null>(null);
 
   const [word, setWord] = useState<string>('');
