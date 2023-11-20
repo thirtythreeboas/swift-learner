@@ -25,8 +25,7 @@ export const WordNumber: FC<RowBreakpointsProps> = ({breakpoints}) => {
   const wordsSelector = useAppSelector((state) => state.words);
   const dispatch = useAppDispatch();
 
-  const blockLength: number =
-    wordsSelector.data[wordsSelector.chosenBlocks[0]].length;
+  const blockLength: number = wordsSelector.wordBlock.length;
 
   const restricWordNumber = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,

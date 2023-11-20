@@ -1,7 +1,7 @@
 import {useAppSelector} from '@/app/hooks';
 import {Results} from '@/components/Result';
 import {WelcomeImg} from '@/components/WelcomeImg';
-import {WordTrainer} from '@/components/WordTrainer';
+import {VocabularyTrainer} from '@/components/VocabularyTrainer';
 import styles from './TestLogic.module.scss';
 
 export const TestLogic = () => {
@@ -9,7 +9,7 @@ export const TestLogic = () => {
 
   return test.isTestStarted ? (
     <div className={styles.testContainer}>
-      {test.showResult ? <Results /> : <WordTrainer />}
+      {test.showResult ? <Results /> : <VocabularyTrainer />}
     </div>
   ) : (
     <WelcomeImg />

@@ -55,6 +55,8 @@ export type TestResult = {
 
 export type Test = {
   results: TestResult;
+  sourceLangCode: string;
+  targetLangCode: string;
   isTestStarted: boolean;
   testFormat: boolean;
   wordNumber: number;

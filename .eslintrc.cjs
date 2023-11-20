@@ -78,6 +78,7 @@ module.exports = {
     'no-console': 'off',
     '@emotion/jsx-import': 'error',
     '@typescript-eslint/no-floating-promises': 'off',
+    'no-constant-condition': 'off',
   },
   settings: {
     'import/resolver': {

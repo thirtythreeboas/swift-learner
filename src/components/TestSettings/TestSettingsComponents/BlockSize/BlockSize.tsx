@@ -13,11 +13,6 @@ export const BlockSize: FC<RowBreakpointsProps> = ({breakpoints}) => {
   const {xs: xs2, md: md2, lg: lg2} = secondColumn;
 
   const wordSelector = useAppSelector((state) => state.words);
-  const getNumberOfWordsInBlock = () => {
-    const arr = wordSelector.chosenBlocks;
-    const num = arr.reduce((acc, e) => acc + wordSelector.data[e].length, 0);
-    return num;
-  };
 
   return (
     <>
@@ -25,7 +20,7 @@ export const BlockSize: FC<RowBreakpointsProps> = ({breakpoints}) => {
         Размер блока:
       </Grid>
       <Grid item xs={xs2} md={md2} lg={lg2}>
-        {getNumberOfWordsInBlock()}
+        {wordSelector.wordBlock.length}
       </Grid>
     </>
   );

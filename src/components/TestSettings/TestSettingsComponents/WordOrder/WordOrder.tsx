@@ -28,7 +28,7 @@ export const WordOrder: FC<RowBreakpointsProps> = ({breakpoints}) => {
         <FormControl>
           <RadioGroup
             aria-labelledby='demo-radio-buttons-group-label'
-            defaultValue='1'
+            defaultValue='0'
             name='radio-buttons-group'
           >
             <FormControlLabel
@@ -40,7 +40,7 @@ export const WordOrder: FC<RowBreakpointsProps> = ({breakpoints}) => {
                   padding: '0 9px',
                 },
               }}
-              value='1'
+              value='0'
               control={
                 <Radio
                   onChange={(e) => dispatch(setWordOrder(e.target.value))}
@@ -57,7 +57,7 @@ export const WordOrder: FC<RowBreakpointsProps> = ({breakpoints}) => {
                   padding: '0 9px',
                 },
               }}
-              value='2'
+              value='1'
               control={
                 <Radio
                   onChange={(e) => dispatch(setWordOrder(e.target.value))}
