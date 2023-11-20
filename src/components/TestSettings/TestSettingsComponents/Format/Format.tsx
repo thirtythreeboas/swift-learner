@@ -23,12 +23,23 @@ export const Format: FC<RowBreakpointsProps> = ({breakpoints}) => {
   const [isLangSwapped, setIsLangSwapped] = useState<boolean>(true);
   const [isRotateOnSwap, setIsRotateOnSwap] = useState<boolean>(false);
 
+  const getLangInfo = (swapper: boolean) => {
+    const sourceLang = swapper ? Languages.ENGLISH : Languages.RUSSIAN;
+    const targetLang = !swapper ? Languages.ENGLISH : Languages.RUSSIAN;
+    const sourceLangCode = swapper ? 'rus' : 'eng';
+    const targetLangCode = !swapper ? 'rus' : 'eng';
+    return {sourceLang, targetLang, sourceLangCode, targetLangCode};
+  };
+
+  const {sourceLang, targetLang, sourceLangCode, targetLangCode} =
+    getLangInfo(isLangSwapped);
+
   const rotate = isRotateOnSwap ? 'rotate(360deg)' : 'rotate(0)';
   const swapLangs = () => {
     setIsRotateOnSwap(!isRotateOnSwap);
     setTimeout(() => setIsRotateOnSwap(!isRotateOnSwap), 1000);
     setIsLangSwapped(!isLangSwapped);
-    dispatch(setFormat());
+    dispatch(setFormat({sourceLangCode, targetLangCode}));
   };
 
   return (
@@ -52,7 +63,7 @@ export const Format: FC<RowBreakpointsProps> = ({breakpoints}) => {
             fontFamily: '"Scada", sans-serif',
           }}
         >
-          {isLangSwapped ? Languages.ENGLISH : Languages.RUSSIAN}
+          {sourceLang}
         </Typography>
         <Button
           sx={{
@@ -74,7 +85,7 @@ export const Format: FC<RowBreakpointsProps> = ({breakpoints}) => {
             fontFamily: '"Scada", sans-serif',
           }}
         >
-          {isLangSwapped ? Languages.RUSSIAN : Languages.ENGLISH}
+          {targetLang}
         </Typography>
       </Grid>
     </>

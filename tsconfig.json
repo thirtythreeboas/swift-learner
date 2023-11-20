@@ -26,5 +26,9 @@
     "src/**/*",
     "src/main.tsx",
   ],
+  "exclude": [
+    "node_modules/**/*",
+    "src/mock/jsonEditor.js",
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

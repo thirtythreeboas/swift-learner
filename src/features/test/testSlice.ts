@@ -7,10 +7,12 @@ const initialState = {
     time: '',
     data: [],
   },
+  sourceLangCode: 'eng',
+  targetLangCode: 'rus',
   isTestStarted: false,
   testFormat: true,
   wordNumber: 10,
-  wordOrder: 1,
+  wordOrder: 0,
   timeSpentOnTest: 0,
   currentWordIndex: 0,
   showResult: false,
@@ -59,10 +61,14 @@ export const testSlice = createSlice({
         wordOrder: number,
       };
     },
-    setFormat: (state) => {
+    setFormat: (
+      state,
+      action: PayloadAction<{sourceLangCode: string; targetLangCode: string}>,
+    ) => {
       return {
         ...state,
-        testFormat: !state.testFormat,
+        sourceLangCode: action.payload.sourceLangCode,
+        targetLangCode: action.payload.targetLangCode,
       };
     },
     setNextWord: (state) => {

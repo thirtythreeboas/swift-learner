@@ -4,6 +4,7 @@ import {TestLogic} from '@/components/TestLogic';
 import {Loading} from '@/components/UI/Loading';
 import {useAppDispatch, useAppSelector} from '@/app/hooks';
 import {TestSettings} from '@/components/TestSettings/TestSettings';
+import {getWordBlock} from '@/features/thunks';
 // import styles from './Test.module.scss';
 
 export const Test = () => {
@@ -12,12 +13,18 @@ export const Test = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (words.chosenBlocks.length === 0) {
+    if (words.chosenBlocks && words.chosenBlocks.path) {
+      dispatch(getWordBlock(words.chosenBlocks.path));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (words.chosenBlocks === null) {
       navigate('/');
     }
-  }, [navigate, dispatch, words]);
+  }, []);
 
-  if (words.chosenBlocks.length === 0) return <Loading />;
+  if (words.chosenBlocks === null) return <Loading />;
 
   return (
     <>

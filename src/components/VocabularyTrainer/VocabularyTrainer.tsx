@@ -2,14 +2,22 @@ import {useEffect, useState, useRef} from 'react';
 import {useAppSelector, useAppDispatch} from '@/app/hooks';
 import {setNextWord, setResult, completeTest} from '@/features/test/testSlice';
 import {convertTimeToString} from '@/utils/convertTimeToString';
-import {TestResult} from '@/types/state';
-import styles from './WordTrainer.module.scss';
+import {TestResult, Word} from '@/types/state';
+import styles from './VocabularyTrainer.module.scss';
 
-export const WordTrainer = () => {
-  const words = useAppSelector((state) => state.words);
-  const test = useAppSelector((state) => state.test);
+export const VocabularyTrainer = () => {
+  const wordSlice = useAppSelector((state) => state.words);
+  const {
+    wordNumber,
+    currentWordIndex,
+    targetLangCode,
+    sourceLangCode,
+    isTestStarted,
+    timeSpentOnTest,
+    wordOrder,
+  } = useAppSelector((state) => state.test);
+
   const dispatch = useAppDispatch();
-  const vocabulary = words.data[`${words.chosenBlocks[0]}`];
   const focusInputfield = useRef<HTMLInputElement | null>(null);
 
   const [word, setWord] = useState<string>('');
@@ -22,47 +30,58 @@ export const WordTrainer = () => {
   });
 
   const displayTestProgress = (): string => {
-    return test.wordNumber <= 0
-      ? `${test.currentWordIndex + 1}/${vocabulary.length}`
-      : `${test.currentWordIndex + 1}/${test.wordNumber}`;
+    return wordNumber <= 0
+      ? `${currentWordIndex + 1}/${wordSlice.wordBlock.length}`
+      : `${currentWordIndex + 1}/${wordNumber}`;
+  };
+
+  const getRandomWord = (array: Word[]) => {
+    let index = Math.floor(Math.random() * array.length);
+    while (randomIndices.includes(index)) {
+      index = Math.floor(Math.random() * array.length);
+    }
+    setRandomIndices((prevState) => [...prevState, index]);
+    const block = array[index];
+    return block;
+  };
+
+  const getSourceLang = (array: Word) => {
+    const wordBlock = array[sourceLangCode as keyof Word] as string[];
+    const wordToTranslate = wordBlock[0];
+    return {wordToTranslate};
+  };
+
+  const getTargetLang = (array: Word) => {
+    const correctAnswers = array[targetLangCode as keyof Word] as string[];
+    return {correctAnswers};
+  };
+
+  const setTestState = (wordBlock: Word): void => {
+    const {wordToTranslate} = getSourceLang(wordBlock);
+    const {correctAnswers} = getTargetLang(wordBlock);
+    setWord(wordToTranslate);
+    setCorrectAnswer(correctAnswers);
   };
 
   const setWordOrder = () => {
-    if (test.wordOrder === 2) {
-      let index = Math.floor(Math.random() * vocabulary.length);
-      while (randomIndices.includes(index)) {
-        index = Math.floor(Math.random() * vocabulary.length);
-      }
-      setRandomIndices((prevState) => [...prevState, index]);
-      const wordToTranslate =
-        vocabulary[index][`${test.testFormat ? 'eng' : 'rus'}`][0];
-      setWord(wordToTranslate);
-      setCorrectAnswer(
-        vocabulary[index][`${!test.testFormat ? 'eng' : 'rus'}`],
-      );
+    if (wordOrder) {
+      const randomBlock = getRandomWord(wordSlice.wordBlock);
+      setTestState(randomBlock);
     } else {
-      const wordToTranslate =
-        vocabulary[test.currentWordIndex][
-          `${test.testFormat ? 'eng' : 'rus'}`
-        ][0];
-      setCorrectAnswer(
-        vocabulary[test.currentWordIndex][
-          `${!test.testFormat ? 'eng' : 'rus'}`
-        ],
-      );
-      setWord(wordToTranslate);
+      const orderedBlock = wordSlice.wordBlock[currentWordIndex];
+      setTestState(orderedBlock);
     }
   };
 
   useEffect(() => {
     setWordOrder();
-    if (test.isTestStarted) focusInputfield.current?.focus();
+    if (isTestStarted) focusInputfield.current?.focus();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [test.isTestStarted, test.currentWordIndex]);
+  }, [isTestStarted, currentWordIndex]);
 
   const nextWord = () => {
     const input: TestResult = {
-      time: convertTimeToString(test.timeSpentOnTest),
+      time: convertTimeToString(timeSpentOnTest),
       data: [
         ...results.data,
         {
@@ -72,7 +91,7 @@ export const WordTrainer = () => {
         },
       ],
     };
-    if (test.currentWordIndex + 1 === test.wordNumber) {
+    if (currentWordIndex + 1 === wordNumber) {
       setResults({...results, data: []});
       dispatch(completeTest());
       dispatch(setResult(input));
@@ -86,12 +105,6 @@ export const WordTrainer = () => {
     }
     setUserAnswer('');
   };
-
-  // handleWordChange
-  // const nextWord = () => {
-  //   console.log('handleWordChange');
-
-  // };
 
   const pressToNextWord = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') nextWord();
@@ -114,9 +127,7 @@ export const WordTrainer = () => {
         <input
           type='button'
           value={`${
-            test.currentWordIndex + 1 === test.wordNumber
-              ? 'Закончить тест'
-              : 'Далее'
+            currentWordIndex + 1 === wordNumber ? 'Закончить тест' : 'Далее'
           }`}
           className={styles.inputWordButton}
           onClick={() => nextWord()}

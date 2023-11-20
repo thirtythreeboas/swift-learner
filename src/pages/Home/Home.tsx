@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import {chooseWordsBlock, resetChosenBlocks} from '@/features/word/wordSlice';
+import {chooseWordBlock, resetChosenBlocks} from '@/features/word/wordSlice';
 import {useAppSelector, useAppDispatch} from '@/app/hooks';
 import {Button} from '@mui/material';
 import {RouteNames} from '@/types/const';
@@ -16,7 +16,7 @@ export const Home = () => {
   }, []);
 
   const setHover = (wordBlock: string) => {
-    return selected.includes(wordBlock);
+    return selected?.name === wordBlock;
   };
 
   return (
@@ -31,7 +31,7 @@ export const Home = () => {
         </Link>
       </div>
       <div className={styles.blockSelection}>
-        {Object.keys(words.data).map((item) => (
+        {words.blockList.map((item) => (
           <Button
             sx={{
               color: '#000',
@@ -41,15 +41,15 @@ export const Home = () => {
                 color: '#fff',
               },
             }}
-            id={item}
-            key={item}
+            id={item.name}
+            key={item.id}
             className={`${styles.wordBlock} ${
-              setHover(item) ? styles.hover : ''
+              setHover(item.name) ? styles.hover : ''
             }`}
-            onClick={(e) => dispatch(chooseWordsBlock(e.currentTarget.id))}
-            onKeyDown={(e) => dispatch(chooseWordsBlock(e.currentTarget.id))}
+            onClick={() => dispatch(chooseWordBlock(item))}
+            onKeyDown={() => dispatch(chooseWordBlock(item))}
           >
-            {item}
+            {item.name}
           </Button>
         ))}
       </div>

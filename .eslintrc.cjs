@@ -77,6 +77,8 @@ module.exports = {
     'no-param-reassign': ['error', {props: false}],
     'no-console': 'off',
     '@emotion/jsx-import': 'error',
+    '@typescript-eslint/no-floating-promises': 'off',
+    'no-constant-condition': 'off',
   },
   settings: {
     'import/resolver': {
