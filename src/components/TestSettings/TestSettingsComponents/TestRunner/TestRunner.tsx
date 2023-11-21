@@ -1,6 +1,11 @@
 import {FC, useRef, useState, useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '@/app/hooks';
-import {startTest, setTime, restartTest} from '@/features/test/testSlice';
+import {
+  startTest,
+  setTime,
+  restartTest,
+  completeTest,
+} from '@/features/test/testSlice';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
@@ -22,9 +27,11 @@ export const TestRunner: FC = () => {
     },
   };
 
-  const disabledBtnStyles = {
-    backgroundColor: isTestStarted ? '#1976d2' : '#00000042',
-    borderColor: isTestStarted ? '#1976d2' : '#00000042',
+  const disabledBtnStyles = (isColorsSwapped: boolean) => {
+    return {
+      backgroundColor: isColorsSwapped ? '#1976d2' : '#00000042',
+      borderColor: isColorsSwapped ? '#1976d2' : '#00000042',
+    };
   };
 
   const finishTest = () => {
@@ -51,6 +58,7 @@ export const TestRunner: FC = () => {
   useEffect(() => {
     if (isTestStarted) dispatch(setTime(spentTime));
     if (showResult && testTimer.current) clearInterval(testTimer.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [spentTime, showResult]);
 
   return (
@@ -58,8 +66,7 @@ export const TestRunner: FC = () => {
       <Button
         sx={{
           ...btnStyles,
-          backgroundColor: !isTestStarted ? '#1976d2' : '#00000042',
-          borderColor: !isTestStarted ? '#1976d2' : '#00000042',
+          ...disabledBtnStyles(!isTestStarted),
         }}
         onClick={() => dispatch(startTest())}
         disabled={isTestStarted}
@@ -69,7 +76,7 @@ export const TestRunner: FC = () => {
       <Button
         sx={{
           ...btnStyles,
-          ...disabledBtnStyles,
+          ...disabledBtnStyles(isTestStarted),
         }}
         disabled={!isTestStarted}
         onClick={() => finishTest()}
@@ -79,9 +86,10 @@ export const TestRunner: FC = () => {
       <Button
         sx={{
           ...btnStyles,
-          ...disabledBtnStyles,
+          ...disabledBtnStyles(isTestStarted && !showResult),
         }}
-        disabled={!isTestStarted}
+        disabled={!isTestStarted || showResult}
+        onClick={() => dispatch(completeTest())}
       >
         Закончить и посмотреть результат
       </Button>

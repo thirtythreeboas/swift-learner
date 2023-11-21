@@ -5,7 +5,12 @@ import {getWords, getWordBlock} from '../thunks';
 
 const initialState = {
   blockList: [],
-  chosenBlocks: null,
+  // chosenBlocks: null,
+  chosenBlocks: {
+    name: 'Apple Juice',
+    path: 'AppleJuice',
+    id: 133227,
+  },
   wordBlock: [],
   mode: false,
   isLoading: false,

@@ -42,15 +42,16 @@ export type StateTypes = {
   isLoading: boolean;
 };
 
-export type TestInput = {
+export type UserAnswersList = {
   word: string;
   userAnswer: string;
   correctAnswer: string[];
+  id?: number;
 };
 
 export type TestResult = {
   time: string;
-  data: TestInput[];
+  answers: UserAnswersList[];
 };
 
 export type Test = {

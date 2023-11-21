@@ -46,6 +46,7 @@ export const Test = () => {
           position: 'relative',
           display: 'flex',
           justifyContent: 'center',
+          maxWidth: '600px',
           width: '100%',
         }}
       >

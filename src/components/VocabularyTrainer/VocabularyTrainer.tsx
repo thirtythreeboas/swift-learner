@@ -18,6 +18,7 @@ export const VocabularyTrainer = () => {
     isTestStarted,
     timeSpentOnTest,
     wordOrder,
+    results,
   } = useAppSelector((state) => state.test);
 
   const dispatch = useAppDispatch();
@@ -27,10 +28,6 @@ export const VocabularyTrainer = () => {
   const [userAnswer, setUserAnswer] = useState<string>('');
   const [correctAnswer, setCorrectAnswer] = useState<string[]>([]);
   const [randomIndices, setRandomIndices] = useState<number[]>([]);
-  const [results, setResults] = useState<TestResult>({
-    time: '0',
-    data: [],
-  });
 
   const displayTestProgress = (): string => {
     const currentWord = currentWordIndex + 1;
@@ -86,8 +83,8 @@ export const VocabularyTrainer = () => {
   const nextWord = () => {
     const input: TestResult = {
       time: convertTimeToString(timeSpentOnTest),
-      data: [
-        ...results.data,
+      answers: [
+        ...results.answers,
         {
           word,
           userAnswer,
@@ -96,12 +93,11 @@ export const VocabularyTrainer = () => {
       ],
     };
     if (currentWordIndex + 1 === wordNumber) {
-      setResults({...results, data: []});
       dispatch(completeTest());
       dispatch(setResult(input));
     } else {
       dispatch(setNextWord());
-      setResults(input);
+      dispatch(setResult(input));
       if (focusInputfield.current) {
         focusInputfield.current.value = '';
         focusInputfield.current?.focus();
