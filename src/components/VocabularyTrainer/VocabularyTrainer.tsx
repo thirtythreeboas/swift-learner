@@ -3,6 +3,9 @@ import {useAppSelector, useAppDispatch} from '@/app/hooks';
 import {setNextWord, setResult, completeTest} from '@/features/test/testSlice';
 import {convertTimeToString} from '@/utils/convertTimeToString';
 import {TestResult, Word} from '@/types/state';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Badge from '@mui/material/Badge';
 import styles from './VocabularyTrainer.module.scss';
 
 export const VocabularyTrainer = () => {
@@ -30,12 +33,13 @@ export const VocabularyTrainer = () => {
   });
 
   const displayTestProgress = (): string => {
+    const currentWord = currentWordIndex + 1;
     return wordNumber <= 0
-      ? `${currentWordIndex + 1}/${wordSlice.wordBlock.length}`
-      : `${currentWordIndex + 1}/${wordNumber}`;
+      ? `${currentWord}/${wordSlice.wordBlock.length}`
+      : `${currentWord}/${wordNumber}`;
   };
 
-  const getRandomWord = (array: Word[]) => {
+  const getRandomWord = (array: Word[]): Word => {
     let index = Math.floor(Math.random() * array.length);
     while (randomIndices.includes(index)) {
       index = Math.floor(Math.random() * array.length);
@@ -45,25 +49,25 @@ export const VocabularyTrainer = () => {
     return block;
   };
 
-  const getSourceLang = (array: Word) => {
+  const getSourceLangWord = (array: Word): string => {
     const wordBlock = array[sourceLangCode as keyof Word] as string[];
     const wordToTranslate = wordBlock[0];
-    return {wordToTranslate};
+    return wordToTranslate;
   };
 
-  const getTargetLang = (array: Word) => {
+  const getTargetLangWord = (array: Word): string[] => {
     const correctAnswers = array[targetLangCode as keyof Word] as string[];
-    return {correctAnswers};
+    return correctAnswers;
   };
 
   const setTestState = (wordBlock: Word): void => {
-    const {wordToTranslate} = getSourceLang(wordBlock);
-    const {correctAnswers} = getTargetLang(wordBlock);
+    const wordToTranslate = getSourceLangWord(wordBlock);
+    const correctAnswers = getTargetLangWord(wordBlock);
     setWord(wordToTranslate);
     setCorrectAnswer(correctAnswers);
   };
 
-  const setWordOrder = () => {
+  const setWordOrder = (): void => {
     if (wordOrder) {
       const randomBlock = getRandomWord(wordSlice.wordBlock);
       setTestState(randomBlock);
@@ -106,7 +110,7 @@ export const VocabularyTrainer = () => {
     setUserAnswer('');
   };
 
-  const pressToNextWord = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const pressToNextWord = (e: React.KeyboardEvent<HTMLDivElement>): void => {
     if (e.key === 'Enter') nextWord();
   };
 
@@ -114,29 +118,39 @@ export const VocabularyTrainer = () => {
     <>
       <div className={styles.inputContainer}>
         <div className={styles.inputBlock}>
-          <span id={styles['word-to-translate']}>{word}</span>
-          <input
-            type='text'
-            id='get-word-input'
+          <TextField
+            sx={{
+              cursor: 'auto',
+              pointerEvents: 'none',
+              '& label': {backgroundColor: '#fff', paddingRight: '6px'},
+            }}
+            label='Переведите слово'
+            value={word}
+          />
+          <TextField
+            required
+            id='outlined-required'
             ref={focusInputfield}
-            className={styles['word-to-enter']}
+            InputLabelProps={{shrink: false}}
+            value={userAnswer}
             onKeyDown={(e) => pressToNextWord(e)}
             onChange={(e) => setUserAnswer(e.target.value)}
           />
         </div>
-        <input
-          type='button'
-          value={`${
-            currentWordIndex + 1 === wordNumber ? 'Закончить тест' : 'Далее'
-          }`}
-          className={styles.inputWordButton}
-          onClick={() => nextWord()}
-        />
+        <Button variant='contained' onClick={() => nextWord()}>
+          {currentWordIndex + 1 === wordNumber ? 'Завершить' : 'Далее'}
+        </Button>
       </div>
 
-      <div className={styles.amountBadges}>
-        <span>{displayTestProgress()}</span>
-      </div>
+      <Badge
+        badgeContent={displayTestProgress()}
+        sx={{
+          position: 'absolute',
+          top: '0',
+          right: '0',
+        }}
+        color='primary'
+      />
     </>
   );
 };

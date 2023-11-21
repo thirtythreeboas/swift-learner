@@ -1,6 +1,7 @@
 import {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {chooseWordBlock, resetChosenBlocks} from '@/features/word/wordSlice';
+import {restartTest} from '@/features/test/testSlice';
 import {useAppSelector, useAppDispatch} from '@/app/hooks';
 import {Button} from '@mui/material';
 import {RouteNames} from '@/types/const';
@@ -12,6 +13,7 @@ export const Home = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    dispatch(restartTest());
     dispatch(resetChosenBlocks());
   }, []);
 

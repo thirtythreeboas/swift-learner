@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 export const TestRunner: FC = () => {
   const [spentTime, setSpentTime] = useState<number>(0);
   const testTimer = useRef<NodeJS.Timeout | null>(null);
-  const test = useAppSelector((state) => state.test);
+  const {isTestStarted, showResult} = useAppSelector((state) => state.test);
   const dispatch = useAppDispatch();
 
   const btnStyles = {
@@ -22,6 +22,11 @@ export const TestRunner: FC = () => {
     },
   };
 
+  const disabledBtnStyles = {
+    backgroundColor: isTestStarted ? '#1976d2' : '#00000042',
+    borderColor: isTestStarted ? '#1976d2' : '#00000042',
+  };
+
   const finishTest = () => {
     if (testTimer.current) {
       dispatch(restartTest());
@@ -30,7 +35,7 @@ export const TestRunner: FC = () => {
   };
 
   useEffect(() => {
-    if (test.isTestStarted) {
+    if (isTestStarted) {
       testTimer.current = setInterval(() => {
         setSpentTime((prevState) => prevState + 1);
       }, 1000);
@@ -41,38 +46,45 @@ export const TestRunner: FC = () => {
         clearInterval(testTimer.current);
       }
     };
-  }, [test.isTestStarted]);
+  }, [isTestStarted]);
 
   useEffect(() => {
-    if (test.isTestStarted) dispatch(setTime(spentTime));
-    if (test.showResult && testTimer.current) clearInterval(testTimer.current);
-  }, [spentTime, test.showResult]);
+    if (isTestStarted) dispatch(setTime(spentTime));
+    if (showResult && testTimer.current) clearInterval(testTimer.current);
+  }, [spentTime, showResult]);
 
   return (
     <Box sx={{justifyContent: 'space-between', display: 'flex'}}>
       <Button
         sx={{
           ...btnStyles,
-          backgroundColor: !test.isTestStarted ? '#1976d2' : '#00000042',
-          borderColor: !test.isTestStarted ? '#1976d2' : '#00000042',
+          backgroundColor: !isTestStarted ? '#1976d2' : '#00000042',
+          borderColor: !isTestStarted ? '#1976d2' : '#00000042',
         }}
         onClick={() => dispatch(startTest())}
-        disabled={test.isTestStarted}
+        disabled={isTestStarted}
       >
         Начать
       </Button>
       <Button
         sx={{
           ...btnStyles,
-          backgroundColor: test.isTestStarted ? '#1976d2' : '#00000042',
-          borderColor: test.isTestStarted ? '#1976d2' : '#00000042',
+          ...disabledBtnStyles,
         }}
-        disabled={!test.isTestStarted}
+        disabled={!isTestStarted}
         onClick={() => finishTest()}
       >
         Начать заново
       </Button>
-      <Button sx={btnStyles}>Закончить и посмотреть результат</Button>
+      <Button
+        sx={{
+          ...btnStyles,
+          ...disabledBtnStyles,
+        }}
+        disabled={!isTestStarted}
+      >
+        Закончить и посмотреть результат
+      </Button>
     </Box>
   );
 };
