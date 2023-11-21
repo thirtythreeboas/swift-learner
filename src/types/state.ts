@@ -10,24 +10,6 @@ export type WordBlock = {
   words: Word[];
 };
 
-enum WordBlocks {
-  APPLEJUICE = 'AppleJuice',
-  REALTALK = 'RealTalk',
-  BETTER = 'Better than Others',
-  WINTER = 'WinterIsComing',
-  UPGRADE = 'Upgrade',
-  GURU = 'Guru',
-}
-
-export type Vocabulary = {
-  [WordBlocks.APPLEJUICE]: WordBlock[];
-  [WordBlocks.REALTALK]: WordBlock[];
-  [WordBlocks.BETTER]: WordBlock[];
-  [WordBlocks.WINTER]: WordBlock[];
-  [WordBlocks.UPGRADE]: WordBlock[];
-  [WordBlocks.GURU]: WordBlock[];
-};
-
 export type BlockListElement = {
   name: string;
   path: string;
