@@ -14,47 +14,55 @@ export const Results = () => {
   const {results} = useAppSelector((state) => state.test);
 
   const numberOfCorrectAnswers = (array: UserAnswersList[]): string => {
-    const listOfCorrectAnswers = array.filter((e) =>
-      e.correctAnswer.includes(e.userAnswer),
+    const listOfCorrectAnswers = array.filter((answer) =>
+      answer.correctAnswer.includes(answer.userAnswer),
     );
     const correctAnswers = `${listOfCorrectAnswers.length}/${array.length}`;
     return correctAnswers;
   };
 
   return (
-    <TableContainer sx={{overflowX: 'initial'}} component={Paper}>
+    <TableContainer
+      sx={{overflowX: 'initial', marginTop: '50px'}}
+      component={Paper}
+    >
       <Table sx={{minWidth: 600}} aria-label='customized table'>
         <TableHead>
           <TableRow>
-            <Badge
-              sx={{
-                '& .MuiBadge-badge': {
-                  top: '-10px',
-                  right: '-10px',
-                  fontSize: '20px',
-                  height: '30px',
-                  width: '140px',
-                },
-              }}
-              color='secondary'
-              badgeContent={`Время: ${results.time}`}
-            >
-              <TableCell align='right'>Слово</TableCell>
-            </Badge>
+            <TableCell sx={{borderBottom: 'none'}} align='left'>
+              <Badge
+                sx={{
+                  '& .MuiBadge-badge': {
+                    top: '-50px',
+                    right: '-10px',
+                    fontSize: '20px',
+                    height: '30px',
+                    width: '140px',
+                  },
+                }}
+                color='secondary'
+                badgeContent={`Время: ${results.time}`}
+              >
+                Слово
+              </Badge>
+            </TableCell>
             <TableCell align='left'>Перевод</TableCell>
-            <Badge
-              sx={{
-                '& .MuiBadge-badge': {
-                  top: '-10px',
-                  fontSize: '20px',
-                  height: '30px',
-                },
-              }}
-              color='secondary'
-              badgeContent={numberOfCorrectAnswers(results.answers)}
-            >
-              <TableCell align='left'>Правильный ответ</TableCell>
-            </Badge>
+            <TableCell sx={{borderBottom: 'none'}} align='left'>
+              <Badge
+                sx={{
+                  '& .MuiBadge-badge': {
+                    top: '-50px',
+                    right: '-40px',
+                    fontSize: '20px',
+                    height: '30px',
+                  },
+                }}
+                color='secondary'
+                badgeContent={numberOfCorrectAnswers(results.answers)}
+              >
+                Правильный ответ
+              </Badge>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

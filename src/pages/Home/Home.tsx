@@ -3,7 +3,10 @@ import {Link} from 'react-router-dom';
 import {chooseWordBlock, resetChosenBlocks} from '@/features/word/wordSlice';
 import {restartTest} from '@/features/test/testSlice';
 import {useAppSelector, useAppDispatch} from '@/app/hooks';
-import {Button} from '@mui/material';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import {RouteNames} from '@/types/const';
 import styles from './Home.module.scss';
 
@@ -17,14 +20,24 @@ export const Home = () => {
     dispatch(resetChosenBlocks());
   }, []);
 
-  const setHover = (wordBlock: string) => {
+  const setHover = (wordBlock: string): boolean => {
     return selected?.name === wordBlock;
   };
 
   return (
-    <div className={styles.container}>
+    <Container
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: 'auto',
+        padding: '10px',
+      }}
+    >
       <div className={styles.homePage}>
-        <h3>Выберите блок</h3>
+        <Typography sx={{margin: '0 auto'}} variant='h5' gutterBottom>
+          Выберите блок
+        </Typography>
         <Link className={styles.linkBtn} to={RouteNames.WORDS}>
           Посмотреть слова
         </Link>
@@ -32,7 +45,14 @@ export const Home = () => {
           Начать тест
         </Link>
       </div>
-      <div className={styles.blockSelection}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+          width: '100%',
+        }}
+      >
         {words.blockList.map((item) => (
           <Button
             sx={{
@@ -54,7 +74,7 @@ export const Home = () => {
             {item.name}
           </Button>
         ))}
-      </div>
-    </div>
+      </Box>
+    </Container>
   );
 };
