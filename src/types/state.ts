@@ -14,6 +14,8 @@ export type BlockListElement = {
   name: string;
   path: string;
   id: number;
+  img: string;
+  description: string;
 };
 
 export type StateTypes = {

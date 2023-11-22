@@ -1,16 +1,26 @@
 import {useEffect} from 'react';
 import {useAppSelector, useAppDispatch} from '@/app/hooks';
 import {getWordBlock} from '@/features/thunks';
-import styles from './WordList.module.scss';
+import {useLocation} from 'react-router-dom';
+import styles from './Dictionary.module.scss';
 
-export const WordList = () => {
+export const Dictionary = () => {
   const words = useAppSelector((state) => state.words);
   const dispatch = useAppDispatch();
 
+  // interface Props extends RouteComponentProps<
+  //   {myParamProp?: string},
+  //   any,
+  //   {myStateProp?: string}
+  //   > {myNormalProp: boolean}
+
+  // const {state} = useLocation<Kek>();
+
   useEffect(() => {
-    if (words.chosenBlocks && words.chosenBlocks.path) {
-      dispatch(getWordBlock(words.chosenBlocks.path));
-    }
+    // if (state && typeof state === 'string') {
+    // dispatch(getWordBlock(state?.chosenBlock));
+    // }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
