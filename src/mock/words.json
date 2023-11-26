@@ -29,6 +29,13 @@
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque, diam at sagittis fermentum, purus nulla lacinia dui, et lobortis nibh lacus et dolor."
     },
     {
+      "name": "Travelling",
+      "path": "travelling",
+      "id": 1133234,
+      "img": "https://images03.military.com/sites/default/files/styles/full/public/2021-07/stock-road-travel-1800.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque, diam at sagittis fermentum, purus nulla lacinia dui, et lobortis nibh lacus et dolor."
+    },
+    {
       "name": "Weather",
       "path": "weather",
       "id": 1133231,
@@ -40,13 +47,6 @@
       "path": "europeanCountries",
       "id": 1133232,
       "img": "https://www.etias.ca/wp-content/uploads/sites/19/2017/12/ETIAS-for-Canadians-travel-to-europe.jpg",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque, diam at sagittis fermentum, purus nulla lacinia dui, et lobortis nibh lacus et dolor."
-    },
-    {
-      "name": "Travelling",
-      "path": "travelling",
-      "id": 1133234,
-      "img": "https://images03.military.com/sites/default/files/styles/full/public/2021-07/stock-road-travel-1800.jpg",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque, diam at sagittis fermentum, purus nulla lacinia dui, et lobortis nibh lacus et dolor."
     }
   ],
@@ -1283,7 +1283,7 @@
       },
       {
         "rus": ["час"],
-        "eng": ["Hour"],
+        "eng": ["hour"],
         "id": 244
       },
       {
@@ -1754,6 +1754,127 @@
       }
     ]
   },
+  "travelling": {
+    "name": "Путешествие",
+    "id": 133233,
+    "words": [
+      {
+        "rus": ["прибытие"],
+        "eng": ["arrival"],
+        "id": 336
+      },
+      {
+        "rus": ["бронировать"],
+        "eng": ["to book"],
+        "id": 337
+      },
+      {
+        "rus": ["зарядить", "заряжать"],
+        "eng": ["to charge"],
+        "id": 338
+      },
+      {
+        "rus": ["отправление"],
+        "eng": ["departure"],
+        "id": 339
+      },
+      {
+        "rus": ["экскурсия"],
+        "eng": ["excursion"],
+        "id": 340
+      },
+      {
+        "rus": ["рейс"],
+        "eng": ["flight"],
+        "id": 341
+      },
+      {
+        "rus": ["выход на посадку"],
+        "eng": ["gate"],
+        "id": 342
+      },
+      {
+        "rus": ["горячий", "острый"],
+        "eng": ["hot"],
+        "id": 343
+      },
+      {
+        "rus": ["включено"],
+        "eng": ["included"],
+        "id": 344
+      },
+      {
+        "rus": ["ключ"],
+        "eng": ["key"],
+        "id": 345
+      },
+      {
+        "rus": ["очередь"],
+        "eng": ["queue"],
+        "id": 346
+      },
+      {
+        "rus": ["арендная плата"],
+        "eng": ["rent"],
+        "id": 347
+      },
+      {
+        "rus": ["чемодан"],
+        "eng": ["suitcase"],
+        "id": 348
+      },
+      {
+        "rus": ["железнодорожная станция"],
+        "eng": ["train station"],
+        "id": 349
+      },
+      {
+        "rus": ["зонт"],
+        "eng": ["umbrella"],
+        "id": 350
+      },
+      {
+        "rus": ["вид"],
+        "eng": ["view"],
+        "id": 351
+      },
+      {
+        "rus": ["отель"],
+        "eng": ["hotel"],
+        "id": 352
+      },
+      {
+        "rus": ["маршрут"],
+        "eng": ["route"],
+        "id": 353
+      },
+      {
+        "rus": ["трансфер"],
+        "eng": ["transfer"],
+        "id": 354
+      },
+      {
+        "rus": ["зарегистрироваться"],
+        "eng": ["check in"],
+        "id": 355
+      },
+      {
+        "rus": ["досмотр"],
+        "eng": ["security check"],
+        "id": 356
+      },
+      {
+        "rus": ["сотрудник таможни"],
+        "eng": ["customs officer"],
+        "id": 357
+      },
+      {
+        "rus": ["заниматься подводным плаваньем"],
+        "eng": ["go scuba diving"],
+        "id": 358
+      }
+    ]
+  },
   "weather": {
     "name": "Weather",
     "id": 133225,
@@ -1763,126 +1884,5 @@
     "name": "European countries",
     "id": 133226,
     "words": []
-  },
-  "travelling": {
-    "name": "Путешествие",
-    "id": 133233,
-    "words": [
-      {
-        "rus": ["прибытие"],
-        "eng": ["arrival"],
-        "id": 264
-      },
-      {
-        "rus": ["бронировать"],
-        "eng": ["to book"],
-        "id": 265
-      },
-      {
-        "rus": ["зарядить", "заряжать"],
-        "eng": ["to charge"],
-        "id": 265
-      },
-      {
-        "rus": ["отправление"],
-        "eng": ["departure"],
-        "id": 265
-      },
-      {
-        "rus": ["экскурсия"],
-        "eng": ["excursion"],
-        "id": 265
-      },
-      {
-        "rus": ["рейс"],
-        "eng": ["flight"],
-        "id": 265
-      },
-      {
-        "rus": ["выход на посадку"],
-        "eng": ["gate"],
-        "id": 265
-      },
-      {
-        "rus": ["горячий", "острый"],
-        "eng": ["hot"],
-        "id": 265
-      },
-      {
-        "rus": ["включено"],
-        "eng": ["included"],
-        "id": 265
-      },
-      {
-        "rus": ["ключ"],
-        "eng": ["key"],
-        "id": 265
-      },
-      {
-        "rus": ["очередь"],
-        "eng": ["queue"],
-        "id": 265
-      },
-      {
-        "rus": ["арендная плата"],
-        "eng": ["rent"],
-        "id": 265
-      },
-      {
-        "rus": ["чемодан"],
-        "eng": ["suitcase"],
-        "id": 265
-      },
-      {
-        "rus": ["железнодорожная станция"],
-        "eng": ["train station"],
-        "id": 265
-      },
-      {
-        "rus": ["зонт"],
-        "eng": ["umbrella"],
-        "id": 265
-      },
-      {
-        "rus": ["вид"],
-        "eng": ["view"],
-        "id": 265
-      },
-      {
-        "rus": ["отель"],
-        "eng": ["hotel"],
-        "id": 265
-      },
-      {
-        "rus": ["маршрут"],
-        "eng": ["route"],
-        "id": 265
-      },
-      {
-        "rus": ["трансфер"],
-        "eng": ["transfer"],
-        "id": 265
-      },
-      {
-        "rus": ["зарегистрироваться"],
-        "eng": ["check in"],
-        "id": 265
-      },
-      {
-        "rus": ["досмотр"],
-        "eng": ["security check"],
-        "id": 265
-      },
-      {
-        "rus": ["сотрудник таможни"],
-        "eng": ["customs officer"],
-        "id": 265
-      },
-      {
-        "rus": ["заниматься подводным плаваньем"],
-        "eng": ["go scuba diving"],
-        "id": 265
-      }
-    ]
   }
 }

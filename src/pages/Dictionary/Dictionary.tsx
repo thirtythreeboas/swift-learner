@@ -1,43 +1,75 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
 import {useEffect} from 'react';
 import {useAppSelector, useAppDispatch} from '@/app/hooks';
 import {getWordBlock} from '@/features/thunks';
-import {useLocation} from 'react-router-dom';
-import styles from './Dictionary.module.scss';
+import {useParams} from 'react-router-dom';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import {jsx} from '@emotion/react';
+import {dictionaryStyles} from './styles';
+
+type Column = {
+  id: string;
+  label: string;
+};
 
 export const Dictionary = () => {
   const words = useAppSelector((state) => state.words);
   const dispatch = useAppDispatch();
-
-  // interface Props extends RouteComponentProps<
-  //   {myParamProp?: string},
-  //   any,
-  //   {myStateProp?: string}
-  //   > {myNormalProp: boolean}
-
-  // const {state} = useLocation<Kek>();
+  const params = useParams();
 
   useEffect(() => {
-    // if (state && typeof state === 'string') {
-    // dispatch(getWordBlock(state?.chosenBlock));
-    // }
+    if (params.wordBlock) dispatch(getWordBlock(params.wordBlock));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const columns: Column[] = [
+    {
+      id: 'eng',
+      label: 'Перевод',
+    },
+    {
+      id: 'rus',
+      label: 'Слово',
+    },
+  ];
+
   return (
-    <div className={styles.wordsComponent}>
-      <h3>{words.chosenBlocks?.name}</h3>
-      <div className={styles.wordContainer}>
-        {words.wordBlock.map((word) => (
-          <dl className={styles.row} key={word.id}>
-            <dt className={styles.leftCell}>
-              <span>{word.eng[0]}</span>
-            </dt>
-            <dd className={styles.rightCell}>
-              <span>{word.rus[0]}</span>
-            </dd>
-          </dl>
-        ))}
-      </div>
-    </div>
+    <Paper css={dictionaryStyles.paper}>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell css={dictionaryStyles.tableCell}>Слово</TableCell>
+              <TableCell css={dictionaryStyles.tableCell}>Перевод</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {words.wordBlock.map((row) => {
+              return (
+                <TableRow key={row.id} role='checkbox' tabIndex={-1}>
+                  {columns.map((column) => {
+                    return (
+                      <TableCell
+                        key={column.id + row.id}
+                        css={dictionaryStyles.tableCell}
+                      >
+                        {column.id === 'eng' ? row.eng[0] : row.rus[0]}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Paper>
   );
 };

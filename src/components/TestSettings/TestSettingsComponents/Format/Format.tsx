@@ -1,4 +1,6 @@
-import {FC, useState} from 'react';
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import React, {FC, useState} from 'react';
 import {useAppSelector, useAppDispatch} from '@/app/hooks';
 import {setFormat} from '@/features/test/testSlice';
 import Grid from '@mui/material/Grid';
@@ -7,6 +9,8 @@ import Button from '@mui/material/Button';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import {Languages} from '@/types/const';
 import {Breakpoints} from '@/types/breakpoints';
+import {jsx} from '@emotion/react';
+import {formatStyles} from './style';
 
 type RowBreakpointsProps = {
   breakpoints: Breakpoints;
@@ -43,34 +47,18 @@ export const Format: FC<RowBreakpointsProps> = ({breakpoints}) => {
   };
 
   return (
-    <>
-      <Grid item xs={xs1} md={md1} lg={lg1}>
+    <React.Fragment>
+      <Grid css={formatStyles.firstColumn} item xs={xs1} md={md1} lg={lg1}>
         Формат
       </Grid>
-      <Grid
-        item
-        xs={xs2}
-        md={md2}
-        lg={lg2}
-        display='flex'
-        justifyContent='flex-start'
-        alignItems='center'
-      >
-        <Typography
-          sx={{
-            minWidth: '60px',
-            textAlign: 'left',
-            fontFamily: '"Scada", sans-serif',
-          }}
-        >
-          {sourceLang}
-        </Typography>
+      <Grid item xs={xs2} md={md2} lg={lg2} css={formatStyles.secondColumn}>
+        <Typography css={formatStyles.lang}>{sourceLang}</Typography>
         <Button
+          css={formatStyles.swapBtn}
           sx={{
-            height: '20px',
             '& .MuiSvgIcon-fontSizeMedium': {
-              transform: rotate,
               transition: '1s',
+              transform: rotate,
             },
           }}
           onClick={() => swapLangs()}
@@ -78,16 +66,8 @@ export const Format: FC<RowBreakpointsProps> = ({breakpoints}) => {
         >
           <ArrowRightAltIcon />
         </Button>
-        <Typography
-          sx={{
-            minWidth: '60px',
-            textAlign: 'left',
-            fontFamily: '"Scada", sans-serif',
-          }}
-        >
-          {targetLang}
-        </Typography>
+        <Typography css={formatStyles.lang}>{targetLang}</Typography>
       </Grid>
-    </>
+    </React.Fragment>
   );
 };

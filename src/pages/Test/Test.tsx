@@ -1,5 +1,7 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
 import {useEffect} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import {Loading} from '@/components/UI/Loading';
 import {useAppDispatch, useAppSelector} from '@/app/hooks';
 import {TestSettings} from '@/components/TestSettings/TestSettings';
@@ -9,16 +11,20 @@ import {WelcomeImg} from '@/components/WelcomeImg';
 import {VocabularyTrainer} from '@/components/VocabularyTrainer';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import {jsx} from '@emotion/react';
+import {testStyles} from './styles';
 
 export const Test = () => {
   const {chosenBlocks} = useAppSelector((state) => state.words);
   const {isTestStarted, showResult} = useAppSelector((state) => state.test);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const params = useParams();
 
   useEffect(() => {
-    if (chosenBlocks && chosenBlocks.path)
-      dispatch(getWordBlock(chosenBlocks.path));
+    if (params.wordBlock) {
+      dispatch(getWordBlock(params.wordBlock));
+    }
   }, []);
 
   useEffect(() => {
@@ -28,28 +34,9 @@ export const Test = () => {
   if (chosenBlocks === null) return <Loading />;
 
   return (
-    <Container
-      sx={{
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: '50px',
-        maxWidth: '600px',
-        width: '100%',
-      }}
-    >
+    <Container css={testStyles.container}>
       <TestSettings />
-      <Box
-        sx={{
-          position: 'relative',
-          display: 'flex',
-          justifyContent: 'center',
-          maxWidth: '600px',
-          width: '100%',
-        }}
-      >
+      <Box css={testStyles.contentWrapper}>
         {!isTestStarted && <WelcomeImg />}
         {isTestStarted && !showResult && <VocabularyTrainer />}
         {isTestStarted && showResult && <Results />}

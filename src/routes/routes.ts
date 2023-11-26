@@ -15,11 +15,11 @@ const routes = [
     children: [
       {index: true, element: React.createElement(Home)},
       {
-        path: RouteNames.TEST,
+        path: `${RouteNames.TEST}/:wordBlock`,
         element: React.createElement(Test),
       },
       {
-        path: RouteNames.WORDS,
+        path: `${RouteNames.WORDS}/:wordBlock`,
         element: React.createElement(Dictionary),
       },
     ],

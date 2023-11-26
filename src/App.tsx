@@ -1,11 +1,14 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
 import {FC, useEffect, Suspense} from 'react';
 import {Outlet} from 'react-router-dom';
 import {useAppDispatch} from '@/app/hooks';
 import LinearProgress from '@mui/material/LinearProgress';
 import {getWords} from '@/features/thunks';
 import {Navbar} from '@/components/Navbar';
+import {jsx} from '@emotion/react';
 import Container from '@mui/material/Container';
-import styles from './styles/General.module.scss';
+import {appStyles} from './styles/GlobalStyles';
 
 export const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -15,21 +18,13 @@ export const App: FC = () => {
   }, []);
 
   return (
-    <div className={styles.app}>
+    <Container css={appStyles.appContainer}>
       <Navbar />
-      <Container
-        sx={{
-          padding: '20px',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '20px',
-        }}
-      >
+      <Container css={appStyles.contentSection}>
         <Suspense fallback={<LinearProgress />}>
           <Outlet />
         </Suspense>
       </Container>
-    </div>
+    </Container>
   );
 };
