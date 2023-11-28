@@ -1,3 +1,6 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import {jsx} from '@emotion/react';
 import {FC, useRef, useState, useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '@/app/hooks';
 import {
@@ -8,31 +11,13 @@ import {
 } from '@/features/test/testSlice';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import {controllerBtnStyles} from './style';
 
-export const TestRunner: FC = () => {
+export const ControllerButtons: FC = () => {
   const [spentTime, setSpentTime] = useState<number>(0);
   const testTimer = useRef<NodeJS.Timeout | null>(null);
   const {isTestStarted, showResult} = useAppSelector((state) => state.test);
   const dispatch = useAppDispatch();
-
-  const btnStyles = {
-    backgroundColor: '#1976d2',
-    border: '2px solid #1976d2',
-    margin: '10px 0',
-    color: '#fff',
-    '&:hover': {
-      backgroundColor: '#fff',
-      color: '#000',
-      border: '2px solid #1976d2',
-    },
-  };
-
-  const disabledBtnStyles = (isColorsSwapped: boolean) => {
-    return {
-      backgroundColor: isColorsSwapped ? '#1976d2' : '#00000042',
-      borderColor: isColorsSwapped ? '#1976d2' : '#00000042',
-    };
-  };
 
   const finishTest = () => {
     if (testTimer.current) {
@@ -62,32 +47,23 @@ export const TestRunner: FC = () => {
   }, [spentTime, showResult]);
 
   return (
-    <Box sx={{justifyContent: 'space-between', display: 'flex'}}>
+    <Box css={controllerBtnStyles.container}>
       <Button
-        sx={{
-          ...btnStyles,
-          ...disabledBtnStyles(!isTestStarted),
-        }}
+        css={controllerBtnStyles.btn}
         onClick={() => dispatch(startTest())}
         disabled={isTestStarted}
       >
         Начать
       </Button>
       <Button
-        sx={{
-          ...btnStyles,
-          ...disabledBtnStyles(isTestStarted),
-        }}
+        css={controllerBtnStyles.btn}
         disabled={!isTestStarted}
         onClick={() => finishTest()}
       >
         Начать заново
       </Button>
       <Button
-        sx={{
-          ...btnStyles,
-          ...disabledBtnStyles(isTestStarted && !showResult),
-        }}
+        css={controllerBtnStyles.btn}
         disabled={!isTestStarted || showResult}
         onClick={() => dispatch(completeTest())}
       >

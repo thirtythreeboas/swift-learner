@@ -48,7 +48,7 @@ export const Format: FC<RowBreakpointsProps> = ({breakpoints}) => {
 
   return (
     <React.Fragment>
-      <Grid css={formatStyles.firstColumn} item xs={xs1} md={md1} lg={lg1}>
+      <Grid item xs={xs1} md={md1} lg={lg1}>
         Формат
       </Grid>
       <Grid item xs={xs2} md={md2} lg={lg2} css={formatStyles.secondColumn}>

@@ -54,7 +54,7 @@ export const Home = () => {
                   to={`${RouteNames.TEST}/${item.path}`}
                   onClick={() => dispatch(chooseWordBlock(item))}
                 >
-                  Take the test
+                  Пройти тест
                 </Link>
               </Button>
               <Button size='small'>
@@ -62,7 +62,7 @@ export const Home = () => {
                   css={homeStyles.link}
                   to={`${RouteNames.WORDS}/${item.path}`}
                 >
-                  Check words
+                  Посмотреть слова
                 </Link>
               </Button>
             </CardActions>

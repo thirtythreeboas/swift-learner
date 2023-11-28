@@ -1,3 +1,5 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
 import {FC} from 'react';
 import {
   Format,
@@ -6,28 +8,22 @@ import {
   WordNumber,
   WordOrder,
   TestTimer,
-  TestRunner,
+  ControllerButtons,
 } from '@/components/TestSettings/TestSettingsComponents';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import {jsx} from '@emotion/react';
 import {gridBreakpoints} from './breakpoints';
+import {testSettingsStyles} from './style';
 
 export const TestSettings: FC = () => {
   return (
-    <Box sx={{'& .MuiGrid-root': {margin: '0'}, width: '600px'}}>
+    <Box css={testSettingsStyles.container}>
       <Typography variant='h5' gutterBottom>
         Параметры
       </Typography>
-      <Grid
-        sx={{maxWidth: '400px'}}
-        container
-        direction='row'
-        justifyContent='center'
-        alignItems='center'
-        gap='10px 0'
-        columns={5}
-      >
+      <Grid container css={testSettingsStyles.contentWrapper} columns={5}>
         <Format breakpoints={gridBreakpoints} />
         <CurrentWordBlock breakpoints={gridBreakpoints} />
         <BlockSize breakpoints={gridBreakpoints} />
@@ -35,7 +31,7 @@ export const TestSettings: FC = () => {
         <WordOrder breakpoints={gridBreakpoints} />
         <TestTimer breakpoints={gridBreakpoints} />
       </Grid>
-      <TestRunner />
+      <ControllerButtons />
     </Box>
   );
 };

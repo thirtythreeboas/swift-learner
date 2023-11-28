@@ -1,57 +1,57 @@
 {
   "blockList": [
     {
-      "name": "Cooking",
+      "name": "Готовка",
       "path": "cooking",
       "id": 1133227,
       "img": "https://bansaloilandfoods.com/wp-content/uploads/2022/12/scale.jpg",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque, diam at sagittis fermentum, purus nulla lacinia dui, et lobortis nibh lacus et dolor."
+      "description": "Прежде всего, семантический разбор внешних противодействий способствует повышению качества экспериментов, поражающих по своей масштабности и грандиозности."
     },
     {
-      "name": "Family",
+      "name": "Семья",
       "path": "family",
       "id": 1133228,
       "img": "https://storage.googleapis.com/eix-public-content/submissions/563/Featured.005c5809.jpeg",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque, diam at sagittis fermentum, purus nulla lacinia dui, et lobortis nibh lacus et dolor."
+      "description": "Прежде всего, семантический разбор внешних противодействий способствует повышению качества экспериментов, поражающих по своей масштабности и грандиозности."
     },
     {
-      "name": "Animals",
+      "name": "Животные",
       "path": "animals",
       "id": 1133229,
       "img": "https://cdn.britannica.com/01/152301-050-1EF6EBB4/Cheetah.jpg?w=400&h=225&c=crop",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque, diam at sagittis fermentum, purus nulla lacinia dui, et lobortis nibh lacus et dolor."
+      "description": "Прежде всего, семантический разбор внешних противодействий способствует повышению качества экспериментов, поражающих по своей масштабности и грандиозности."
     },
     {
-      "name": "Home",
+      "name": "Дом",
       "path": "home",
       "id": 1133230,
       "img": "https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque, diam at sagittis fermentum, purus nulla lacinia dui, et lobortis nibh lacus et dolor."
+      "description": "Прежде всего, семантический разбор внешних противодействий способствует повышению качества экспериментов, поражающих по своей масштабности и грандиозности."
     },
     {
-      "name": "Travelling",
+      "name": "Путешествия",
       "path": "travelling",
       "id": 1133234,
       "img": "https://images03.military.com/sites/default/files/styles/full/public/2021-07/stock-road-travel-1800.jpg",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque, diam at sagittis fermentum, purus nulla lacinia dui, et lobortis nibh lacus et dolor."
+      "description": "Прежде всего, семантический разбор внешних противодействий способствует повышению качества экспериментов, поражающих по своей масштабности и грандиозности."
     },
     {
-      "name": "Weather",
+      "name": "Погода",
       "path": "weather",
       "id": 1133231,
       "img": "https://images.theconversation.com/files/232705/original/file-20180820-30593-1nxanpj.jpg?ixlib=rb-1.1.0&q=20&auto=format&w=320&fit=clip&dpr=2&usm=12&cs=strip",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque, diam at sagittis fermentum, purus nulla lacinia dui, et lobortis nibh lacus et dolor."
+      "description": "Прежде всего, семантический разбор внешних противодействий способствует повышению качества экспериментов, поражающих по своей масштабности и грандиозности."
     },
     {
-      "name": "European countries",
+      "name": "Европейские страны",
       "path": "europeanCountries",
       "id": 1133232,
       "img": "https://www.etias.ca/wp-content/uploads/sites/19/2017/12/ETIAS-for-Canadians-travel-to-europe.jpg",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque, diam at sagittis fermentum, purus nulla lacinia dui, et lobortis nibh lacus et dolor."
+      "description": "Прежде всего, семантический разбор внешних противодействий способствует повышению качества экспериментов, поражающих по своей масштабности и грандиозности."
     }
   ],
   "cooking": {
-    "name": "Cooking",
+    "name": "Готовка",
     "id": 133221,
     "words": [
       {
@@ -452,7 +452,7 @@
     ]
   },
   "family": {
-    "name": "Family",
+    "name": "Семья",
     "id": 133222,
     "words": [
       {
@@ -1123,7 +1123,7 @@
     ]
   },
   "animals": {
-    "name": "Animals",
+    "name": "Животные",
     "id": 133223,
     "words": [
       {
@@ -1384,7 +1384,7 @@
     ]
   },
   "home": {
-    "name": "Home",
+    "name": "Дом",
     "id": 133224,
     "words": [
       {
@@ -1755,7 +1755,7 @@
     ]
   },
   "travelling": {
-    "name": "Путешествие",
+    "name": "Путешествия",
     "id": 133233,
     "words": [
       {
@@ -1876,12 +1876,12 @@
     ]
   },
   "weather": {
-    "name": "Weather",
+    "name": "Погода",
     "id": 133225,
     "words": []
   },
   "europeanCountries": {
-    "name": "European countries",
+    "name": "Европейские страны",
     "id": 133226,
     "words": []
   }
