@@ -5,7 +5,6 @@ import {Breakpoints} from '@/types/breakpoints';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import {hasNumericChars} from '@/utils/hasNumericChars';
-import styles from '../../TestSettings.module.scss';
 
 type RowBreakpointsProps = {
   breakpoints: Breakpoints;
@@ -49,7 +48,6 @@ export const WordNumber: FC<RowBreakpointsProps> = ({breakpoints}) => {
         <TextField
           sx={{width: '50px'}}
           hiddenLabel
-          id={styles['word-count-input']}
           variant='standard'
           size='small'
           value={numericValue}

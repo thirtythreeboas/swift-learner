@@ -1,4 +1,6 @@
-import {FC} from 'react';
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import React, {FC} from 'react';
 import {useAppDispatch} from '@/app/hooks';
 import {setWordOrder} from '@/features/test/testSlice';
 import Grid from '@mui/material/Grid';
@@ -6,7 +8,9 @@ import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
+import {jsx} from '@emotion/react';
 import {Breakpoints} from '@/types/breakpoints';
+import {wordOrderStyle as s} from './style';
 
 type RowBreakpointsProps = {
   breakpoints: Breakpoints;
@@ -20,7 +24,7 @@ export const WordOrder: FC<RowBreakpointsProps> = ({breakpoints}) => {
   const dispatch = useAppDispatch();
 
   return (
-    <>
+    <React.Fragment>
       <Grid item xs={xs1} md={md1} lg={lg1}>
         Порядок слов:
       </Grid>
@@ -32,14 +36,7 @@ export const WordOrder: FC<RowBreakpointsProps> = ({breakpoints}) => {
             name='radio-buttons-group'
           >
             <FormControlLabel
-              sx={{
-                '& .MuiTypography-root': {
-                  fontFamily: 'Scada, sans-serif',
-                },
-                '& .MuiButtonBase-root': {
-                  padding: '0 9px',
-                },
-              }}
+              css={s.formCtrlLabel}
               value='0'
               control={
                 <Radio
@@ -49,14 +46,7 @@ export const WordOrder: FC<RowBreakpointsProps> = ({breakpoints}) => {
               label='Последовательно'
             />
             <FormControlLabel
-              sx={{
-                '& .MuiTypography-root': {
-                  fontFamily: 'Scada, sans-serif',
-                },
-                '& .MuiButtonBase-root': {
-                  padding: '0 9px',
-                },
-              }}
+              css={s.formCtrlLabel}
               value='1'
               control={
                 <Radio
@@ -68,6 +58,6 @@ export const WordOrder: FC<RowBreakpointsProps> = ({breakpoints}) => {
           </RadioGroup>
         </FormControl>
       </Grid>
-    </>
+    </React.Fragment>
   );
 };

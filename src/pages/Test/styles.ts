@@ -17,5 +17,6 @@ export const testStyles = {
     justify-content: center;
     max-width: 600px;
     width: 100%;
+    gap: 10px;
   `,
 };

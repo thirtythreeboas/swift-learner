@@ -8,7 +8,7 @@ import {getWords} from '@/features/thunks';
 import {Navbar} from '@/components/Navbar';
 import {jsx} from '@emotion/react';
 import Container from '@mui/material/Container';
-import {appStyles} from './styles/GlobalStyles';
+import {appStyles as s} from './styles/GlobalStyles';
 
 export const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -18,9 +18,9 @@ export const App: FC = () => {
   }, []);
 
   return (
-    <Container css={appStyles.appContainer}>
+    <Container css={s.appContainer}>
       <Navbar />
-      <Container css={appStyles.contentSection}>
+      <Container css={s.contentSection}>
         <Suspense fallback={<LinearProgress />}>
           <Outlet />
         </Suspense>

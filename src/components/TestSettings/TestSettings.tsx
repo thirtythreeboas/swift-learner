@@ -15,15 +15,15 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import {jsx} from '@emotion/react';
 import {gridBreakpoints} from './breakpoints';
-import {testSettingsStyles} from './style';
+import {testSettingsStyles as s} from './style';
 
 export const TestSettings: FC = () => {
   return (
-    <Box css={testSettingsStyles.container}>
+    <Box css={s.container}>
       <Typography variant='h5' gutterBottom>
         Параметры
       </Typography>
-      <Grid container css={testSettingsStyles.contentWrapper} columns={5}>
+      <Grid container css={s.contentWrapper} columns={5}>
         <Format breakpoints={gridBreakpoints} />
         <CurrentWordBlock breakpoints={gridBreakpoints} />
         <BlockSize breakpoints={gridBreakpoints} />

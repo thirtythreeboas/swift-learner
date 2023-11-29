@@ -1,4 +1,6 @@
-import {useEffect, useState, useRef} from 'react';
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import React, {useEffect, useState, useRef} from 'react';
 import {useAppSelector, useAppDispatch} from '@/app/hooks';
 import {setNextWord, setResult, completeTest} from '@/features/test/testSlice';
 import {convertTimeToString} from '@/utils/convertTimeToString';
@@ -6,7 +8,9 @@ import {TestResult, Word} from '@/types/state';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Badge from '@mui/material/Badge';
-import styles from './VocabularyTrainer.module.scss';
+import Box from '@mui/material/Box';
+import {jsx} from '@emotion/react';
+import {vocabStyles as s} from './style';
 
 export const VocabularyTrainer = () => {
   const wordSlice = useAppSelector((state) => state.words);
@@ -111,42 +115,28 @@ export const VocabularyTrainer = () => {
   };
 
   return (
-    <>
-      <div className={styles.inputContainer}>
-        <div className={styles.inputBlock}>
-          <TextField
-            sx={{
-              cursor: 'auto',
-              pointerEvents: 'none',
-              '& label': {backgroundColor: '#fff', paddingRight: '6px'},
-            }}
-            label='Переведите слово'
-            value={word}
-          />
-          <TextField
-            required
-            id='outlined-required'
-            ref={focusInputfield}
-            InputLabelProps={{shrink: false}}
-            value={userAnswer}
-            onKeyDown={(e) => pressToNextWord(e)}
-            onChange={(e) => setUserAnswer(e.target.value)}
-          />
-        </div>
-        <Button variant='contained' onClick={() => nextWord()}>
-          {currentWordIndex + 1 === wordNumber ? 'Завершить' : 'Далее'}
-        </Button>
-      </div>
+    <React.Fragment>
+      <Box css={s.inputBlock}>
+        <TextField css={s.textfield} label='Переведите слово' value={word} />
+        <TextField
+          required
+          id='outlined-required'
+          ref={focusInputfield}
+          InputLabelProps={{shrink: false}}
+          value={userAnswer}
+          onKeyDown={(e) => pressToNextWord(e)}
+          onChange={(e) => setUserAnswer(e.target.value)}
+        />
+      </Box>
+      <Button variant='contained' onClick={() => nextWord()}>
+        {currentWordIndex + 1 === wordNumber ? 'Завершить' : 'Далее'}
+      </Button>
 
       <Badge
         badgeContent={displayTestProgress()}
-        sx={{
-          position: 'absolute',
-          top: '0',
-          right: '0',
-        }}
+        css={s.badge}
         color='primary'
       />
-    </>
+    </React.Fragment>
   );
 };

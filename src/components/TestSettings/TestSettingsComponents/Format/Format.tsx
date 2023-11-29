@@ -10,7 +10,7 @@ import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import {Languages} from '@/types/const';
 import {Breakpoints} from '@/types/breakpoints';
 import {jsx} from '@emotion/react';
-import {formatStyles} from './style';
+import {formatStyles as s} from './style';
 
 type RowBreakpointsProps = {
   breakpoints: Breakpoints;
@@ -51,10 +51,10 @@ export const Format: FC<RowBreakpointsProps> = ({breakpoints}) => {
       <Grid item xs={xs1} md={md1} lg={lg1}>
         Формат
       </Grid>
-      <Grid item xs={xs2} md={md2} lg={lg2} css={formatStyles.secondColumn}>
-        <Typography css={formatStyles.lang}>{sourceLang}</Typography>
+      <Grid item xs={xs2} md={md2} lg={lg2} css={s.secondColumn}>
+        <Typography css={s.lang}>{sourceLang}</Typography>
         <Button
-          css={formatStyles.swapBtn}
+          css={s.swapBtn}
           sx={{
             '& .MuiSvgIcon-fontSizeMedium': {
               transition: '1s',
@@ -66,7 +66,7 @@ export const Format: FC<RowBreakpointsProps> = ({breakpoints}) => {
         >
           <ArrowRightAltIcon />
         </Button>
-        <Typography css={formatStyles.lang}>{targetLang}</Typography>
+        <Typography css={s.lang}>{targetLang}</Typography>
       </Grid>
     </React.Fragment>
   );

@@ -12,7 +12,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import {jsx} from '@emotion/react';
-import {dictionaryStyles} from './styles';
+import {dictionaryStyles as s} from './styles';
 
 type Column = {
   id: string;
@@ -41,13 +41,13 @@ export const Dictionary = () => {
   ];
 
   return (
-    <Paper css={dictionaryStyles.paper}>
+    <Paper css={s.paper}>
       <TableContainer>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell css={dictionaryStyles.tableCell}>Слово</TableCell>
-              <TableCell css={dictionaryStyles.tableCell}>Перевод</TableCell>
+              <TableCell css={s.tableCell}>Слово</TableCell>
+              <TableCell css={s.tableCell}>Перевод</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -56,10 +56,7 @@ export const Dictionary = () => {
                 <TableRow key={row.id} role='checkbox' tabIndex={-1}>
                   {columns.map((column) => {
                     return (
-                      <TableCell
-                        key={column.id + row.id}
-                        css={dictionaryStyles.tableCell}
-                      >
+                      <TableCell key={column.id + row.id} css={s.tableCell}>
                         {column.id === 'eng' ? row.eng[0] : row.rus[0]}
                       </TableCell>
                     );

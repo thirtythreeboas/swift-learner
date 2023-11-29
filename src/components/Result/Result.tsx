@@ -1,4 +1,8 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
 import {useAppSelector} from '@/app/hooks';
+import {UserAnswersList} from '@/types/state';
+import {jsx} from '@emotion/react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,8 +11,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Badge from '@mui/material/Badge';
-import {highlightAnswer} from '@/utils/result';
-import {UserAnswersList} from '@/types/state';
+import {highlightAnswer as c, resultStyle as s} from './style';
 
 export const Results = () => {
   const {results} = useAppSelector((state) => state.test);
@@ -22,41 +25,23 @@ export const Results = () => {
   };
 
   return (
-    <TableContainer
-      sx={{overflowX: 'initial', marginTop: '50px'}}
-      component={Paper}
-    >
-      <Table sx={{minWidth: 600}} aria-label='customized table'>
+    <TableContainer css={s.container} component={Paper}>
+      <Table aria-label='customized table'>
         <TableHead>
           <TableRow>
-            <TableCell sx={{borderBottom: 'none'}} align='left'>
+            <TableCell css={s.headTableCell}>
               <Badge
-                sx={{
-                  '& .MuiBadge-badge': {
-                    top: '-50px',
-                    right: '-10px',
-                    fontSize: '20px',
-                    height: '30px',
-                    width: '140px',
-                  },
-                }}
+                css={s.leftBadge}
                 color='secondary'
                 badgeContent={`Время: ${results.time}`}
               >
                 Слово
               </Badge>
             </TableCell>
-            <TableCell align='left'>Перевод</TableCell>
-            <TableCell sx={{borderBottom: 'none'}} align='left'>
+            <TableCell css={s.headTableCell}>Перевод</TableCell>
+            <TableCell css={s.headTableCell}>
               <Badge
-                sx={{
-                  '& .MuiBadge-badge': {
-                    top: '-50px',
-                    right: '-40px',
-                    fontSize: '20px',
-                    height: '30px',
-                  },
-                }}
+                css={s.rightBadge}
                 color='secondary'
                 badgeContent={numberOfCorrectAnswers(results.answers)}
               >
@@ -68,34 +53,11 @@ export const Results = () => {
         <TableBody>
           {results.answers.map((row) => (
             <TableRow key={row.word}>
-              <TableCell
-                sx={{
-                  ...highlightAnswer(row),
-                  width: '200px',
-                  border: '2px solid #fff',
-                }}
-                align='left'
-              >
-                {row.word}
-              </TableCell>
-              <TableCell
-                sx={{
-                  ...highlightAnswer(row),
-                  width: '200px',
-                  border: '2px solid #fff',
-                }}
-                align='left'
-              >
+              <TableCell css={(s.bodyTableCell, c(row))}>{row.word}</TableCell>
+              <TableCell css={(s.bodyTableCell, c(row))}>
                 {row.userAnswer}
               </TableCell>
-              <TableCell
-                sx={{
-                  backgroundColor: '#eaffd5',
-                  width: '200px',
-                  border: '2px solid #fff',
-                }}
-                align='left'
-              >
+              <TableCell css={s.bodyTableCell}>
                 {row.correctAnswer[0]}
               </TableCell>
             </TableRow>

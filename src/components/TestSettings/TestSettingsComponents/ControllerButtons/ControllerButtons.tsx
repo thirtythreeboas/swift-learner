@@ -1,6 +1,5 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import {jsx} from '@emotion/react';
 import {FC, useRef, useState, useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '@/app/hooks';
 import {
@@ -11,7 +10,8 @@ import {
 } from '@/features/test/testSlice';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import {controllerBtnStyles} from './style';
+import {jsx} from '@emotion/react';
+import {controllerBtnStyles as s} from './style';
 
 export const ControllerButtons: FC = () => {
   const [spentTime, setSpentTime] = useState<number>(0);
@@ -47,23 +47,23 @@ export const ControllerButtons: FC = () => {
   }, [spentTime, showResult]);
 
   return (
-    <Box css={controllerBtnStyles.container}>
+    <Box css={s.container}>
       <Button
-        css={controllerBtnStyles.btn}
+        css={s.btn}
         onClick={() => dispatch(startTest())}
         disabled={isTestStarted}
       >
         Начать
       </Button>
       <Button
-        css={controllerBtnStyles.btn}
+        css={s.btn}
         disabled={!isTestStarted}
         onClick={() => finishTest()}
       >
         Начать заново
       </Button>
       <Button
-        css={controllerBtnStyles.btn}
+        css={s.btn}
         disabled={!isTestStarted || showResult}
         onClick={() => dispatch(completeTest())}
       >

@@ -15,7 +15,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import {jsx} from '@emotion/react';
 import {RouteNames} from '@/types/const';
-import {homeStyles} from './styles';
+import {homeStyles as s} from './styles';
 
 export const Home = () => {
   const words = useAppSelector((state) => state.words);
@@ -27,18 +27,14 @@ export const Home = () => {
   }, []);
 
   return (
-    <Container css={homeStyles.container}>
-      <Typography css={homeStyles.header} variant='h5' gutterBottom>
+    <Container css={s.container}>
+      <Typography css={s.header} variant='h5' gutterBottom>
         Выберите блок
       </Typography>
-      <Box css={homeStyles.contentWrapper}>
+      <Box css={s.contentWrapper}>
         {words.blockList.map((item) => (
-          <Card css={homeStyles.card} key={item.id}>
-            <CardMedia
-              css={homeStyles.cardMedia}
-              image={item.img}
-              title={item.name}
-            />
+          <Card css={s.card} key={item.id}>
+            <CardMedia css={s.cardMedia} image={item.img} title={item.name} />
             <CardContent>
               <Typography gutterBottom variant='h5' component='div'>
                 {item.name}
@@ -50,7 +46,7 @@ export const Home = () => {
             <CardActions>
               <Button size='small'>
                 <Link
-                  css={homeStyles.link}
+                  css={s.link}
                   to={`${RouteNames.TEST}/${item.path}`}
                   onClick={() => dispatch(chooseWordBlock(item))}
                 >
@@ -58,10 +54,7 @@ export const Home = () => {
                 </Link>
               </Button>
               <Button size='small'>
-                <Link
-                  css={homeStyles.link}
-                  to={`${RouteNames.WORDS}/${item.path}`}
-                >
+                <Link css={s.link} to={`${RouteNames.WORDS}/${item.path}`}>
                   Посмотреть слова
                 </Link>
               </Button>

@@ -12,7 +12,7 @@ import {VocabularyTrainer} from '@/components/VocabularyTrainer';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import {jsx} from '@emotion/react';
-import {testStyles} from './styles';
+import {testStyles as s} from './styles';
 
 export const Test = () => {
   const {chosenBlocks} = useAppSelector((state) => state.words);
@@ -34,9 +34,9 @@ export const Test = () => {
   if (chosenBlocks === null) return <Loading />;
 
   return (
-    <Container css={testStyles.container}>
+    <Container css={s.container}>
       <TestSettings />
-      <Box css={testStyles.contentWrapper}>
+      <Box css={s.contentWrapper}>
         {!isTestStarted && <WelcomeImg />}
         {isTestStarted && !showResult && <VocabularyTrainer />}
         {isTestStarted && showResult && <Results />}
