@@ -53,8 +53,8 @@ export const Results = () => {
         <TableBody>
           {results.answers.map((row) => (
             <TableRow key={row.word}>
-              <TableCell css={(s.bodyTableCell, c(row))}>{row.word}</TableCell>
-              <TableCell css={(s.bodyTableCell, c(row))}>
+              <TableCell css={[s.bodyTableCell, c(row)]}>{row.word}</TableCell>
+              <TableCell css={[s.bodyTableCell, c(row)]}>
                 {row.userAnswer}
               </TableCell>
               <TableCell css={s.bodyTableCell}>

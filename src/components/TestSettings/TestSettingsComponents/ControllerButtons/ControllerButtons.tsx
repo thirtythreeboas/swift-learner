@@ -7,7 +7,7 @@ import {
   setTime,
   restartTest,
   completeTest,
-} from '@/features/test/testSlice';
+} from '@/store/test/testSlice';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import {jsx} from '@emotion/react';

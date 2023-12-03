@@ -4,7 +4,7 @@ import {FC, useEffect, Suspense} from 'react';
 import {Outlet} from 'react-router-dom';
 import {useAppDispatch} from '@/app/hooks';
 import LinearProgress from '@mui/material/LinearProgress';
-import {getWords} from '@/features/thunks';
+import {getWords} from '@/store/word/ActionCreators';
 import {Navbar} from '@/components/Navbar';
 import {jsx} from '@emotion/react';
 import Container from '@mui/material/Container';

@@ -2,8 +2,8 @@
 /** @jsx jsx */
 import {useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import {resetChosenBlocks, chooseWordBlock} from '@/features/word/wordSlice';
-import {restartTest} from '@/features/test/testSlice';
+import {resetChosenBlocks, chooseWordBlock} from '@/store/word/wordSlice';
+import {restartTest} from '@/store/test/testSlice';
 import {useAppSelector, useAppDispatch} from '@/app/hooks';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';

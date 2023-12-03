@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import React, {FC} from 'react';
 import {useAppDispatch} from '@/app/hooks';
-import {setWordOrder} from '@/features/test/testSlice';
+import {setWordOrder} from '@/store/test/testSlice';
 import Grid from '@mui/material/Grid';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';

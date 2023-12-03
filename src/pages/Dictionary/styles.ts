@@ -16,11 +16,34 @@ export const dictionaryStyles = {
     gap: 35px 0;
     width: 100%;
   `,
-  tableCell: css`
+  hideWordsBtn: css`
+    margin-left: 10px;
+  `,
+  tableHeadCell: css`
+    font-size: large;
+    font-weight: 600;
     width: 300px;
     text-align: left;
   `,
+  tableCell: css`
+    width: 300px;
+    text-align: left;
+    & span {
+      font-size: 1.2rem;
+    }
+  `,
   cardMedia: css`
     height: 140px;
+  `,
+  hideWordLine: css`
+    & span {
+      padding: 5px;
+      background: #1976d2;
+      border-radius: 5px;
+      color: transparent;
+      &:hover {
+        color: #fff;
+      }
+    }
   `,
 };
