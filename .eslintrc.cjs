@@ -76,7 +76,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'no-param-reassign': ['error', {props: false}],
     'no-console': 'off',
-    '@emotion/jsx-import': 'error',
+    '@emotion/pkg-renaming': 'error',
     '@typescript-eslint/no-floating-promises': 'off',
     'no-constant-condition': 'off',
   },
