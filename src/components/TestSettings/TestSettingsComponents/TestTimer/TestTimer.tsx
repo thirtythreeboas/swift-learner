@@ -1,6 +1,6 @@
 import {FC} from 'react';
 import {useAppSelector} from '@/hooks/hooks';
-import {Breakpoints} from '@/types/breakpoints';
+import {Breakpoints} from '@/types/testSettingsBreakpoints';
 import {convertTimeToString} from '@/utils/convertTimeToString';
 import Grid from '@mui/material/Grid';
 

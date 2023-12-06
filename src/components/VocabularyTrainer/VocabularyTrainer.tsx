@@ -2,9 +2,13 @@
 /** @jsx jsx */
 import React, {useEffect, useState, useRef} from 'react';
 import {useAppSelector, useAppDispatch} from '@/hooks/hooks';
-import {setNextWord, setResult, completeTest} from '@/store/test-process/test-process';
+import {
+  setNextWord,
+  setResult,
+  completeTest,
+} from '@/store/test-process/test-process';
 import {convertTimeToString} from '@/utils/convertTimeToString';
-import {TestResult, Word} from '@/types/state';
+import {Word, TestResult} from '@/types/state';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Badge from '@mui/material/Badge';

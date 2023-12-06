@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import Grid from '@mui/material/Grid';
 import {useAppSelector} from '@/hooks/hooks';
-import {Breakpoints} from '@/types/breakpoints';
+import {Breakpoints} from '@/types/testSettingsBreakpoints';
 
 type RowBreakpointsProps = {
   breakpoints: Breakpoints;

@@ -9,7 +9,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import {jsx} from '@emotion/react';
-import {Breakpoints} from '@/types/breakpoints';
+import {Breakpoints} from '@/types/testSettingsBreakpoints';
 import {wordOrderStyle as s} from './style';
 
 type RowBreakpointsProps = {

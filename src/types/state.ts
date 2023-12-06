@@ -1,3 +1,5 @@
+import {UserAnswersList} from './userAnswersList';
+
 export type Word = {
   rus: string[];
   eng: string[];
@@ -18,21 +20,13 @@ export type BlockListElement = {
   description: string;
 };
 
-export type StateTypes = {
+export type Vocabulary = {
   blockList: BlockListElement[];
   wordBlock: Word[];
   chosenBlocks: BlockListElement | null;
   mode: boolean;
   isLoading: boolean;
 };
-
-export type UserAnswersList = {
-  word: string;
-  userAnswer: string;
-  correctAnswer: string[];
-  id?: number;
-};
-
 export type TestResult = {
   time: string;
   answers: UserAnswersList[];

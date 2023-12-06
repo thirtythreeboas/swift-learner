@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 import {getWords, getWordBlock} from '@/store/vocabulary-data/ActionCreators';
 import {NameSpace} from '@/const';
-import {BlockListElement, StateTypes, Word} from '../../types/state';
+import {BlockListElement, Vocabulary, Word} from '../../types/state';
 
 const initialState = {
   blockList: [],
@@ -10,7 +10,7 @@ const initialState = {
   wordBlock: [],
   mode: false,
   isLoading: false,
-} as StateTypes;
+} as Vocabulary;
 
 export const wordSlice = createSlice({
   name: NameSpace.WORDS,
@@ -26,7 +26,7 @@ export const wordSlice = createSlice({
     chooseWordBlock: (
       state,
       action: PayloadAction<BlockListElement>,
-    ): StateTypes => {
+    ): Vocabulary => {
       return {
         ...state,
         chosenBlocks: action.payload,

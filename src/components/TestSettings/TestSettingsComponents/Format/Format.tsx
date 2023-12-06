@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import {Languages} from '@/const';
-import {Breakpoints} from '@/types/breakpoints';
+import {Breakpoints} from '@/types/testSettingsBreakpoints';
 import {jsx} from '@emotion/react';
 import {formatStyles as s} from './style';
 
