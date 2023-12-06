@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import React, {FC} from 'react';
-import {useAppDispatch} from '@/hooks/hooks';
+import {useAppSelector, useAppDispatch} from '@/hooks/hooks';
 import {setWordOrder} from '@/store/test-process/test-process';
 import Grid from '@mui/material/Grid';
 import FormControl from '@mui/material/FormControl';
@@ -21,6 +21,7 @@ export const WordOrder: FC<RowBreakpointsProps> = ({breakpoints}) => {
   const {xs: xs1, md: md1, lg: lg1} = firstColumn;
   const {xs: xs2, md: md2, lg: lg2} = secondColumn;
 
+  const {isTestStarted} = useAppSelector(({TEST}) => TEST);
   const dispatch = useAppDispatch();
 
   return (
@@ -32,28 +33,30 @@ export const WordOrder: FC<RowBreakpointsProps> = ({breakpoints}) => {
         <FormControl>
           <RadioGroup
             aria-labelledby='demo-radio-buttons-group-label'
-            defaultValue='0'
+            defaultValue='sequential'
             name='radio-buttons-group'
           >
             <FormControlLabel
               css={s.formCtrlLabel}
-              value='0'
+              value='sequential'
               control={
                 <Radio
                   onChange={(e) => dispatch(setWordOrder(e.target.value))}
                 />
               }
               label='Последовательно'
+              disabled={isTestStarted}
             />
             <FormControlLabel
               css={s.formCtrlLabel}
-              value='1'
+              value='random'
               control={
                 <Radio
                   onChange={(e) => dispatch(setWordOrder(e.target.value))}
                 />
               }
               label='В случайном порядке'
+              disabled={isTestStarted}
             />
           </RadioGroup>
         </FormControl>

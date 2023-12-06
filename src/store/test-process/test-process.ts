@@ -13,7 +13,7 @@ const initialState = {
   isTestStarted: false,
   testFormat: true,
   wordNumber: 10,
-  wordOrder: 0,
+  wordOrder: 'sequential',
   timeSpentOnTest: 0,
   currentWordIndex: 0,
   showResult: false,
@@ -56,10 +56,9 @@ export const testSlice = createSlice({
       };
     },
     setWordOrder: (state, action: PayloadAction<string>) => {
-      const number = parseInt(action.payload, 10);
       return {
         ...state,
-        wordOrder: number,
+        wordOrder: action.payload,
       };
     },
     setFormat: (

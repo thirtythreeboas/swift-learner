@@ -39,7 +39,7 @@ export type Test = {
   isTestStarted: boolean;
   testFormat: boolean;
   wordNumber: number;
-  wordOrder: number;
+  wordOrder: string;
   timeSpentOnTest: number;
   currentWordIndex: number;
   showResult: boolean;

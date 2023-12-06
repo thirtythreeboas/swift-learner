@@ -73,7 +73,7 @@ export const VocabularyTrainer = () => {
   };
 
   const setWordOrder = (): void => {
-    if (wordOrder) {
+    if (wordOrder === 'random') {
       const randomBlock = getRandomWord(wordSlice.wordBlock);
       setTestState(randomBlock);
     } else {
