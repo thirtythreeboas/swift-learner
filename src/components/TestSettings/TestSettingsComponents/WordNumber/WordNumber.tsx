@@ -1,6 +1,6 @@
 import {FC, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '@/hooks/hooks';
-import {setWordNumber} from '@/store/test/testSlice';
+import {setWordNumber} from '@/store/test-process/test-process';
 import {Breakpoints} from '@/types/breakpoints';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';

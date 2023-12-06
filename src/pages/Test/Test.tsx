@@ -5,7 +5,7 @@ import {useNavigate, useParams} from 'react-router-dom';
 import {Loading} from '@/components/UI/Loading';
 import {useAppDispatch, useAppSelector} from '@/hooks/hooks';
 import {TestSettings} from '@/components/TestSettings/TestSettings';
-import {getWordBlock} from '@/store/word/ActionCreators';
+import {getWordBlock} from '@/store/vocabulary-data/ActionCreators';
 import {Results} from '@/components/Result';
 import {WelcomeImg} from '@/components/WelcomeImg';
 import {VocabularyTrainer} from '@/components/VocabularyTrainer';

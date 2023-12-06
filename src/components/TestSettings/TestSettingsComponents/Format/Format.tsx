@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import React, {FC, useState} from 'react';
 import {useAppSelector, useAppDispatch} from '@/hooks/hooks';
-import {setFormat} from '@/store/test/testSlice';
+import {setFormat} from '@/store/test-process/test-process';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';

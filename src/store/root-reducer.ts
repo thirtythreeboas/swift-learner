@@ -1,6 +1,6 @@
 import {combineReducers} from '@reduxjs/toolkit';
-import {testSlice} from '@/store/test/testSlice';
-import {wordSlice} from '@/store/word/wordSlice';
+import {testSlice} from '@/store/test-process/test-process';
+import {wordSlice} from '@/store/vocabulary-data/vocabulary-data';
 import {NameSpace} from '@/const';
 
 export const rootReducer = combineReducers({

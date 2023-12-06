@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import React, {useEffect, useState, useRef} from 'react';
 import {useAppSelector, useAppDispatch} from '@/hooks/hooks';
-import {setNextWord, setResult, completeTest} from '@/store/test/testSlice';
+import {setNextWord, setResult, completeTest} from '@/store/test-process/test-process';
 import {convertTimeToString} from '@/utils/convertTimeToString';
 import {TestResult, Word} from '@/types/state';
 import TextField from '@mui/material/TextField';

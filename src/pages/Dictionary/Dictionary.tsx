@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import {useEffect, useState} from 'react';
 import {useAppSelector, useAppDispatch} from '@/hooks/hooks';
-import {getWordBlock} from '@/store/word/ActionCreators';
+import {getWordBlock} from '@/store/vocabulary-data/ActionCreators';
 import {useParams} from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
