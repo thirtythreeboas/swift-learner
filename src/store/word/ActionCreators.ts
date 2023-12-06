@@ -1,13 +1,6 @@
 import {BlockListElement, WordBlock} from '@/types/state';
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import axios from 'axios';
-
-const API = axios.create({
-  baseURL: 'http://localhost:8000',
-  headers: {
-    'Content-type': 'application/json',
-  },
-});
+import {API} from '@/services/api';
 
 export const getWords = createAsyncThunk(
   'words/getWords',

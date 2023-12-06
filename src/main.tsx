@@ -5,9 +5,9 @@ import {Provider} from 'react-redux';
 import {StyledEngineProvider} from '@mui/material';
 import {Global} from '@emotion/react';
 import {store} from '@/store/store';
-import {globalStyles} from './styles/GlobalStyles';
-import {router} from './routes';
-import './styles/fonts.css';
+import {router} from '@/routes';
+import {globalStyles} from '@/styles/GlobalStyles';
+import '@/styles/fonts.css';
 
 const container = createRoot(document.getElementById('root') as HTMLElement);
 
