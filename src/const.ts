@@ -9,3 +9,8 @@ export enum Languages {
   ENGLISH = 'English',
   RUSSIAN = 'Русский',
 }
+
+export enum NameSpace {
+  WORDS = 'WORDS',
+  TEST = 'TEST',
+}

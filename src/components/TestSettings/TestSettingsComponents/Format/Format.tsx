@@ -1,13 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import React, {FC, useState} from 'react';
-import {useAppSelector, useAppDispatch} from '@/app/hooks';
+import {useAppSelector, useAppDispatch} from '@/hooks/hooks';
 import {setFormat} from '@/store/test/testSlice';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-import {Languages} from '@/types/const';
+import {Languages} from '@/const';
 import {Breakpoints} from '@/types/breakpoints';
 import {jsx} from '@emotion/react';
 import {formatStyles as s} from './style';
@@ -21,7 +21,7 @@ export const Format: FC<RowBreakpointsProps> = ({breakpoints}) => {
   const {xs: xs1, md: md1, lg: lg1} = firstColumn;
   const {xs: xs2, md: md2, lg: lg2} = secondColumn;
 
-  const testSelector = useAppSelector((state) => state.test);
+  const testSelector = useAppSelector(({TEST}) => TEST);
   const dispatch = useAppDispatch();
 
   const [isLangSwapped, setIsLangSwapped] = useState<boolean>(true);

@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import {useAppSelector} from '@/app/hooks';
+import {useAppSelector} from '@/hooks/hooks';
 import {UserAnswersList} from '@/types/state';
 import {jsx} from '@emotion/react';
 import Table from '@mui/material/Table';
@@ -14,7 +14,7 @@ import Badge from '@mui/material/Badge';
 import {highlightAnswer as c, resultStyle as s} from './style';
 
 export const Results = () => {
-  const {results} = useAppSelector((state) => state.test);
+  const {results} = useAppSelector(({TEST}) => TEST);
 
   const numberOfCorrectAnswers = (array: UserAnswersList[]): string => {
     const listOfCorrectAnswers = array.filter((answer) =>

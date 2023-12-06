@@ -4,7 +4,7 @@ import {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {resetChosenBlocks, chooseWordBlock} from '@/store/word/wordSlice';
 import {restartTest} from '@/store/test/testSlice';
-import {useAppSelector, useAppDispatch} from '@/app/hooks';
+import {useAppSelector, useAppDispatch} from '@/hooks/hooks';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -14,11 +14,11 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import {jsx} from '@emotion/react';
-import {RouteNames} from '@/types/const';
+import {RouteNames} from '@/const';
 import {homeStyles as s} from './styles';
 
 export const Home = () => {
-  const words = useAppSelector((state) => state.words);
+  const words = useAppSelector(({WORDS}) => WORDS);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

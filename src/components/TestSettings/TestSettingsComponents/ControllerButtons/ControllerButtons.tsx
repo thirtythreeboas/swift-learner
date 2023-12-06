@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import {FC, useRef, useState, useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from '@/app/hooks';
+import {useAppDispatch, useAppSelector} from '@/hooks/hooks';
 import {
   startTest,
   setTime,
@@ -16,7 +16,7 @@ import {controllerBtnStyles as s} from './style';
 export const ControllerButtons: FC = () => {
   const [spentTime, setSpentTime] = useState<number>(0);
   const testTimer = useRef<NodeJS.Timeout | null>(null);
-  const {isTestStarted, showResult} = useAppSelector((state) => state.test);
+  const {isTestStarted, showResult} = useAppSelector(({TEST}) => TEST);
   const dispatch = useAppDispatch();
 
   const finishTest = () => {

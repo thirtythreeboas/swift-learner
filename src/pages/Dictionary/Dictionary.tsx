@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import {useEffect, useState} from 'react';
-import {useAppSelector, useAppDispatch} from '@/app/hooks';
+import {useAppSelector, useAppDispatch} from '@/hooks/hooks';
 import {getWordBlock} from '@/store/word/ActionCreators';
 import {useParams} from 'react-router-dom';
 import Paper from '@mui/material/Paper';
@@ -26,7 +26,7 @@ type Column = {
 export const Dictionary = () => {
   const [isRusWordsHidden, setIsRusWordsHidden] = useState<boolean>(false);
   const [isEngWordsHidden, setIsEngWordsHidden] = useState<boolean>(false);
-  const words = useAppSelector((state) => state.words);
+  const words = useAppSelector(({WORDS}) => WORDS);
   const dispatch = useAppDispatch();
   const params = useParams();
 

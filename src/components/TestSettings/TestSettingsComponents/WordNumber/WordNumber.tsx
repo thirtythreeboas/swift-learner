@@ -1,5 +1,5 @@
 import {FC, useState} from 'react';
-import {useAppDispatch, useAppSelector} from '@/app/hooks';
+import {useAppDispatch, useAppSelector} from '@/hooks/hooks';
 import {setWordNumber} from '@/store/test/testSlice';
 import {Breakpoints} from '@/types/breakpoints';
 import Grid from '@mui/material/Grid';
@@ -11,7 +11,7 @@ type RowBreakpointsProps = {
 };
 
 export const WordNumber: FC<RowBreakpointsProps> = ({breakpoints}) => {
-  const test = useAppSelector((state) => state.test);
+  const test = useAppSelector(({TEST}) => TEST);
   const [numericValue, setNumericValue] = useState<string | number>(
     test.wordNumber,
   );
@@ -20,8 +20,8 @@ export const WordNumber: FC<RowBreakpointsProps> = ({breakpoints}) => {
   const {xs: xs1, md: md1, lg: lg1} = firstColumn;
   const {xs: xs2, md: md2, lg: lg2} = secondColumn;
 
-  const testSelector = useAppSelector((state) => state.test);
-  const wordsSelector = useAppSelector((state) => state.words);
+  const testSelector = useAppSelector(({TEST}) => TEST);
+  const wordsSelector = useAppSelector(({WORDS}) => WORDS);
   const dispatch = useAppDispatch();
 
   const blockLength: number = wordsSelector.wordBlock.length;

@@ -1,6 +1,6 @@
 import {FC} from 'react';
 import Grid from '@mui/material/Grid';
-import {useAppSelector} from '@/app/hooks';
+import {useAppSelector} from '@/hooks/hooks';
 import {Breakpoints} from '@/types/breakpoints';
 
 type RowBreakpointsProps = {
@@ -12,7 +12,7 @@ export const BlockSize: FC<RowBreakpointsProps> = ({breakpoints}) => {
   const {xs: xs1, md: md1, lg: lg1} = firstColumn;
   const {xs: xs2, md: md2, lg: lg2} = secondColumn;
 
-  const wordSelector = useAppSelector((state) => state.words);
+  const wordSelector = useAppSelector(({WORDS}) => WORDS);
 
   return (
     <>

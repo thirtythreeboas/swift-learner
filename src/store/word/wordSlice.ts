@@ -1,6 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 import {getWords, getWordBlock} from '@/store/word/ActionCreators';
+import {NameSpace} from '@/const';
 import {BlockListElement, StateTypes, Word} from '../../types/state';
 
 const initialState = {
@@ -12,7 +13,7 @@ const initialState = {
 } as StateTypes;
 
 export const wordSlice = createSlice({
-  name: 'words',
+  name: NameSpace.WORDS,
   initialState,
   reducers: {
     resetChosenBlocks: (state) => {

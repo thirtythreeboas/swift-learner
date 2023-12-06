@@ -1,6 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 import {Test, TestResult} from '@/types/state';
+import {NameSpace} from '@/const';
 
 const initialState = {
   results: {
@@ -19,7 +20,7 @@ const initialState = {
 } as Test;
 
 export const testSlice = createSlice({
-  name: 'test',
+  name: NameSpace.TEST,
   initialState,
   reducers: {
     startTest: (state) => {

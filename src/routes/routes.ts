@@ -5,7 +5,7 @@ import {Dictionary} from '@/pages/Dictionary';
 import {App} from '@/App';
 import {ErrorPage} from '@/components/ErrorPage';
 import {Home} from '@/pages/Home';
-import {RouteNames} from '@/types/const';
+import {RouteNames} from '@/const';
 
 const routes = [
   {

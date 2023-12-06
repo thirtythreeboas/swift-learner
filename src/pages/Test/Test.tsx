@@ -3,7 +3,7 @@
 import {useEffect} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {Loading} from '@/components/UI/Loading';
-import {useAppDispatch, useAppSelector} from '@/app/hooks';
+import {useAppDispatch, useAppSelector} from '@/hooks/hooks';
 import {TestSettings} from '@/components/TestSettings/TestSettings';
 import {getWordBlock} from '@/store/word/ActionCreators';
 import {Results} from '@/components/Result';
@@ -15,8 +15,8 @@ import {jsx} from '@emotion/react';
 import {testStyles as s} from './styles';
 
 export const Test = () => {
-  const {chosenBlocks} = useAppSelector((state) => state.words);
-  const {isTestStarted, showResult} = useAppSelector((state) => state.test);
+  const {chosenBlocks} = useAppSelector(({WORDS}) => WORDS);
+  const {isTestStarted, showResult} = useAppSelector(({TEST}) => TEST);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const params = useParams();

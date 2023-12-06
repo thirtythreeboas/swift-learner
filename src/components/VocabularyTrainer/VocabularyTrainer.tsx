@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import React, {useEffect, useState, useRef} from 'react';
-import {useAppSelector, useAppDispatch} from '@/app/hooks';
+import {useAppSelector, useAppDispatch} from '@/hooks/hooks';
 import {setNextWord, setResult, completeTest} from '@/store/test/testSlice';
 import {convertTimeToString} from '@/utils/convertTimeToString';
 import {TestResult, Word} from '@/types/state';
@@ -13,7 +13,7 @@ import {jsx} from '@emotion/react';
 import {vocabStyles as s} from './style';
 
 export const VocabularyTrainer = () => {
-  const wordSlice = useAppSelector((state) => state.words);
+  const wordSlice = useAppSelector(({WORDS}) => WORDS);
   const {
     wordNumber,
     currentWordIndex,
@@ -23,7 +23,7 @@ export const VocabularyTrainer = () => {
     timeSpentOnTest,
     wordOrder,
     results,
-  } = useAppSelector((state) => state.test);
+  } = useAppSelector(({TEST}) => TEST);
 
   const dispatch = useAppDispatch();
   const focusInputfield = useRef<HTMLInputElement | null>(null);
