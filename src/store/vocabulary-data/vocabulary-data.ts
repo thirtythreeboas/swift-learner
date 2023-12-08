@@ -1,12 +1,12 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import {getWords, getWordBlock} from '@/store/vocabulary-data/ActionCreators';
+import {getWords, getBlockNames} from '@/store/vocabulary-data/action-creators';
 import {NameSpace} from '@/const';
 import {BlockListElement, Vocabulary, Word} from '../../types/state';
 
 const initialState = {
   blockList: [],
-  chosenBlocks: null,
+  chosenBlock: null,
   wordBlock: [],
   mode: false,
   isLoading: false,
@@ -19,17 +19,17 @@ export const wordSlice = createSlice({
     resetChosenBlocks: (state) => {
       return {
         ...state,
-        chosenBlocks: null,
+        chosenBlock: null,
         wordBlock: [],
       };
     },
-    chooseWordBlock: (
+    setCurrentBlockName: (
       state,
       action: PayloadAction<BlockListElement>,
     ): Vocabulary => {
       return {
         ...state,
-        chosenBlocks: action.payload,
+        chosenBlock: action.payload,
       };
     },
   },
@@ -47,22 +47,22 @@ export const wordSlice = createSlice({
     builder.addCase(getWords.rejected, (state) => {
       state.isLoading = false;
     });
-    builder.addCase(getWordBlock.pending, (state) => {
+    builder.addCase(getBlockNames.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(
-      getWordBlock.fulfilled,
+      getBlockNames.fulfilled,
       (state, action: PayloadAction<Word[]>) => {
         state.wordBlock = action.payload;
         state.isLoading = false;
       },
     );
-    builder.addCase(getWordBlock.rejected, (state) => {
+    builder.addCase(getBlockNames.rejected, (state) => {
       state.isLoading = false;
     });
   },
 });
 
-export const {resetChosenBlocks, chooseWordBlock} = wordSlice.actions;
+export const {resetChosenBlocks, setCurrentBlockName} = wordSlice.actions;
 
 export default wordSlice.reducer;

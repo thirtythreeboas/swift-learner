@@ -21,7 +21,7 @@ export type BlockListElement = {
 export type Vocabulary = {
   blockList: BlockListElement[];
   wordBlock: Word[];
-  chosenBlocks: BlockListElement | null;
+  chosenBlock: BlockListElement | null;
   mode: boolean;
   isLoading: boolean;
 };

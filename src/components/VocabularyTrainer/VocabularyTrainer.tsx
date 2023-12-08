@@ -97,10 +97,6 @@ export const VocabularyTrainer = () => {
     } else {
       dispatch(setNextWord());
       dispatch(setResult(answers));
-      if (focusInputfield.current) {
-        focusInputfield.current.value = '';
-        focusInputfield.current?.focus();
-      }
     }
     setUserAnswer('');
   };
@@ -116,7 +112,7 @@ export const VocabularyTrainer = () => {
         <TextField
           required
           id='outlined-required'
-          ref={focusInputfield}
+          inputRef={focusInputfield}
           InputLabelProps={{shrink: false}}
           value={userAnswer}
           onKeyDown={(e) => pressToNextWord(e)}

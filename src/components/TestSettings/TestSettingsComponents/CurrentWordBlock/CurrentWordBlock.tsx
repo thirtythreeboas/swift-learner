@@ -20,7 +20,7 @@ export const CurrentWordBlock: FC<RowBreakpointsProps> = ({breakpoints}) => {
         Блок
       </Grid>
       <Grid item xs={xs2} md={md2} lg={lg2}>
-        {wordSelector.chosenBlocks?.name || 'Блок не выбран'}
+        {wordSelector.chosenBlock?.name || 'Блок не выбран'}
       </Grid>
     </>
   );

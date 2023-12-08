@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import {useEffect, useState} from 'react';
 import {useAppSelector, useAppDispatch} from '@/hooks/hooks';
-import {getWordBlock} from '@/store/vocabulary-data/ActionCreators';
+import {getBlockNames} from '@/store/vocabulary-data/action-creators';
 import {useParams} from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -26,12 +26,12 @@ type Column = {
 export const Dictionary = () => {
   const [isRusWordsHidden, setIsRusWordsHidden] = useState<boolean>(false);
   const [isEngWordsHidden, setIsEngWordsHidden] = useState<boolean>(false);
-  const words = useAppSelector(({WORDS}) => WORDS);
+  const {wordBlock, chosenBlock} = useAppSelector(({WORDS}) => WORDS);
   const dispatch = useAppDispatch();
   const params = useParams();
 
   useEffect(() => {
-    if (params.wordBlock) dispatch(getWordBlock(params.wordBlock));
+    if (params.wordBlock) dispatch(getBlockNames(params.wordBlock));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -59,6 +59,9 @@ export const Dictionary = () => {
         <Table>
           <TableHead>
             <TableRow>
+              <TableCell>{chosenBlock?.name}</TableCell>
+            </TableRow>
+            <TableRow>
               {columns.map((column) => (
                 <TableCell key={column.id} css={s.tableHeadCell}>
                   {column.label}
@@ -77,7 +80,7 @@ export const Dictionary = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {words.wordBlock.map((row) => {
+            {wordBlock.map((row) => {
               return (
                 <TableRow key={row.id} role='checkbox' tabIndex={-1}>
                   {columns.map((column) => {

@@ -14,8 +14,8 @@ export const getWords = createAsyncThunk(
   },
 );
 
-export const getWordBlock = createAsyncThunk(
-  'words/getWordBlock',
+export const getBlockNames = createAsyncThunk(
+  'words/getBlockNames',
   async (wordBlock: string, thunkAPI) => {
     try {
       const response = await API.get<WordBlock>(`/${wordBlock}`);

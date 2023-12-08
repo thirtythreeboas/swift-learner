@@ -1,37 +1,40 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import {useEffect} from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
-import {Loading} from '@/components/UI/Loading';
+import {useParams} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '@/hooks/hooks';
+import {setCurrentBlockName} from '@/store/vocabulary-data/vocabulary-data';
 import {TestSettings} from '@/components/TestSettings/TestSettings';
-import {getWordBlock} from '@/store/vocabulary-data/ActionCreators';
+import {getBlockNames} from '@/store/vocabulary-data/action-creators';
 import {Results} from '@/components/Result';
 import {WelcomeImg} from '@/components/WelcomeImg';
 import {VocabularyTrainer} from '@/components/VocabularyTrainer';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import {jsx} from '@emotion/react';
+import {BlockListElement} from '@/types/state';
 import {testStyles as s} from './styles';
 
 export const Test = () => {
-  const {chosenBlocks} = useAppSelector(({WORDS}) => WORDS);
   const {isTestStarted, showResult} = useAppSelector(({TEST}) => TEST);
+  const {blockList} = useAppSelector(({WORDS}) => WORDS);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const params = useParams();
 
   useEffect(() => {
     if (params.wordBlock) {
-      dispatch(getWordBlock(params.wordBlock));
+      dispatch(getBlockNames(params.wordBlock));
     }
   }, []);
 
   useEffect(() => {
-    if (chosenBlocks === null) navigate('/');
-  }, []);
-
-  if (chosenBlocks === null) return <Loading />;
+    const block: BlockListElement | undefined = blockList.find(
+      (elem) => elem.path === params.wordBlock,
+    );
+    if (block) {
+      dispatch(setCurrentBlockName(block));
+    }
+  }, [blockList]);
 
   return (
     <Container css={s.container}>

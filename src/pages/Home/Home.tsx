@@ -2,7 +2,10 @@
 /** @jsx jsx */
 import {useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import {resetChosenBlocks, chooseWordBlock} from '@/store/vocabulary-data/vocabulary-data';
+import {
+  resetChosenBlocks,
+  setCurrentBlockName,
+} from '@/store/vocabulary-data/vocabulary-data';
 import {restartTest} from '@/store/test-process/test-process';
 import {useAppSelector, useAppDispatch} from '@/hooks/hooks';
 import Button from '@mui/material/Button';
@@ -48,7 +51,7 @@ export const Home = () => {
                 <Link
                   css={s.link}
                   to={`${RouteNames.TEST}/${item.path}`}
-                  onClick={() => dispatch(chooseWordBlock(item))}
+                  onClick={() => dispatch(setCurrentBlockName(item))}
                 >
                   Пройти тест
                 </Link>
