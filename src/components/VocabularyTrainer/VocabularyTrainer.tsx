@@ -7,8 +7,7 @@ import {
   setResult,
   completeTest,
 } from '@/store/test-process/test-process';
-import {convertTimeToString} from '@/utils/convertTimeToString';
-import {Word, TestResult} from '@/types/state';
+import {Word, UserAnswersList} from '@/types/state';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Badge from '@mui/material/Badge';
@@ -24,9 +23,7 @@ export const VocabularyTrainer = () => {
     targetLangCode,
     sourceLangCode,
     isTestStarted,
-    timeSpentOnTest,
     wordOrder,
-    results,
   } = useAppSelector(({TEST}) => TEST);
 
   const dispatch = useAppDispatch();
@@ -89,23 +86,17 @@ export const VocabularyTrainer = () => {
   }, [isTestStarted, currentWordIndex]);
 
   const nextWord = () => {
-    const input: TestResult = {
-      time: convertTimeToString(timeSpentOnTest),
-      answers: [
-        ...results.answers,
-        {
-          word,
-          userAnswer,
-          correctAnswer,
-        },
-      ],
+    const answers: UserAnswersList = {
+      word,
+      userAnswer,
+      correctAnswer,
     };
     if (currentWordIndex + 1 === wordNumber) {
       dispatch(completeTest());
-      dispatch(setResult(input));
+      dispatch(setResult(answers));
     } else {
       dispatch(setNextWord());
-      dispatch(setResult(input));
+      dispatch(setResult(answers));
       if (focusInputfield.current) {
         focusInputfield.current.value = '';
         focusInputfield.current?.focus();

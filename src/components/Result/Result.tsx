@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import {useAppSelector} from '@/hooks/hooks';
-import {UserAnswersList} from '@/types/userAnswersList';
+import {UserAnswersList} from '@/types/state';
 import {jsx} from '@emotion/react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,10 +11,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Badge from '@mui/material/Badge';
+import {convertTimeToString} from '@/utils/convertTimeToString';
 import {highlightAnswer as c, resultStyle as s} from './style';
 
 export const Results = () => {
-  const {results} = useAppSelector(({TEST}) => TEST);
+  const {results, timeSpentOnTest} = useAppSelector(({TEST}) => TEST);
 
   const numberOfCorrectAnswers = (array: UserAnswersList[]): string => {
     const listOfCorrectAnswers = array.filter((answer) =>
@@ -33,7 +34,7 @@ export const Results = () => {
               <Badge
                 css={s.leftBadge}
                 color='secondary'
-                badgeContent={`Время: ${results.time}`}
+                badgeContent={`Время: ${convertTimeToString(timeSpentOnTest)}`}
               >
                 Слово
               </Badge>
@@ -43,7 +44,7 @@ export const Results = () => {
               <Badge
                 css={s.rightBadge}
                 color='secondary'
-                badgeContent={numberOfCorrectAnswers(results.answers)}
+                badgeContent={numberOfCorrectAnswers(results)}
               >
                 Правильный ответ
               </Badge>
@@ -51,7 +52,7 @@ export const Results = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {results.answers.map((row) => (
+          {results.map((row) => (
             <TableRow key={row.word}>
               <TableCell css={[s.bodyTableCell, c(row)]}>{row.word}</TableCell>
               <TableCell css={[s.bodyTableCell, c(row)]}>

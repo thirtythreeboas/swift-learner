@@ -1,4 +1,4 @@
-export const convertTimeToString = (seconds: number) => {
+export const convertTimeToString = (seconds: number): string => {
   const mins: number = Math.floor(seconds / 60);
   const secs: number = seconds % 60;
   const time = `${mins <= 9 ? `0${mins}` : mins}:${

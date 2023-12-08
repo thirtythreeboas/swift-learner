@@ -1,5 +1,3 @@
-import {UserAnswersList} from './userAnswersList';
-
 export type Word = {
   rus: string[];
   eng: string[];
@@ -27,13 +25,16 @@ export type Vocabulary = {
   mode: boolean;
   isLoading: boolean;
 };
-export type TestResult = {
-  time: string;
-  answers: UserAnswersList[];
+
+export type UserAnswersList = {
+  word: string;
+  userAnswer: string;
+  correctAnswer: string[];
+  id?: number;
 };
 
 export type Test = {
-  results: TestResult;
+  results: UserAnswersList[];
   sourceLangCode: string;
   targetLangCode: string;
   isTestStarted: boolean;

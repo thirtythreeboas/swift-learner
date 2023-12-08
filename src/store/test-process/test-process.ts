@@ -1,13 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import {Test, TestResult} from '@/types/state';
+import {Test, UserAnswersList} from '@/types/state';
 import {NameSpace} from '@/const';
 
 const initialState = {
-  results: {
-    time: '',
-    answers: [],
-  },
+  results: [],
   sourceLangCode: 'eng',
   targetLangCode: 'rus',
   isTestStarted: false,
@@ -38,11 +35,7 @@ export const testSlice = createSlice({
     restartTest: (state) => {
       return {
         ...state,
-        results: {
-          ...state.results,
-          time: '',
-          answers: [],
-        },
+        results: [],
         isTestStarted: false,
         timeSpentOnTest: 0,
         currentWordIndex: 0,
@@ -77,10 +70,10 @@ export const testSlice = createSlice({
         currentWordIndex: state.currentWordIndex + 1,
       };
     },
-    setResult: (state, action: PayloadAction<TestResult>) => {
+    setResult: (state, action: PayloadAction<UserAnswersList>) => {
       return {
         ...state,
-        results: action.payload,
+        results: [...state.results, action.payload],
       };
     },
     completeTest: (state) => {

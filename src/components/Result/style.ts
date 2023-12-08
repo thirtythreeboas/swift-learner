@@ -1,5 +1,5 @@
 import {css} from '@emotion/react';
-import {UserAnswersList} from '@/types/userAnswersList';
+import {UserAnswersList} from '@/types/state';
 
 export const highlightAnswer = (e: UserAnswersList) => {
   const answer = e.correctAnswer.includes(e.userAnswer);
