@@ -2,8 +2,8 @@ import {BlockListElement, WordBlock} from '@/types/state';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {API} from '@/services/api';
 
-export const getWords = createAsyncThunk(
-  'words/getWords',
+export const getVocabCategories = createAsyncThunk(
+  'words/getVocabCategories',
   async (_, thunkAPI) => {
     try {
       const response = await API.get<BlockListElement[]>('/blockList');
@@ -14,8 +14,8 @@ export const getWords = createAsyncThunk(
   },
 );
 
-export const getBlockNames = createAsyncThunk(
-  'words/getBlockNames',
+export const getVocabBlock = createAsyncThunk(
+  'words/getVocabBlock',
   async (wordBlock: string, thunkAPI) => {
     try {
       const response = await API.get<WordBlock>(`/${wordBlock}`);

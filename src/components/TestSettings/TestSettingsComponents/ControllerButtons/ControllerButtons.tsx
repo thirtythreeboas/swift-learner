@@ -1,5 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import {FC, useRef, useState, useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '@/hooks/hooks';
 import {
@@ -10,7 +8,6 @@ import {
 } from '@/store/test-process/test-process';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import {jsx} from '@emotion/react';
 import {controllerBtnStyles as s} from './style';
 
 export const ControllerButtons: FC = () => {

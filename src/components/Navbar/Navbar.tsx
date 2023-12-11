@@ -1,12 +1,9 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import {FC} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import {Link} from 'react-router-dom';
-import {jsx} from '@emotion/react';
 import {navbar as s} from './styles';
 
 export const Navbar: FC = () => {

@@ -1,6 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import React, {FC, useState} from 'react';
+import {FC, useState} from 'react';
 import {useAppSelector, useAppDispatch} from '@/hooks/hooks';
 import {setFormat} from '@/store/test-process/test-process';
 import Grid from '@mui/material/Grid';
@@ -9,7 +7,6 @@ import Button from '@mui/material/Button';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import {Languages} from '@/const';
 import {Breakpoints} from '@/types/testSettingsBreakpoints';
-import {jsx} from '@emotion/react';
 import {formatStyles as s} from './style';
 
 type RowBreakpointsProps = {
@@ -47,7 +44,7 @@ export const Format: FC<RowBreakpointsProps> = ({breakpoints}) => {
   };
 
   return (
-    <React.Fragment>
+    <>
       <Grid item xs={xs1} md={md1} lg={lg1}>
         Формат
       </Grid>
@@ -68,6 +65,6 @@ export const Format: FC<RowBreakpointsProps> = ({breakpoints}) => {
         </Button>
         <Typography css={s.lang}>{targetLang}</Typography>
       </Grid>
-    </React.Fragment>
+    </>
   );
 };

@@ -1,5 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import {FC} from 'react';
 import {
   Format,
@@ -13,7 +11,6 @@ import {
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import {jsx} from '@emotion/react';
 import {gridBreakpoints} from './breakpoints';
 import {testSettingsStyles as s} from './style';
 

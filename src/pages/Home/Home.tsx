@@ -1,5 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {
@@ -16,7 +14,6 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import {jsx} from '@emotion/react';
 import {RouteNames} from '@/const';
 import {homeStyles as s} from './styles';
 
@@ -27,6 +24,7 @@ export const Home = () => {
   useEffect(() => {
     dispatch(restartTest());
     dispatch(resetChosenBlocks());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -1,6 +1,9 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import {getWords, getBlockNames} from '@/store/vocabulary-data/action-creators';
+import {
+  getVocabCategories,
+  getVocabBlock,
+} from '@/store/vocabulary-data/action-creators';
 import {NameSpace} from '@/const';
 import {BlockListElement, Vocabulary, Word} from '../../types/state';
 
@@ -34,30 +37,30 @@ export const wordSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getWords.pending, (state) => {
+    builder.addCase(getVocabCategories.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(
-      getWords.fulfilled,
+      getVocabCategories.fulfilled,
       (state, action: PayloadAction<BlockListElement[]>) => {
         state.blockList = action.payload;
         state.isLoading = false;
       },
     );
-    builder.addCase(getWords.rejected, (state) => {
+    builder.addCase(getVocabCategories.rejected, (state) => {
       state.isLoading = false;
     });
-    builder.addCase(getBlockNames.pending, (state) => {
+    builder.addCase(getVocabBlock.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(
-      getBlockNames.fulfilled,
+      getVocabBlock.fulfilled,
       (state, action: PayloadAction<Word[]>) => {
         state.wordBlock = action.payload;
         state.isLoading = false;
       },
     );
-    builder.addCase(getBlockNames.rejected, (state) => {
+    builder.addCase(getVocabBlock.rejected, (state) => {
       state.isLoading = false;
     });
   },

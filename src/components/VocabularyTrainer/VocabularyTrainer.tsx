@@ -1,5 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import React, {useEffect, useState, useRef} from 'react';
 import {useAppSelector, useAppDispatch} from '@/hooks/hooks';
 import {
@@ -12,7 +10,6 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
-import {jsx} from '@emotion/react';
 import {vocabStyles as s} from './style';
 
 export const VocabularyTrainer = () => {
@@ -106,7 +103,7 @@ export const VocabularyTrainer = () => {
   };
 
   return (
-    <React.Fragment>
+    <>
       <Box css={s.inputBlock}>
         <TextField css={s.textfield} label='Переведите слово' value={word} />
         <TextField
@@ -128,6 +125,6 @@ export const VocabularyTrainer = () => {
         css={s.badge}
         color='primary'
       />
-    </React.Fragment>
+    </>
   );
 };

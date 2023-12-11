@@ -1,7 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import {FC} from 'react';
-import {jsx} from '@emotion/react';
 import {useRouteError, isRouteErrorResponse, Link} from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
