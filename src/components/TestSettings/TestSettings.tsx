@@ -1,16 +1,14 @@
 import {FC} from 'react';
-import {
-  Format,
-  CurrentWordBlock,
-  BlockSize,
-  WordNumber,
-  WordOrder,
-  TestTimer,
-  ControllerButtons,
-} from '@/components/TestSettings/TestSettingsComponents';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import {Format} from './Format';
+import {CurrentWordBlock} from './CurrentWordBlock';
+import {BlockSize} from './BlockSize';
+import {WordNumber} from './WordNumber';
+import {WordOrder} from './WordOrder';
+import {TestTimer} from './TestTimer';
+import {ControllerButtons} from './ControllerButtons';
 import {gridBreakpoints} from './breakpoints';
 import {testSettingsStyles as s} from './style';
 
