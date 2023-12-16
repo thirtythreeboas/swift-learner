@@ -13,7 +13,6 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Button from '@mui/material/Button';
 import LinearProgress from '@mui/material/LinearProgress';
-import {useWordBlockName} from '@/hooks/useWordBlockName';
 import {dictionaryStyles as s} from './styles';
 
 type Column = {
@@ -39,8 +38,6 @@ export const Dictionary = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // const blockName = useWordBlockName();
-
   const columns: Column[] = [
     {
       id: 'eng',
@@ -61,7 +58,6 @@ export const Dictionary = () => {
 
   return (
     <Suspense fallback={<LinearProgress />}>
-      {/* <p>{blockName}</p> */}
       <Paper css={s.paper}>
         <TableContainer>
           <Table>

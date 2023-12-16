@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --open",
     "build": "tsc && vite build",
     "server": "json-server --watch src/mock/words.json --port 8000",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",

@@ -1,37 +1,53 @@
 import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '@/hooks/hooks';
-import {setCurrentBlockName} from '@/store/vocabulary-data/vocabulary-data';
+// import {setCurrentBlockName} from '@/store/vocabulary-data/vocabulary-data';
 import {TestSettings} from '@/components/TestSettings/TestSettings';
-import {getVocabBlock} from '@/store/vocabulary-data/action-creators';
+import {
+  getVocabBlock,
+  getVocabCategories,
+} from '@/store/vocabulary-data/action-creators';
 import {Results} from '@/components/Result';
 import {WelcomeImg} from '@/components/WelcomeImg';
 import {VocabularyTrainer} from '@/components/VocabularyTrainer';
 import Container from '@mui/material/Container';
+import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
-import {BlockListElement} from '@/types/state';
+// import {BlockListElement} from '@/types/state';
+import {assignBlockName} from '@/utils/assignBlockName';
 import {testStyles as s} from './styles';
 
 export const Test = () => {
   const {isTestStarted, showResult} = useAppSelector(({TEST}) => TEST);
-  const {blockList} = useAppSelector(({WORDS}) => WORDS);
+  const {blockList, chosenBlock} = useAppSelector(({WORDS}) => WORDS);
   const dispatch = useAppDispatch();
   const params = useParams();
 
   useEffect(() => {
-    if (params.wordBlock) {
-      dispatch(getVocabBlock(params.wordBlock));
+    if (params.wordBlock) dispatch(getVocabBlock(params.wordBlock));
+    if (!chosenBlock) {
+      dispatch(getVocabCategories());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    const block: BlockListElement | undefined = blockList.find(
-      (elem) => elem.path === params.wordBlock,
-    );
-    if (block) {
-      dispatch(setCurrentBlockName(block));
+    if (params.wordBlock) {
+      assignBlockName({
+        blockList,
+        wordBlock: params.wordBlock,
+        dispatch,
+      });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockList]);
+
+  if (!chosenBlock)
+    return (
+      <Container css={s.container}>
+        <LinearProgress />
+      </Container>
+    );
 
   return (
     <Container css={s.container}>
