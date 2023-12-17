@@ -1,7 +1,6 @@
-import {FC, useEffect, Suspense} from 'react';
+import {FC, useEffect} from 'react';
 import {Outlet} from 'react-router-dom';
 import {useAppDispatch} from '@/hooks/hooks';
-import LinearProgress from '@mui/material/LinearProgress';
 import {getVocabCategories} from '@/store/vocabulary-data/action-creators';
 import {Navbar} from '@/components/Navbar';
 import Container from '@mui/material/Container';
@@ -19,9 +18,7 @@ export const App: FC = () => {
     <Container css={s.appContainer}>
       <Navbar />
       <Container css={s.contentSection}>
-        <Suspense fallback={<LinearProgress />}>
-          <Outlet />
-        </Suspense>
+        <Outlet />
       </Container>
     </Container>
   );

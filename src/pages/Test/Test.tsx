@@ -1,7 +1,6 @@
 import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '@/hooks/hooks';
-// import {setCurrentBlockName} from '@/store/vocabulary-data/vocabulary-data';
 import {TestSettings} from '@/components/TestSettings/TestSettings';
 import {
   getVocabBlock,
@@ -11,15 +10,16 @@ import {Results} from '@/components/Result';
 import {WelcomeImg} from '@/components/WelcomeImg';
 import {VocabularyTrainer} from '@/components/VocabularyTrainer';
 import Container from '@mui/material/Container';
-import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
-// import {BlockListElement} from '@/types/state';
+import {Loading} from '@/components/UI/Loading';
 import {assignBlockName} from '@/utils/assignBlockName';
 import {testStyles as s} from './styles';
 
 export const Test = () => {
   const {isTestStarted, showResult} = useAppSelector(({TEST}) => TEST);
-  const {blockList, chosenBlock} = useAppSelector(({WORDS}) => WORDS);
+  const {blockList, chosenBlock, wordBlock} = useAppSelector(
+    ({WORDS}) => WORDS,
+  );
   const dispatch = useAppDispatch();
   const params = useParams();
 
@@ -42,12 +42,7 @@ export const Test = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockList]);
 
-  if (!chosenBlock)
-    return (
-      <Container css={s.container}>
-        <LinearProgress />
-      </Container>
-    );
+  if (!chosenBlock || wordBlock.length === 0) return <Loading />;
 
   return (
     <Container css={s.container}>
