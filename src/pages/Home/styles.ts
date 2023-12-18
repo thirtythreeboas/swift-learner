@@ -14,10 +14,9 @@ export const homeStyles = {
     margin-bottom: 20px;
   `,
   contentWrapper: css`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 35px 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
     width: 100%;
   `,
   card: css`
@@ -26,9 +25,13 @@ export const homeStyles = {
   cardMedia: css`
     height: 140px;
   `,
+  button: css`
+    padding: 0;
+  `,
   link: css`
     text-decoration: none;
     color: #1976d2;
     font-weight: 500;
+    padding: 8px;
   `,
 };

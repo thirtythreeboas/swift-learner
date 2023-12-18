@@ -45,7 +45,7 @@ export const Home = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size='small'>
+              <Button css={s.button} size='small'>
                 <Link
                   css={s.link}
                   to={`${RouteNames.TEST}/${item.path}`}
@@ -54,7 +54,7 @@ export const Home = () => {
                   Пройти тест
                 </Link>
               </Button>
-              <Button size='small'>
+              <Button css={s.button} size='small'>
                 <Link css={s.link} to={`${RouteNames.WORDS}/${item.path}`}>
                   Посмотреть слова
                 </Link>
