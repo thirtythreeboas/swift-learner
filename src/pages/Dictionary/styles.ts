@@ -1,8 +1,12 @@
 import {css} from '@emotion/react';
+import {mq} from '@/utils/mediaQueries';
 
 export const dictionaryStyles = {
   paper: css`
-    width: 600px;
+    width: 100%;
+    ${mq.small} {
+      width: 600px;
+    }
   `,
   header: css`
     display: flex;
@@ -17,7 +21,12 @@ export const dictionaryStyles = {
     width: 100%;
   `,
   hideWordsBtn: css`
-    margin-left: 10px;
+    ${mq.small} {
+      margin-left: 10px;
+      min-width: 64px;
+    }
+    margin-left: 0;
+    min-width: auto;
   `,
   tableHeadCell: css`
     font-size: large;

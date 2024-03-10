@@ -1,4 +1,5 @@
 import {css} from '@emotion/react';
+import {mq} from '@/utils/mediaQueries';
 
 export const homeStyles = {
   container: css`
@@ -15,15 +16,23 @@ export const homeStyles = {
   `,
   contentWrapper: css`
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
     width: 100%;
+    grid-template-columns: repeat(1, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%;
+    ${mq.small} {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    ${mq.large} {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   `,
   card: css`
     max-width: 345px;
   `,
   cardMedia: css`
-    height: 140px;
+    height: 170px;
   `,
   button: css`
     padding: 0;
