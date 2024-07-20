@@ -1,9 +1,14 @@
 import {css} from '@emotion/react';
+import {mq} from '@/utils/mediaQueries';
 
 export const controllerBtnStyles = {
   container: css`
+    ${mq.small} {
+      flex-direction: row;
+      justify-content: space-between;
+    }
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
   `,
   btn: css`
     background-color: #1976d2;

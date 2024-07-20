@@ -1,9 +1,13 @@
 import {css} from '@emotion/react';
+import {mq} from '@/utils/mediaQueries';
 
 export const testSettingsStyles = {
   container: css`
-    width: 600px;
-    margin: 0;
+    ${mq.small} {
+      width: 600px;
+      margin: 0;
+    }
+    width: auto;
   `,
   contentWrapper: css`
     max-width: 400px;
